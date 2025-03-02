@@ -88,8 +88,10 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (player == runnerInstance.LocalPlayer)
         {
+            
             NetworkObject playerObject = runner.Spawn(PlayerPrefab, Vector3.up, Quaternion.identity, runner.LocalPlayer);
             runner.SetPlayerObject(player, playerObject);
+            
         }
     }
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
