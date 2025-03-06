@@ -6,7 +6,7 @@ using Fusion;
 public class PlayerManager : NetworkBehaviour
 {
     private Rigidbody body;
-
+    public GameManager gameManager;
     public float Speed;
     public Transform cam; // Référence à la caméra pour orienter les déplacements
     public float sensitivity = 2f; // Sensibilité de la souris
@@ -16,6 +16,10 @@ public class PlayerManager : NetworkBehaviour
 
     private void Start()
     {
+        Debug.Log("this == " + this);
+        Debug.Log("playerRef == " + Runner.LocalPlayer);
+        gameManager = FindAnyObjectByType<GameManager>();
+        Debug.Log("gameManager =" + gameManager);
         if (HasStateAuthority)
         {
             body = GetComponent<Rigidbody>();
@@ -25,6 +29,7 @@ public class PlayerManager : NetworkBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        gameManager.Rpc_ReferencePlayer(Runner.LocalPlayer,this);
     }
 
     public override void FixedUpdateNetwork()
