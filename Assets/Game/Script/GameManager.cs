@@ -7,11 +7,15 @@ public class GameManager : NetworkBehaviour, IPlayerJoined
 {
     public GameObject PlayerUIName;
     public GameObject PlayerUIParent;
+    public static GameManager instance;
     [Networked] public NetworkDictionary<PlayerRef,PlayerManager> PlayerRefDict => default;
     
     void Awake()
     {
-
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     [Rpc(RpcSources.All,RpcTargets.All)]
@@ -33,6 +37,10 @@ public class GameManager : NetworkBehaviour, IPlayerJoined
     public void PlayerJoined(PlayerRef player)
     {
         Debug.Log("new player joined " + player);
-        //PlayerRefList.Add(player);
+    }
+
+    public void GetOtherPlayer()
+    {
+       /// Runner.ActivePlayers
     }
 }
