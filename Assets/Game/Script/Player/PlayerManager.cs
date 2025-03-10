@@ -5,6 +5,11 @@ using Fusion;
 
 public class PlayerManager : NetworkBehaviour
 {
+    GameManager gameManager;
+    public int PlayerID;
+}
+
+    /*
     private Rigidbody body;
     public PlayerRef playerRef;
     public GameManager gameManager;
@@ -75,4 +80,4 @@ public class PlayerManager : NetworkBehaviour
         rotationX = Mathf.Clamp(rotationX, -90f, 90f); // Empêche la caméra de se retourner totalement
         cam.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
     }
-}
+    */
