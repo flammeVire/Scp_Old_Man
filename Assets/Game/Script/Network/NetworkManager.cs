@@ -4,8 +4,6 @@ using UnityEngine;
 using Fusion;
 using Fusion.Sockets;
 using System;
-using static System.Collections.Specialized.BitVector32;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 using TMPro;
 

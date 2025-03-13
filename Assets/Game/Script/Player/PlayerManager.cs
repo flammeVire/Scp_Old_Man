@@ -6,10 +6,18 @@ using Fusion;
 public class PlayerManager : NetworkBehaviour
 {
     public NetworkRunner runner;
-    GameManager gameManager;
     public int PlayerID;
-}
 
+    public void Awake()
+    {
+        runner = FindAnyObjectByType<NetworkRunner>();
+        Debug.Log("Runner = " + runner);
+        GameManager.instance.Rpc_AddingPlayerToList(this);
+        GameManager.instance.UpdatePlayersList();
+    }
+
+
+}
     /*
     private Rigidbody body;
     public PlayerRef playerRef;

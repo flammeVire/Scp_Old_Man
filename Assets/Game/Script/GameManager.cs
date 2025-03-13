@@ -1,15 +1,19 @@
 using Fusion;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : NetworkBehaviour, IPlayerJoined
+public class GameManager : NetworkBehaviour, IPlayerJoined 
 {
+    [SerializeField]GameObject GlobalCanva;
     public GameObject PlayerUIName;
     public GameObject PlayerUIParent;
     public static GameManager instance;
-    [Networked] public NetworkDictionary<PlayerRef,PlayerManager> PlayerRefDict => default;
-    
+    //[Networked] 
+    public List<NetworkRunner> Runners = new List<NetworkRunner>();
+    [SerializeField]GameObject StartButton;
     void Awake()
     {
         if(instance == null)
@@ -27,21 +31,43 @@ public class GameManager : NetworkBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
-
+        GetFirstPlayer();
     }
 
-    public void getOtherPlayer()
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    public void Rpc_AddingPlayerToList(PlayerManager manager)
     {
-        List<PlayerRef> oldestPlayers = new List<PlayerRef>();
-        foreach(var players in Runner.ActivePlayers)
+        if (!Runners.Contains(manager.runner))
         {
-            oldestPlayers.Add(players);
+            Runners.Add(manager.runner);
         }
-        //recuperer le playerManager Lié
     }
 
+    public void UpdatePlayersList()
+    {
+        
+        foreach (NetworkRunner runner in Runners) 
+        {
+            Debug.Log("spawn ui");
+            GameObject ui = Instantiate(PlayerUIName, PlayerUIParent.transform.position,PlayerUIParent.transform.rotation,PlayerUIParent.transform);
+            ui.GetComponentInChildren<TextMeshProUGUI>().text = runner.LocalPlayer.ToString();
+        }
+    }
 
+    void GetFirstPlayer()
+    {
+        int numberOfPlayers = new List<PlayerRef>(Runner.ActivePlayers).Count;
+        Debug.Log("there is " + numberOfPlayers + " player in game");
+        if (numberOfPlayers == 1)
+        {
+            GameObject clone = Instantiate(StartButton, GlobalCanva.transform.position, GlobalCanva.transform.rotation, GlobalCanva.transform);
+        }
+    }
 
+    public void LaunchGame()
+    {
+        Debug.Log("GameLaunched");
+    }
 
     /*
 [Rpc(RpcSources.All,RpcTargets.All)]
