@@ -5,6 +5,7 @@ using Fusion;
 
 public class PlayerManager : NetworkBehaviour
 {
+    public NetworkRunner runner;
     GameManager gameManager;
     public int PlayerID;
 }
