@@ -37,10 +37,13 @@ public class GameManager : NetworkBehaviour, IPlayerJoined
     [Rpc(RpcSources.All,RpcTargets.All)]
     public void Rpc_AddingPlayerToList(PlayerManager manager)
     {
-        if (!Runners.Contains(manager.runner))
+        PlayerManager m = manager;
+        Debug.Log("manager == " + m);
+        if (!Runners.Contains(m.runner))
         {
-            Runners.Add(manager.runner);
+            Runners.Add(m.runner);
         }
+        
     }
 
     public void UpdatePlayersList()
