@@ -7,16 +7,27 @@ public class PlayerManager : NetworkBehaviour
 {
     public NetworkRunner runner;
     public int PlayerID;
+    public GameObject mesh;
+    public Transform SpawnPoint;
 
     public void Awake()
     {
         runner = FindAnyObjectByType<NetworkRunner>();
         Debug.Log("Runner = " + runner);
-        GameManager.instance.Rpc_AddingPlayerToList(this);
-        GameManager.instance.UpdatePlayersList();
+        LobbyManager.instance.Rpc_AddingPlayerToList(this);
+        LobbyManager.instance.UpdatePlayersList();
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
+    public void Init()
+    {
+       var clone = Runner.SpawnAsync(mesh, Vector3.up, Quaternion.identity,runner.LocalPlayer);
+      
+    }
 }
     /*
     private Rigidbody body;

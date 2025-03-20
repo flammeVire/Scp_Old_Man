@@ -61,7 +61,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Scene = SceneRef.FromIndex(GetSceneIndex(PlayScene)),
             SessionName = randomSessionName,
-            GameMode = GameMode.Shared,
+            GameMode = GameMode.Host,
+            PlayerCount = 4
         });
     }
 
@@ -85,11 +86,9 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (player == runnerInstance.LocalPlayer)
-        {
-            
+        {     
             NetworkObject playerObject = runner.Spawn(PlayerPrefab, Vector3.up, Quaternion.identity, runner.LocalPlayer);
-            runner.SetPlayerObject(player, playerObject);
-            
+            runner.SetPlayerObject(player, playerObject);  
         }
     }
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
@@ -97,7 +96,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         DeleteOldSessionsFromUI(sessionList);
         CompareLists(sessionList);
     }
-
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         SceneManager.LoadScene(LobbyScene);
