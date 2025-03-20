@@ -25,8 +25,9 @@ public class PlayerManager : NetworkBehaviour
 
     public void Init()
     {
-       var clone = Runner.SpawnAsync(mesh, Vector3.up, Quaternion.identity,runner.LocalPlayer);
-      
+        int numberOfPlayers = new List<PlayerRef>(Runner.ActivePlayers).Count;
+        Debug.Log("total of player = " + numberOfPlayers);
+        var clone = Runner.SpawnAsync(mesh, Vector3.up, Quaternion.identity,runner.LocalPlayer);
     }
 }
     /*

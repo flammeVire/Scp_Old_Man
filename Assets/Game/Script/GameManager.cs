@@ -14,6 +14,15 @@ public class GameManager : NetworkBehaviour
 
     public void SpawnPlayer()
     {
-
+        PlayerManager[] manager = FindObjectsByType<PlayerManager>(FindObjectsSortMode.None);
+        
+        Debug.Log("manager total find : " +manager.Length);
+        foreach(var m in manager)
+        {
+            Debug.Log(m);
+            m.mesh = PlayerMesh;
+            m.SpawnPoint = PlayerTransform;
+            m.Init();
+        }
     }
 }
