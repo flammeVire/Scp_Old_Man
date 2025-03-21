@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpHeight: 3
-  sensitivity: 2
+  sensitivity: 5.46
   rotationX: 0
   body: {fileID: 6698829922236841888}
   cam: {fileID: 0}

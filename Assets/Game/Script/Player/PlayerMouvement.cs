@@ -17,55 +17,52 @@ public class PlayerMouvement : NetworkBehaviour
     {
         if (HasInputAuthority)
         {
-            GameObject clone = Instantiate(camPrefab);
-            clone.transform.parent = transform;
-            cam = clone;
+            GameObject obj = Instantiate(camPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z + 0.2f), Quaternion.identity);
+            cam = obj;
+            obj.transform.parent = this.transform;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
 
-    public void Update()
+    public override void FixedUpdateNetwork()
     {
         if (HasInputAuthority) //si le joueur a le controle des input => evite de faire bouger autre joueur
         {
-            GetPlayerInput();
+            Movement();
+            Rotate();
         }
     }
 
-    public void GetPlayerInput()
-    {
-        // Récupération des entrées clavier
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        if (cam != null)
+        void Movement()
         {
-            Vector3 direction = cam.transform.forward * vertical + cam.transform.right * horizontal;
-            direction.y = 0; // Empêcher le mouvement vertical
+            // Récupération des entrées clavier
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
-            // Appliquer la vélocité
-            body.velocity = direction.normalized * Speed;
+            // Direction du mouvement selon l'orientation de la caméra
+            if (cam != null)
+            {
+                Vector3 direction = cam.transform.forward * vertical + cam.transform.right * horizontal;
+                direction.y = 0; // On empêche le mouvement vertical
 
-            // Récupération des entrées souris
+                // Appliquer la vélocité
+                body.velocity = direction.normalized * Speed;
+            }
+        }
+
+        void Rotate()
+        {
             float mouseX = Input.GetAxis("Mouse X") * sensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-            // Debug pour vérifier les entrées
-            Debug.Log("Mouse X: " + mouseX + " | Mouse Y: " + mouseY);
+            // Rotation horizontale du joueur
+            transform.Rotate(Vector3.up * mouseX);
 
-            //  Rotation horizontale du joueur (Gauche/Droite)
-            transform.Rotate(0f, mouseX, 0f); // Rotation en Y
-
-            //  Rotation verticale de la caméra (Haut/Bas)
+            // Rotation verticale de la caméra
             rotationX -= mouseY;
-            rotationX = Mathf.Clamp(rotationX, -90f, 90f); // Empêche de retourner la tête
-
+            rotationX = Mathf.Clamp(rotationX, -90f, 90f); // Empêche la caméra de se retourner totalement
             cam.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
-
-            // Debug pour voir la rotation de la caméra
-            Debug.Log("Cam Rotation: " + cam.transform.localRotation.eulerAngles);
         }
-    }
 
-}
+    }
