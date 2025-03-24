@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerMesh: {fileID: 7439568911862566826, guid: 3307e4ad0a519ff4288f6f573a9fc4ea, type: 3}
+  CameraPrefab: {fileID: 6955538818692819018, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
   PlayerTransform: {fileID: 1411083000}
 --- !u!4 &853796909
 Transform:
@@ -621,9 +622,9 @@ Light:
   m_GameObject: {fileID: 1241427773}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.7735849, g: 0.7075059, b: 0.062032763, a: 1}
+  m_Color: {r: 0.31431568, g: 0.13443395, b: 0.5, a: 1}
   m_Intensity: 1
   m_Range: 45.9
   m_SpotAngle: 119.2

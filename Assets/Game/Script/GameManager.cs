@@ -6,7 +6,9 @@ using Fusion;
 public class GameManager : NetworkBehaviour
 {
     public GameObject PlayerMesh;
+    public GameObject CameraPrefab;
     public Transform PlayerTransform;
+    
     private void Start()
     {
         SpawnPlayer();
@@ -14,15 +16,15 @@ public class GameManager : NetworkBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerManager[] manager = FindObjectsByType<PlayerManager>(FindObjectsSortMode.None);
-        
-        Debug.Log("manager total find : " +manager.Length);
-        foreach(var m in manager)
+        if (NetworkManager.runnerInstance.IsServer)
         {
-            Debug.Log(m);
-            m.mesh = PlayerMesh;
-            m.SpawnPoint = PlayerTransform;
-            m.Init();
+            foreach (var player in LobbyManager.instance.playerList)
+            {
+                NetworkSpawnOp Mesh = NetworkManager.runnerInstance.SpawnAsync(PlayerMesh, PlayerTransform.position, PlayerTransform.rotation, player.playerRef);
+                Debug.Log("Assign authority to " + player.playerRef);
+            }
         }
     }
+
+   
 }

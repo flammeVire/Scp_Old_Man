@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-public class PlayerManager : NetworkBehaviour
+public class PlayerManager : NetworkBehaviour,ISpawned
 {
-    public NetworkRunner runner;
+    public PlayerRef playerRef;
     public int PlayerID;
     public GameObject mesh;
     public Transform SpawnPoint;
-
-    public void Awake()
-    {
-        runner = FindAnyObjectByType<NetworkRunner>();
-        Debug.Log("Runner = " + runner);
-        LobbyManager.instance.Rpc_AddingPlayerToList(this);
-        LobbyManager.instance.UpdatePlayersList();
-    }
+    public GameObject CameraPrefab;
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        LobbyManager.instance.Rpc_AddingPlayerToList(this);
+        LobbyManager.instance.UpdatePlayersList();
+       // DontDestroyOnLoad(gameObject);
+
+        if (NetworkManager.runnerInstance.IsServer) 
+        {
+            LobbyManager.instance.GetFirstPlayer();
+        }
     }
 
+    
     public void Init()
     {
-        int numberOfPlayers = new List<PlayerRef>(Runner.ActivePlayers).Count;
-        Debug.Log("total of player = " + numberOfPlayers);
-        var clone = Runner.SpawnAsync(mesh, Vector3.up, Quaternion.identity,runner.LocalPlayer);
+        
     }
+
+    
+
+    
 }
     /*
     private Rigidbody body;

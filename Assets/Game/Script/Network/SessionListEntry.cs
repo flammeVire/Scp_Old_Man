@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Fusion;
 using UnityEngine.UI;
+using Photon.Realtime;
 
 
 public class SessionListEntry : MonoBehaviour
@@ -17,7 +18,9 @@ public class SessionListEntry : MonoBehaviour
         {
             GameMode = GameMode.Client,
             SessionName = roomName.text,
+
         });
+        
         Debug.Log(roomName.text);
     }
 }

@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1462253161}
   - component: {fileID: 1462253163}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LobbyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,9 +631,10 @@ MonoBehaviour:
   GlobalCanva: {fileID: 98200253}
   PlayerUIName: {fileID: 1330521318867556459, guid: ce98ffcd1e0b82e469828a288b548dea, type: 3}
   PlayerUIParent: {fileID: 462793973}
+  PlayerPrefab: {fileID: 3380095014023468224, guid: d88a20ddd320e10438e28d028ad68e83, type: 3}
   sceneRef:
     RawValue: 3
-  Runners: []
+  playerList: []
   StartButton: {fileID: 5351485763906478702, guid: a640960bf0c66054cb90a5fe3557e046, type: 3}
 --- !u!4 &1462253162
 Transform:
