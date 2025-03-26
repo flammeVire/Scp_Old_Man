@@ -61,7 +61,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Scene = SceneRef.FromIndex(GetSceneIndex(PlayScene)),
             SessionName = randomSessionName,
-            GameMode = GameMode.Host,
+            GameMode = GameMode.Shared,
             PlayerCount = 4
         });
     }

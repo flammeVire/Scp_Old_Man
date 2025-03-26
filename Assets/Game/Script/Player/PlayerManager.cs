@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using System.Linq;
 
 public class PlayerManager : NetworkBehaviour,ISpawned
 {
     public PlayerRef playerRef;
     public int PlayerID;
-    public GameObject mesh;
+    public GameObject PlayerMesh;
     public Transform SpawnPoint;
-    public GameObject CameraPrefab;
 
     private void Start()
     {
-        LobbyManager.instance.Rpc_AddingPlayerToList(this);
-        LobbyManager.instance.UpdatePlayersList();
-       // DontDestroyOnLoad(gameObject);
+        //LobbyManager.instance.Rpc_AddingPlayerToList(this);
+       // LobbyManager.instance.UpdatePlayersList();
+        DontDestroyOnLoad(gameObject);
 
         if (NetworkManager.runnerInstance.IsServer) 
         {
-            LobbyManager.instance.GetFirstPlayer();
+           // LobbyManager.instance.GetFirstPlayer();
         }
     }
 
-    
+    public override void Spawned()
+    {
+        Debug.Log("--- object has spawned " + this.Object.name + " ---");
+    }
+
     public void Init()
     {
         

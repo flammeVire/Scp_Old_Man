@@ -8,7 +8,7 @@ public class GameManager : NetworkBehaviour
     public GameObject PlayerMesh;
     public GameObject CameraPrefab;
     public Transform PlayerTransform;
-    
+    public static GameManager Instance;
     private void Start()
     {
         SpawnPlayer();
@@ -16,15 +16,10 @@ public class GameManager : NetworkBehaviour
 
     public void SpawnPlayer()
     {
-        if (NetworkManager.runnerInstance.IsServer)
-        {
-            foreach (var player in LobbyManager.instance.playerList)
-            {
-                NetworkSpawnOp Mesh = NetworkManager.runnerInstance.SpawnAsync(PlayerMesh, PlayerTransform.position, PlayerTransform.rotation, player.playerRef);
-                Debug.Log("Assign authority to " + player.playerRef);
-            }
-        }
+
+        NetworkManager.runnerInstance.SpawnAsync(PlayerMesh,PlayerTransform.position,PlayerTransform.rotation,NetworkManager.runnerInstance.LocalPlayer);
     }
 
-   
+
+    
 }

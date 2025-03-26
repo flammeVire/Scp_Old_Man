@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5b75a28e4de7041bbb3c61f61f6ddc, type: 3}
+  m_Name: Flash+Bulb
+  m_EditorClassIdentifier: 
+  Name: Flash+Bulb
+  FloorMesh: {fileID: 5096292219190364009, guid: e4315fd8c5731db419d041a5bef295e0, type: 3}
+  HandMesh: {fileID: 5096292219190364009, guid: e1a8026e88e8f694d93221219964a6d4, type: 3}
+  Sprite: {fileID: 0}

@@ -16,7 +16,7 @@ public class SessionListEntry : MonoBehaviour
     {
         NetworkManager.runnerInstance.StartGame(new StartGameArgs()
         {
-            GameMode = GameMode.Client,
+            GameMode = GameMode.Shared,
             SessionName = roomName.text,
 
         });
