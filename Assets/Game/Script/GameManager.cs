@@ -20,6 +20,10 @@ public class GameManager : NetworkBehaviour
         NetworkManager.runnerInstance.SpawnAsync(PlayerMesh,PlayerTransform.position,PlayerTransform.rotation,NetworkManager.runnerInstance.LocalPlayer);
     }
 
+    public void Update()
+    {
+        
+    }
 
-    
+
 }

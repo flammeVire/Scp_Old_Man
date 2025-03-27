@@ -33,6 +33,11 @@ public class PlayerManager : NetworkBehaviour,ISpawned
         
     }
 
+   
+    
+
+    
+
     
 
     

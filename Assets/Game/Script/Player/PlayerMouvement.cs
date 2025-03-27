@@ -39,6 +39,11 @@ public class PlayerMouvement : NetworkBehaviour
             Rotate();
             HandleJump();
             HandleCrouch();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y-8,transform.position.z);
+                TeleportMesh(pos, transform.rotation);
+            }
         }
     }
 
@@ -61,7 +66,7 @@ public class PlayerMouvement : NetworkBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         rotationX -= mouseY;
-        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+        rotationX = Mathf.Clamp(rotationX, -89f, 89f);
         cam.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
     }
 
@@ -104,5 +109,11 @@ public class PlayerMouvement : NetworkBehaviour
                 body.velocity += Vector3.down * gravity * Time.fixedDeltaTime;
             }
         }
+    }
+
+    public void TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
+    {
+        transform.position = spawnPosition;
+        transform.rotation = rotation;
     }
 }
