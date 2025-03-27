@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 9158581703884549547}
   - component: {fileID: 5568853269028372429}
   - component: {fileID: 3476804410694073511}
+  - component: {fileID: 8796728106877429974}
   m_Layer: 7
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -239,10 +240,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupRange: 2
   playerCamera: {fileID: 4388441864165681919}
+  hand: {fileID: 811229714410248958}
+  CurrentItem: {fileID: 0}
   inventory:
   - {fileID: 0}
   - {fileID: 0}
-  hand: {fileID: 811229714410248958}
   PossiblesItem:
   - {fileID: 11400000, guid: 4906d3db0eff81e4290b57ada7c6eca7, type: 2}
 --- !u!136 &227268913443682947
@@ -338,7 +340,21 @@ MonoBehaviour:
   - {fileID: 66067729302263490}
   - {fileID: 4047595549479562219}
   - {fileID: 5568853269028372429}
+  - {fileID: 8796728106877429974}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &8796728106877429974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf5e798776291848b8c592829dcf68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 4388441864165681919}
 --- !u!1001 &2687460008266366231
 PrefabInstance:
   m_ObjectHideFlags: 0

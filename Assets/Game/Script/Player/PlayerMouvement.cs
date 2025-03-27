@@ -72,18 +72,13 @@ public class PlayerMouvement : NetworkBehaviour
             Debug.Log("Jump");
             body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
         }
-        else 
-        {
-            Debug.Log("Is Grounded == " + isGrounded);
-            Debug.Log("Input Jump == " + Input.GetButtonDown("Jump"));
-        }
+        
     }
 
     void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Debug.Log("Crouch");
             if (!isCrouching)
             {
                 playerCollider.height = crouchHeight;

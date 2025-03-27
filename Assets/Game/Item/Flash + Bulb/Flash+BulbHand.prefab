@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 395000275173612513}
   - component: {fileID: 4442181076592159585}
   - component: {fileID: 5845586091028208146}
+  - component: {fileID: 8661176687460926748}
   m_Layer: 0
   m_Name: Flash+BulbHand
   m_TagString: Item
@@ -101,8 +102,26 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 8661176687460926748}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &8661176687460926748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096292219190364009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0.15
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
 --- !u!1 &8435676773573394804
 GameObject:
   m_ObjectHideFlags: 0

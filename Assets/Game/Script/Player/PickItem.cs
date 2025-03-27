@@ -3,11 +3,13 @@ using UnityEngine;
 using Fusion;
 using System.Collections;
 
-public class PlayerInteraction : NetworkBehaviour
+
+public class PickItem : NetworkBehaviour
 {
     public float pickupRange = 2f;
     public Camera playerCamera;
     public Transform hand;
+
     public Item CurrentItem;
     public Item[] inventory = new Item[2];
     public List<Item> PossiblesItem;
@@ -70,6 +72,7 @@ public class PlayerInteraction : NetworkBehaviour
         if (item != null)
         {
             NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(item.HandMesh, hand.transform.position, hand.transform.rotation, NetworkManager.runnerInstance.LocalPlayer);
+            Rpc_SyncTransform(obj.Object);
             obj.Object.transform.parent = hand.transform;
         }
     }
@@ -82,6 +85,16 @@ public class PlayerInteraction : NetworkBehaviour
             NetworkManager.runnerInstance.Despawn(currentItem);
         }
     }
+    
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    void Rpc_SyncTransform(NetworkObject obj)
+    {
+        obj.transform.position = hand.transform.position;
+        obj.transform.rotation = hand.transform.rotation;
+        obj.transform.parent = hand.transform;
+        //obj.name = CurrentItem.Name;
+    }
+    
     #endregion
     #region pick
 
@@ -98,48 +111,74 @@ public class PlayerInteraction : NetworkBehaviour
                 if (netObj != null)
                 {
                     Debug.Log("Tentative de prise d'autorité...");
-                    RequestAndPickup(netObj);
+                    Rpc_RequestAndPickup(netObj,NetworkManager.runnerInstance.LocalPlayer);
                 }
             }
         }
     }
 
-    void RequestAndPickup(NetworkObject netObj)
+    [Rpc( RpcSources.All, RpcTargets.All)]
+    void Rpc_RequestAndPickup(NetworkObject netObj,PlayerRef player)
     {
+        Debug.Log("RPC_Request for " + netObj + "to +" +  player);
+        if (player == NetworkManager.runnerInstance.LocalPlayer) 
+        {
+            Debug.Log("Player is the local player");
+            PickupItem(netObj.gameObject.name);
+        }
         if (netObj.HasStateAuthority)
         {
-            netObj.RequestStateAuthority(); // Demande l'autorité
+            Debug.Log("Have Authority : despawn");
+            NetworkManager.runnerInstance.Despawn(netObj.GetComponent<NetworkObject>()); // Déspawn l'objet du réseau
         }
-
-        StartCoroutine(WaitForAuthorityAndPickup(netObj)); // Attendre l'autorité avant d'agir
-    }
-
-    IEnumerator WaitForAuthorityAndPickup(NetworkObject netObj)
-    {
-        while (!netObj.HasStateAuthority) // Attendre que l'autorité soit transférée
+        else
         {
-            yield return null;
+            Debug.Log("Have not Authority : do nothing");
         }
-        Debug.Log("Autorité obtenue, ramassage...");
-        PickupItem(netObj.gameObject);
     }
 
-    void PickupItem(GameObject item)
+    void PickupItem(string item)
     {
         if (inventory[index] == null && item != null)
         {
-
+            Debug.Log("inventory item = " +inventory[index]);
+            Debug.Log("item = " + item);
             foreach (Item possibleItem in PossiblesItem)
             {
-                if (possibleItem != null && possibleItem.Name == item.name)
+                Debug.Log("possibleItem = " + possibleItem);
+                Debug.Log("possibleItem Name= " + possibleItem.Name + "| item Name" + item );
+                if (possibleItem != null)
                 {
-                    inventory[index] = possibleItem;
-                    break;
+                    Debug.Log("PossibleItem != null");
+                    if (possibleItem.Name == item)
+                    {
+                        Debug.Log(possibleItem.Name + " == " +item);
+                        inventory[index] = possibleItem;
+                        CurrentItem = possibleItem;
+                        ShowItem(possibleItem);
+                        break;
+                    }
+                    else if (possibleItem.Name + "(Clone)" == item)
+                    {
+                        Debug.Log(possibleItem.Name + "(Clone)" + " == " + item );
+                        inventory[index] = possibleItem;
+                        CurrentItem = possibleItem;
+                        ShowItem(possibleItem);
+                        break;
+
+                    }
+                    else
+                    {
+                        Debug.Log("Name incorrect");
+                    }
+                }
+                else
+                {
+                    Debug.Log("item non ramassé");
                 }
             }
 
-            Debug.Log("Objet ramassé : " + item.name);
-            Runner.Despawn(item.GetComponent<NetworkObject>()); // Déspawn l'objet du réseau
+            Debug.Log("pickUpFinished");
 
         }
     }
@@ -152,7 +191,7 @@ public class PlayerInteraction : NetworkBehaviour
         {
             RemoveObj();
             NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(CurrentItem.FloorMesh, hand.transform.position, hand.transform.rotation, NetworkManager.runnerInstance.LocalPlayer);
-            obj.Object.name = CurrentItem.Name;
+            //obj.Object.name = CurrentItem.Name;
             RemoveItemFromInventory();
         }
     }
@@ -172,7 +211,7 @@ public class PlayerInteraction : NetworkBehaviour
         {
             RemoveObj();
             NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(CurrentItem.FloorMesh, hand.position, hand.rotation, NetworkManager.runnerInstance.LocalPlayer);
-            obj.Object.name = CurrentItem.Name;
+           // obj.Object.name = CurrentItem.Name;
 
             // Ajoute une force pour le lancer
             Rigidbody rb = obj.Object.GetComponent<Rigidbody>();
