@@ -10,11 +10,12 @@ public class PlayerMouvement : NetworkBehaviour
     public float gravity = 9.81f;
     public float crouchHeight = 0.5f;
     public float standingHeight = 2f;
-
+    public float stamina = 100;
     private Rigidbody body;
     private float rotationX = 0f;
     private bool isGrounded;
     private bool isCrouching;
+    private bool isRunning;
     private CapsuleCollider playerCollider;
 
     void Start()
@@ -39,7 +40,8 @@ public class PlayerMouvement : NetworkBehaviour
             Rotate();
             HandleJump();
             HandleCrouch();
-            if (Input.GetButtonDown("Fire2"))
+            HandleRun();
+            if (Input.GetButtonDown("Cancel"))
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y-8,transform.position.z);
                 TeleportMesh(pos, transform.rotation);
@@ -95,6 +97,23 @@ public class PlayerMouvement : NetworkBehaviour
                 playerCollider.height = standingHeight;
                 moveSpeed *= 2;
                 isCrouching = false;
+            }
+        }
+    }
+
+    void HandleRun()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (!isRunning)
+            {
+                moveSpeed *= 2;
+                isRunning = true;
+            }
+            else
+            {
+                moveSpeed /= 2;
+                isRunning = false;
             }
         }
     }
