@@ -29,10 +29,15 @@ public class PlayerInterraction : NetworkBehaviour
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
 
                         }
-                        if (hit.collider.GetComponent<Card_Door>())
+                        else if (hit.collider.GetComponent<Card_Door>())
                         {
                             Debug.Log("Hit Door");
                             hit.collider.GetComponent<Card_Door>().Interract(this.GetComponent<PickItem>());
+                        }
+                        else if (hit.collider.GetComponent<ButtonDouble_Door>()) 
+                        {
+                            Debug.Log("Hit button double Door");
+                            ButtonDoubleDoor(hit.collider.GetComponent<ButtonDouble_Door>());
                         }
                     }
                 }
@@ -46,5 +51,18 @@ public class PlayerInterraction : NetworkBehaviour
         security.enabled = true;
         security.playerCamera = playerCamera;
         security.PowerOn();
+    }
+
+    void ButtonDoubleDoor(ButtonDouble_Door button)
+    {
+        button.ActiveButton(true);
+        StartCoroutine(WaitUntilInterractIsUp(button));
+    }
+    IEnumerator WaitUntilInterractIsUp(ButtonDouble_Door button)
+    {
+        yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
+        Debug.Log("Interract is up");
+        yield return new WaitForSecondsRealtime(5);
+        button.ActiveButton(false);
     }
 }

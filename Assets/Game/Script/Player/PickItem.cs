@@ -6,17 +6,22 @@ using System.Collections;
 
 public class PickItem : NetworkBehaviour
 {
+
     public float pickupRange = 2f;
     public Camera playerCamera;
     public Transform hand;
 
+    [Header("Inventory")]
     public Item CurrentItem;
     public Item[] inventory = new Item[2];
     public List<Item> PossiblesItem;
     int index = 0;
 
-    public bool HaveCardLvL1,HaveCardLvL2,HaveCardLvL3;
-
+    [Header("Card")]
+    public bool HaveCardLvL1;
+    public bool HaveCardLvL2;
+    public bool HaveCardLvL3;
+    public GameObject[] CardMesh;
 
     private void Start()
     {
@@ -114,20 +119,39 @@ public class PickItem : NetworkBehaviour
                 if (netObj != null)
                 {
                     Debug.Log("Tentative de prise d'autorité...");
-                    Rpc_RequestAndPickup(netObj,NetworkManager.runnerInstance.LocalPlayer);
+                    Rpc_RequestAndPickup(netObj,NetworkManager.runnerInstance.LocalPlayer, "Item");
+                }
+            }
+            else if (hit.collider.CompareTag("Card"))
+            {
+                NetworkObject netObj = hit.collider.GetComponent<NetworkObject>();
+                if (netObj != null)
+                {
+                    if (!AlreadyHaveCard(netObj))
+                    {
+                        Debug.Log("Tentative de prise d'autorité...");
+                        Rpc_RequestAndPickup(netObj, NetworkManager.runnerInstance.LocalPlayer, "Card");
+                    }
                 }
             }
         }
     }
 
     [Rpc( RpcSources.All, RpcTargets.All)]
-    void Rpc_RequestAndPickup(NetworkObject netObj,PlayerRef player)
+    void Rpc_RequestAndPickup(NetworkObject netObj,PlayerRef player,string Type)
     {
         Debug.Log("RPC_Request for " + netObj + "to +" +  player);
-        if (player == NetworkManager.runnerInstance.LocalPlayer) 
+        if (player == NetworkManager.runnerInstance.LocalPlayer)
         {
-            Debug.Log("Player is the local player");
-            PickupItem(netObj.gameObject.name);
+            if (Type == "Item")
+            {
+                Debug.Log("Player is the local player");
+                PickupItem(netObj.gameObject.name);
+            }
+            else if(Type =="Card")
+            {
+                PickUpCard(netObj.name);
+            }
         }
         if (netObj.HasStateAuthority)
         {
@@ -184,6 +208,42 @@ public class PickItem : NetworkBehaviour
             Debug.Log("pickUpFinished");
 
         }
+    }
+
+    void PickUpCard(string objName)
+    {
+
+        if (objName == CardMesh[0].name)
+        {
+            HaveCardLvL1 = true;
+        }
+        else if (objName == CardMesh[1].name)
+        {
+            HaveCardLvL2 = true;
+        }
+        else if(objName == CardMesh[2].name)
+        {
+            HaveCardLvL3 = true;
+        }
+
+    }
+
+    bool AlreadyHaveCard(NetworkObject obj)
+    {
+
+        if (obj.gameObject.name == CardMesh[0].name && HaveCardLvL1)
+        {
+            return true;
+        }
+        else if (obj.gameObject.name == CardMesh[1].name && HaveCardLvL2)
+        {
+            return true;
+        }
+        else if (obj.gameObject.name == CardMesh[2].name && HaveCardLvL3)
+        {
+            return true;
+        }
+        return false;
     }
     #endregion
     #region drop

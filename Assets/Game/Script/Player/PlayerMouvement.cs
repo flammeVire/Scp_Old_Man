@@ -41,7 +41,7 @@ public class PlayerMouvement : NetworkBehaviour
             HandleJump();
             HandleCrouch();
             HandleRun();
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("P"))
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y-8,transform.position.z);
                 TeleportMesh(pos, transform.rotation);

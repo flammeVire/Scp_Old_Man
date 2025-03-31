@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Unity.Properties;
 
-public class Card_Door : MonoBehaviour
+public class Card_Door : NetworkBehaviour
 {
     public GameObject DoorPrefabs;
     public NetworkObject Door;
@@ -31,13 +32,13 @@ public class Card_Door : MonoBehaviour
         if (CheckPlayerCard(player))
         {
             Debug.Log("PlayerHaveCard");
-            ManageOpening();
+            Rpc_ManageOpening();
         }
     }
 
     void FreeAccess()
     {
-        ManageOpening();
+        Rpc_ManageOpening();
     }
 
     bool CheckPlayerCard(PickItem player)
@@ -66,15 +67,27 @@ public class Card_Door : MonoBehaviour
         return false;
     }
 
-    void ManageOpening()
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    void Rpc_ManageOpening()
     {
+        Debug.Log("Door ==" + Door);
+        Debug.Log("Is Open is " + IsOpen);
         if (!IsOpen)
         {
-            NetworkManager.runnerInstance.Despawn(Door);
+            
+            if (Door.HasStateAuthority)
+            {
+                Debug.Log("Have Authority");
+                NetworkManager.runnerInstance.Despawn(Door);
+                IsOpen = true;
+            }
+            
         }
         else
         {
+            Debug.Log("Spawning");
             Door = NetworkManager.runnerInstance.Spawn(DoorPrefabs, spawn.position, spawn.rotation);
+            IsOpen = false;
         }
     } 
 }
