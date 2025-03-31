@@ -11,6 +11,9 @@ public class PlayerManager : NetworkBehaviour,ISpawned
     public GameObject PlayerMesh;
     public Transform SpawnPoint;
 
+
+
+
     private void Start()
     {
         //LobbyManager.instance.Rpc_AddingPlayerToList(this);

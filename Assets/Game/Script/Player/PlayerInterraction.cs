@@ -29,6 +29,11 @@ public class PlayerInterraction : NetworkBehaviour
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
 
                         }
+                        if (hit.collider.GetComponent<Card_Door>())
+                        {
+                            Debug.Log("Hit Door");
+                            hit.collider.GetComponent<Card_Door>().Interract(this.GetComponent<PickItem>());
+                        }
                     }
                 }
             }

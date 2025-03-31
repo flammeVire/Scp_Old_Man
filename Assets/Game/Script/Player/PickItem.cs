@@ -15,6 +15,9 @@ public class PickItem : NetworkBehaviour
     public List<Item> PossiblesItem;
     int index = 0;
 
+    public bool HaveCardLvL1,HaveCardLvL2,HaveCardLvL3;
+
+
     private void Start()
     {
 
