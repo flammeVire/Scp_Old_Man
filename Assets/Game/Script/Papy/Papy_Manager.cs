@@ -22,8 +22,6 @@ public class Papy_Manager : NetworkBehaviour
         Rpc_SetAuthorityToPlayerOne();
     }
 
-
-
     [Rpc(RpcSources.All,RpcTargets.All)]
     void Rpc_SetAuthorityToPlayerOne()
     {
