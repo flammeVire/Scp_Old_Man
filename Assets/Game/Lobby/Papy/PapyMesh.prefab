@@ -263,6 +263,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6291375659420119098}
+  - {fileID: 6735115757851825699}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6735115757851825699
 MonoBehaviour:
@@ -276,3 +277,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dff1c43205b70a4fac53717e2db1746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
