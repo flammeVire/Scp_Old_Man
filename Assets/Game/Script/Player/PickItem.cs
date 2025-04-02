@@ -15,6 +15,7 @@ public class PickItem : NetworkBehaviour
     public Item CurrentItem;
     public Item[] inventory = new Item[2];
     public List<Item> PossiblesItem;
+    public int NumberOfFlashBang = 0;
     int index = 0;
 
     [Header("Card")]
