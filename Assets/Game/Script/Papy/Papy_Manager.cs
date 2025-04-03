@@ -7,11 +7,14 @@ public class Papy_Manager : NetworkBehaviour
 {
     NetworkBool IsFlashed = false;
     NetworkBool CanPassByWall = false;
-
+    public static Papy_Manager Instance;
     public Papy_State currentState;
+
+    public Transform[] PointToReach;
+
     public enum Papy_State
     {
-        wandering,
+        Patrol,
         searching,
         chasing,
     }
@@ -19,6 +22,10 @@ public class Papy_Manager : NetworkBehaviour
 
     private void Start()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
         Rpc_SetAuthorityToPlayerOne();
     }
 

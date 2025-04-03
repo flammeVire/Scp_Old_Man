@@ -40,6 +40,10 @@ public class PlayerInterraction : NetworkBehaviour
                             ButtonDoubleDoor(hit.collider.GetComponent<ButtonDouble_Door>());
                         }
                     }
+                    else if (hit.collider.CompareTag("Hide"))
+                    {
+                        Hide(hit.collider.GetComponentInChildren<Camera>().transform);
+                    }
                 }
             }
         }
@@ -62,7 +66,14 @@ public class PlayerInterraction : NetworkBehaviour
     {
         yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
         Debug.Log("Interract is up");
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(0);
         button.ActiveButton(false);
+    }
+
+
+    void Hide(Transform hidingSpot)
+    {
+        this.GetComponent<PlayerMouvement>().TeleportMesh(hidingSpot.position,hidingSpot.rotation);
+       // hidingSpot.get
     }
 }
