@@ -8,8 +8,12 @@ public class RandomMovement : NetworkBehaviour
     public float range = 10f; // Portée des déplacements aléatoires
     private bool canPassThroughWalls = false;
 
+    public Rigidbody body;
     public Transform CurrentPointToReach;
     public NetworkBool HaveReachThePoint;
+
+    [Header("Data")]
+    public float Speed;
     /*
     void Start()
     {
@@ -51,7 +55,7 @@ public class RandomMovement : NetworkBehaviour
     {
         if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
         {
-
+            PatrolMouvement();
         }
         else if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
         { 
@@ -59,7 +63,7 @@ public class RandomMovement : NetworkBehaviour
         }
         else if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
         {
-
+            ChaseMouvement();
         }
     }
 
@@ -67,12 +71,12 @@ public class RandomMovement : NetworkBehaviour
     {
         if (IsPointReach(CurrentPointToReach)) 
         {
-           HaveReachThePoint = IsPointReach(CurrentPointToReach);
+            HaveReachThePoint = IsPointReach(CurrentPointToReach);
             GetAPoint(CurrentPointToReach);
         }
         else
         {
-
+            Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
         }
     }
 
@@ -106,12 +110,32 @@ public class RandomMovement : NetworkBehaviour
 
     #region Patrol
 
+    void PatrolMouvement()
+    {
+        agent.destination = CurrentPointToReach.position;
+    }
 
     #endregion 
     #region Searching
 
     #endregion
     #region chasing
+
+    void ChaseMouvement()
+    {
+        Debug.Log("ChaseMenu");
+        Vector3 currentPosition = transform.position;
+
+        float distance = Vector3.Distance(currentPosition, CurrentPointToReach.position);
+
+        if (distance > 1.5f)
+        {
+            Vector3 directionOfTravel = (CurrentPointToReach.position - currentPosition).normalized;
+            Vector3 newPosition = currentPosition + (directionOfTravel * Speed * NetworkManager.runnerInstance.DeltaTime);
+
+            body.MovePosition(newPosition);
+        }
+    }
 
     #endregion
 }

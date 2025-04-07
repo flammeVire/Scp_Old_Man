@@ -26,7 +26,7 @@ public class Papy_Manager : NetworkBehaviour
         {
             Instance = this;
         }
-        Rpc_SetAuthorityToPlayerOne();
+        //Rpc_SetAuthorityToPlayerOne();
     }
 
     [Rpc(RpcSources.All,RpcTargets.All)]
@@ -40,8 +40,6 @@ public class Papy_Manager : NetworkBehaviour
         {
             this.GetComponent<NetworkObject>().RequestStateAuthority();
         }
-
-
     }
     
     
@@ -51,6 +49,12 @@ public class Papy_Manager : NetworkBehaviour
         
     }
 
+    public void LookAt(Vector3 TargetPosition)
+    {
+        TargetPosition = new Vector3(TargetPosition.x,transform.position.y,TargetPosition.z);
+
+        transform.LookAt(TargetPosition);
+    }
     void ChooseTarget()
     {
         

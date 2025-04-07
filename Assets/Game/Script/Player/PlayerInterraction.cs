@@ -42,7 +42,7 @@ public class PlayerInterraction : NetworkBehaviour
                     }
                     else if (hit.collider.CompareTag("Hide"))
                     {
-                        Hide(hit.collider.GetComponentInChildren<Camera>().transform);
+                        Hide(hit.collider.GetComponent<HidingSpot>());
                     }
                 }
             }
@@ -71,9 +71,12 @@ public class PlayerInterraction : NetworkBehaviour
     }
 
 
-    void Hide(Transform hidingSpot)
+    void Hide(HidingSpot hidingSpot)
     {
-        this.GetComponent<PlayerMouvement>().TeleportMesh(hidingSpot.position,hidingSpot.rotation);
-       // hidingSpot.get
+        if (!hidingSpot.IsSomeoneHide)
+        {
+            hidingSpot.HidePlayer(this.GetComponent<PlayerMouvement>());
+        }
+        
     }
 }

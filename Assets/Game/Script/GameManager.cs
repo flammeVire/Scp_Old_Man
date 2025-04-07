@@ -5,9 +5,11 @@ using Fusion;
 
 public class GameManager : NetworkBehaviour
 {
-    public GameObject PlayerMesh;
+    public GameObject PlayerMeshPrefab;
     public GameObject CameraPrefab;
     public Transform PlayerTransform;
+
+    public GameObject[] PlayerMeshes;
     public static GameManager Instance;
     private void Start()
     {
@@ -17,13 +19,15 @@ public class GameManager : NetworkBehaviour
     public void SpawnPlayer()
     {
 
-        NetworkManager.runnerInstance.SpawnAsync(PlayerMesh,PlayerTransform.position,PlayerTransform.rotation,NetworkManager.runnerInstance.LocalPlayer);
+        NetworkManager.runnerInstance.SpawnAsync(PlayerMeshPrefab,PlayerTransform.position,PlayerTransform.rotation,NetworkManager.runnerInstance.LocalPlayer);
     }
 
-    public void Update()
+    public void GetAllMeshes()
     {
-        
+        PlayerMouvement[] movements = FindObjectsByType<PlayerMouvement>(FindObjectsSortMode.None);
+        for(int i =0; i < movements.Length;i++)
+        {
+            PlayerMeshes[i]= movements[i].gameObject;
+        }
     }
-
-
 }
