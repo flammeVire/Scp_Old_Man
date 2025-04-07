@@ -1,10 +1,13 @@
 ﻿using Fusion;
 using UnityEngine;
-
+using System.Collections;
 public class PlayerMouvement : NetworkBehaviour
 {
     public Transform cam;
     public float moveSpeed = 3f;
+    public float normalSpeed = 3f;
+    public float sprintSpeed = 6f;
+    public float crouchSpeed = 1.5f;
     public float sensitivity = 2f;
     public float jumpForce = 5f;
     public float gravity = 9.81f;
@@ -82,6 +85,7 @@ public class PlayerMouvement : NetworkBehaviour
         
     }
 
+
     void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -103,19 +107,31 @@ public class PlayerMouvement : NetworkBehaviour
 
     void HandleRun()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (!isCrouching && !isRunning && Input.GetKeyDown(KeyCode.Y) && stamina > 10)
         {
-            if (!isRunning)
+            stamina -= 0.1f;
+            moveSpeed = sprintSpeed;
+            isRunning = true;
+        }
+
+        else if (!isCrouching && isRunning && Input.GetKey(KeyCode.Y) && stamina > 0)
+        {
+            stamina -= 0.1f;
+        }
+        else if ( isRunning && Input.GetKeyUp(KeyCode.Y) || isRunning && stamina <= 0)
+        {
+            moveSpeed = normalSpeed;
+            stamina += 0.1f;
+            isRunning = false;
+        }
+        else
+        {
+            if (stamina < 100)
             {
-                moveSpeed *= 2;
-                isRunning = true;
-            }
-            else
-            {
-                moveSpeed /= 2;
-                isRunning = false;
+                stamina += 0.1f;
             }
         }
+        Debug.Log("Stamina = " + stamina);
     }
 
     void FixedUpdate()
