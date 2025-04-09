@@ -1,7 +1,8 @@
 ﻿using Fusion;
+using System.Linq;
 using UnityEngine;
 
-public class PlayerMouvement : NetworkBehaviour
+public class PlayerMouvement : NetworkBehaviour, ISpawned
 {
     public Transform cam;
     public float moveSpeed = 3f;
@@ -43,7 +44,12 @@ public class PlayerMouvement : NetworkBehaviour
             HandleRun();
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y-8,transform.position.z);
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
+                TeleportMesh(pos, transform.rotation);
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 12, transform.position.z);
                 TeleportMesh(pos, transform.rotation);
             }
             if (Input.GetKeyDown(KeyCode.M))
@@ -84,7 +90,7 @@ public class PlayerMouvement : NetworkBehaviour
             Debug.Log("Jump");
             body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
         }
-        
+
     }
 
     void HandleCrouch()
@@ -139,5 +145,21 @@ public class PlayerMouvement : NetworkBehaviour
     {
         transform.position = spawnPosition;
         transform.rotation = rotation;
+    }
+
+    public override void Spawned()
+    {
+        Init();
+    }
+
+
+    public void Init()
+    {
+        Debug.Log("Init " + NetworkManager.runnerInstance.LocalPlayer);
+        if (GameManager.Instance.NumberOfMesh() == NetworkManager.runnerInstance.ActivePlayers.Count())
+        {
+            Debug.Log("All Mesh Are Here");
+            GameManager.Instance.Rpc_GetAllMeshes();
+        }
     }
 }
