@@ -32,19 +32,34 @@ public class GameManager : NetworkBehaviour
         Debug.Log("GetAllMesh");
         PlayerMouvement[] movements = FindObjectsByType<PlayerMouvement>(FindObjectsSortMode.None);
 
-        Debug.Log("All mesh movements count = " +movements.Length);
+        Debug.Log("All mesh movements count = " + movements.Length);
         PlayerMeshes = new GameObject[4];
         for (int i = 0; i < movements.Length; i++)
         {
             Debug.Log("i : " + i);
             Debug.Log("PlayerMeshes[i] " + PlayerMeshes[i]);
             Debug.Log("movements[i].gameObject " + movements[i].gameObject);
-            PlayerMeshes[i]= movements[i].gameObject;
 
-            if (PlayerMeshes[i].GetComponent<NetworkObject>().HasInputAuthority) 
+
+            PlayerMeshes[i] = movements[i].gameObject;
+
+        }
+
+        StartCoroutine(TeleportAllMeshes(movements));
+    }
+
+    IEnumerator TeleportAllMeshes(PlayerMouvement[] movements)
+    {
+        yield return new WaitForSeconds(5f);
+        if (HasStateAuthority)
+        {
+            for(int i = 0; i < PlayerMeshes.Length; i++)
             {
-                Debug.Log(PlayerMeshes[i].GetComponent<NetworkObject>().InputAuthority + " Teleporte to spawn " + i +1 );
-                movements[i].TeleportMesh(PlayerSpawn[i].position, PlayerSpawn[i].rotation);
+                if(movements[i] != null)
+                {
+                    Debug.Log("Teleporting " + movements[i].name);
+                    movements[i].Rpc_TeleportMesh(PlayerSpawn[i].position, PlayerSpawn[i].rotation);
+                }
             }
         }
     }

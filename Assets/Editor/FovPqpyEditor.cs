@@ -22,7 +22,7 @@ public class FovPapyEditor : Editor
         if (fov.canSeePlayer)
         {
             Handles.color = Color.yellow;
-          //  Handles.DrawLine(fov.transform.position, fov.playerMesh.transform.position);
+            Handles.DrawLine(fov.transform.position, fov.Target.transform.position);
         }
     }
 

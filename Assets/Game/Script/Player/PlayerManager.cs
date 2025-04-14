@@ -31,10 +31,6 @@ public class PlayerManager : NetworkBehaviour,ISpawned
         Debug.Log("--- object has spawned " + this.Object.name + " ---");
     }
 
-    public void Init()
-    {
-        
-    }
 
    
     

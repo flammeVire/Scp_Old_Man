@@ -30,7 +30,7 @@ public class HidingSpot : NetworkBehaviour
     public void Rpc_ShowPlayerMesh()
     {
         playerInside.SetActive(true);
-        playerInside.GetComponent<PlayerMouvement>().TeleportMesh(Outside.position, Outside.rotation);
+        playerInside.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(Outside.position, Outside.rotation);
         if ((playerInside.GetComponent<NetworkObject>().HasInputAuthority))
         {
             HidingCamera.enabled = false;

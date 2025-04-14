@@ -45,18 +45,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
-                TeleportMesh(pos, transform.rotation);
+                Rpc_TeleportMesh(pos, transform.rotation);
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y + 12, transform.position.z);
-                TeleportMesh(pos, transform.rotation);
+                Rpc_TeleportMesh(pos, transform.rotation);
             }
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 12, transform.position.z);
-                TeleportMesh(pos, transform.rotation);
-            }
+            
         }
     }
 
@@ -141,7 +137,8 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
     }
 
-    public void TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
     {
         transform.position = spawnPosition;
         transform.rotation = rotation;
@@ -152,7 +149,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         Init();
     }
 
-
+    
     public void Init()
     {
         Debug.Log("Init " + NetworkManager.runnerInstance.LocalPlayer);

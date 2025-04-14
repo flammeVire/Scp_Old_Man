@@ -6,7 +6,8 @@ public class Papy_Vision : MonoBehaviour
     public float raduis;
     [Range(0,360)] public float angle;
 
-   // public GameObject[] playerMesh;
+    public GameObject[] playerMesh;
+    public GameObject Target;
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
@@ -50,6 +51,7 @@ public class Papy_Vision : MonoBehaviour
                 if(!Physics.Raycast(transform.position,directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
+                    Target = rangeChecks[0].gameObject;
                 }
                 else
                 {
