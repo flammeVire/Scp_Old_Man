@@ -46,7 +46,7 @@ public class Papy_Manager : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        
+        ChooseTarget();
     }
 
     public void LookAt(Vector3 TargetPosition)
@@ -57,6 +57,26 @@ public class Papy_Manager : NetworkBehaviour
     }
     void ChooseTarget()
     {
-        
+        // check in update wich player have more of IP (interrest point)
+    }
+
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    void Rpc_ChangeStatus(int Status)
+    {
+        switch (Status)
+        {
+            case 0:
+                 currentState = Papy_State.Patrol;
+                break;
+            case 1:
+                currentState = Papy_State.searching;
+                break;
+            case 2:
+                currentState = Papy_State.chasing;
+                break;
+            default:
+                currentState = Papy_State.Patrol;
+                break;
+        }
     }
 }

@@ -14,26 +14,10 @@ public class Papy_Vision : MonoBehaviour
 
     public bool canSeePlayer;
     
-
-    private void Start()
+    private void Update()
     {
-        StartCoroutine(FOVroutine());
-        
-    }
-    public void GetPlayerMesh(GameObject[] Meshes)
-    {
-        //playerMesh = Meshes;
-    }
-
-    private IEnumerator FOVroutine()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-
-        while (true)
-        {
-            yield return wait;
             FieldOfViewCheck();
-        }
+            //if bool true change the state of papy-manager
     }
 
     void FieldOfViewCheck()
