@@ -5161,7 +5161,7 @@ GameObject:
   - component: {fileID: 791432710}
   - component: {fileID: 791432709}
   m_Layer: 0
-  m_Name: Carte
+  m_Name: Carte gauche
   m_TagString: Interractive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11287,7 +11287,7 @@ GameObject:
   - component: {fileID: 1986542264}
   - component: {fileID: 1986542263}
   m_Layer: 0
-  m_Name: Carte (1)
+  m_Name: Carte Droite
   m_TagString: Interractive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

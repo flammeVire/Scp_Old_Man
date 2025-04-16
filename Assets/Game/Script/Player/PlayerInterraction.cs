@@ -59,15 +59,15 @@ public class PlayerInterraction : NetworkBehaviour
 
     void ButtonDoubleDoor(ButtonDouble_Door button)
     {
-        button.ActiveButton(true);
+        button.Rpc_ActiveButton(true);
         StartCoroutine(WaitUntilInterractIsUp(button));
     }
     IEnumerator WaitUntilInterractIsUp(ButtonDouble_Door button)
     {
         yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
+        yield return new WaitForSecondsRealtime(5);
         Debug.Log("Interract is up");
-        yield return new WaitForSecondsRealtime(0);
-        button.ActiveButton(false);
+        button.Rpc_ActiveButton(false);
     }
 
 
