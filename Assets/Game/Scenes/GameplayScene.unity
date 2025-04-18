@@ -7274,10 +7274,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6735115757851825699, guid: 759e88e1c9f772042929062e06af9380, type: 3}
-      propertyPath: currentState
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 6497669683611506815, guid: 759e88e1c9f772042929062e06af9380, type: 3}
+      propertyPath: CurrentPointToReach
+      value: 
+      objectReference: {fileID: 585821224}
     - target: {fileID: 6735115757851825699, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: PointToReach.Array.size
       value: 4
@@ -7301,102 +7301,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3562420142735117020, guid: 759e88e1c9f772042929062e06af9380, type: 3}
-      insertIndex: 7
-      addedObject: {fileID: 1278303956}
-    - targetCorrespondingSourceObject: {fileID: 3562420142735117020, guid: 759e88e1c9f772042929062e06af9380, type: 3}
-      insertIndex: 8
-      addedObject: {fileID: 1278303951}
-    - targetCorrespondingSourceObject: {fileID: 3562420142735117020, guid: 759e88e1c9f772042929062e06af9380, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1278303950}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 759e88e1c9f772042929062e06af9380, type: 3}
---- !u!1 &1278303949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3562420142735117020, guid: 759e88e1c9f772042929062e06af9380, type: 3}
+--- !u!114 &1278303951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6497669683611506815, guid: 759e88e1c9f772042929062e06af9380, type: 3}
   m_PrefabInstance: {fileID: 1278303948}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &1278303950
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278303949}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &1278303951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278303949}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e675c538120ea8a48bfbf0663eba1384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 1278303950}
-  range: 10
-  body: {fileID: 1278303955}
-  CurrentPointToReach: {fileID: 585821224}
-  HaveReachThePoint:
-    _value: 0
-  Speed: 5
 --- !u!114 &1278303952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6735115757851825699, guid: 759e88e1c9f772042929062e06af9380, type: 3}
   m_PrefabInstance: {fileID: 1278303948}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278303949}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dff1c43205b70a4fac53717e2db1746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1278303955 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 2448305031573488392, guid: 759e88e1c9f772042929062e06af9380, type: 3}
-  m_PrefabInstance: {fileID: 1278303948}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1278303956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278303949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e8644902d8da3469940b806449c7db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raduis: 7
-  angle: 100
-  playerMesh: []
-  Target: {fileID: 0}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 64
-  canSeePlayer: 0
 --- !u!1 &1411082999
 GameObject:
   m_ObjectHideFlags: 0
