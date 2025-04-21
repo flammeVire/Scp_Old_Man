@@ -39,6 +39,10 @@ public class PlayerInterraction : NetworkBehaviour
                             Debug.Log("Hit button double Door");
                             ButtonDoubleDoor(hit.collider.GetComponent<ButtonDouble_Door>());
                         }
+                        else if (hit.collider.GetComponent<Sas_Door>())
+                        {
+                            Sas_Door(hit.collider.GetComponent<Sas_Door>());
+                        }
                     }
                     else if (hit.collider.CompareTag("Hide"))
                     {
@@ -69,8 +73,19 @@ public class PlayerInterraction : NetworkBehaviour
         Debug.Log("Interract is up");
         button.Rpc_ActiveButton(false);
     }
+    void Sas_Door(Sas_Door sas)
+    {
+        sas.Rpc_OpeningSas(true);
+        StartCoroutine(WaitUntilInterractIsUp(sas));
+    }
 
-
+    IEnumerator WaitUntilInterractIsUp(Sas_Door sas)
+    {
+        yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
+        yield return new WaitForSecondsRealtime(sas.Delay);
+        Debug.Log("Interract is up");
+        sas.Rpc_OpeningSas(false);
+    }
     void Hide(HidingSpot hidingSpot)
     {
         if (!hidingSpot.IsSomeoneHide)

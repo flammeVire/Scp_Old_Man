@@ -17,13 +17,14 @@ public class Double_Door : NetworkBehaviour
     {
         bool CanOpen = true;
 
-        Debug.Log("Nb of button" + ButtonScript.Length);
+      //  Debug.Log("Nb of button" + ButtonScript.Length);
         foreach (ButtonDouble_Door button in ButtonScript)
         {
             Debug.Log("button is " + button.gameObject.name);
             if (!button.ButtonActive)
             {
                 Debug.Log("All Button are not enable");
+                Debug.Log(button.gameObject.name + " is the issues");
                 CanOpen = false;
                 break;
             }
@@ -43,12 +44,6 @@ public class Double_Door : NetworkBehaviour
                 Debug.Log("Have Authority");
                 NetworkManager.runnerInstance.Despawn(Door);
                 IsOpen = true;
-            }
-            else
-            {
-                Debug.Log("Spawning");
-                Door = NetworkManager.runnerInstance.Spawn(DoorPrefabs, spawn.position, spawn.rotation);
-                IsOpen = false;
             }
         }
     }
