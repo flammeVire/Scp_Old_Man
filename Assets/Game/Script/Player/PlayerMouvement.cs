@@ -14,11 +14,12 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public float stamina = 100;
     private Rigidbody body;
     private float rotationX = 0f;
-    private bool isGrounded;
-    private bool isCrouching;
-    private bool isRunning;
+    public bool isGrounded;
+    public bool isCrouching;
+    public bool isRunning;
+    public bool isMoving;
+    public bool isTalking;
     private CapsuleCollider playerCollider;
-
     void Start()
     {
         if (HasInputAuthority)
@@ -65,6 +66,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         direction.y = 0;
 
         body.velocity = new Vector3(direction.normalized.x * moveSpeed, body.velocity.y, direction.normalized.z * moveSpeed);
+        if (horizontal != 0 || vertical != 0) 
+        {
+            isMoving = true;
+        }
+        else if(horizontal == 0 && vertical == 0)
+        {
+            isMoving = false;
+        }
     }
 
     void Rotate()

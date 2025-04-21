@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 5568853269028372429}
   - component: {fileID: 3476804410694073511}
   - component: {fileID: 8796728106877429974}
+  - component: {fileID: 6862435594636010139}
   m_Layer: 7
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -221,15 +222,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 7308004822726158644}
   moveSpeed: 3
-  normalSpeed: 3
-  sprintSpeed: 6
-  crouchSpeed: 1.5
   sensitivity: 2
   jumpForce: 5
   gravity: 9.81
   crouchHeight: 0.5
   standingHeight: 2
   stamina: 100
+  isGrounded: 0
+  isCrouching: 0
+  isRunning: 0
+  isMoving: 0
+  isTalking: 0
 --- !u!114 &4047595549479562219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +356,7 @@ MonoBehaviour:
   - {fileID: 4047595549479562219}
   - {fileID: 5568853269028372429}
   - {fileID: 8796728106877429974}
+  - {fileID: 6862435594636010139}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &8796728106877429974
 MonoBehaviour:
@@ -367,6 +371,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4388441864165681919}
+--- !u!114 &6862435594636010139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8d496e68a4b3542b9423b8f7a88bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouvement: {fileID: 66067729302263490}
+  _CurrentPI: 0
+  _TotalPI: 0
+  Delay: 1
+  Increaser: ffffffff03000000010000000200000001000000
 --- !u!1001 &2687460008266366231
 PrefabInstance:
   m_ObjectHideFlags: 0
