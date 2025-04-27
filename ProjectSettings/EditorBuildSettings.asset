@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/LobbyScene.unity
     guid: 302ac2adfc9798144a11b36d6c8cedff
   - enabled: 1
+    path: "Assets/Game/Scenes/Louna Sc\xE8ne.unity"
+    guid: 9c1584f26378666458d7286bd41b7697
+  - enabled: 0
     path: Assets/Game/Scenes/Blockig LD.unity
     guid: e3ea0d85d9d900f40a0e18e712688220
   - enabled: 0
