@@ -98,8 +98,11 @@ GameObject:
   - component: {fileID: 2448305031573488392}
   - component: {fileID: 6291375659420119098}
   - component: {fileID: 3517031786177405396}
+  - component: {fileID: 5424327170513824808}
+  - component: {fileID: 6497669683611506815}
   - component: {fileID: 6735115757851825699}
-  m_Layer: 7
+  - component: {fileID: 6660657577481164751}
+  m_Layer: 0
   m_Name: PapyMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,13 +217,13 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6291375659420119098
 MonoBehaviour:
@@ -263,8 +266,51 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6291375659420119098}
+  - {fileID: 6497669683611506815}
   - {fileID: 6735115757851825699}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &5424327170513824808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562420142735117020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e8644902d8da3469940b806449c7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raduis: 7
+  angle: 100
+  playerMesh: []
+  Target: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  canSeePlayer: 0
+--- !u!114 &6497669683611506815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562420142735117020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e675c538120ea8a48bfbf0663eba1384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 6660657577481164751}
+  range: 10
+  body: {fileID: 2448305031573488392}
+  CurrentPointToReach: {fileID: 0}
+  HaveReachThePoint:
+    _value: 0
+  Speed: 5
 --- !u!114 &6735115757851825699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,3 +324,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  PointToReach:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!195 &6660657577481164751
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562420142735117020}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

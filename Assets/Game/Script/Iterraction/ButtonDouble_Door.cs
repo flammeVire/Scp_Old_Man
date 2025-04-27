@@ -6,14 +6,17 @@ public class ButtonDouble_Door : NetworkBehaviour
 {
     public NetworkBool ButtonActive;
     public Double_Door Double_Door;
-    public void ActiveButton(bool state)
+
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    public void Rpc_ActiveButton(bool state)
     {
+        Debug.Log(this.gameObject.name + state);
         ButtonActive = state;
         TryToOpen();
     }
 
     void TryToOpen()
     {
-        Double_Door.Rpc_ManageOpening(true);
+        Double_Door.CheckAllButton();
     }
 }

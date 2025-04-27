@@ -1,7 +1,8 @@
 ﻿using Fusion;
+using System.Linq;
 using UnityEngine;
 
-public class PlayerMouvement : NetworkBehaviour
+public class PlayerMouvement : NetworkBehaviour, ISpawned
 {
     public Transform cam;
     public float moveSpeed = 3f;
@@ -13,11 +14,12 @@ public class PlayerMouvement : NetworkBehaviour
     public float stamina = 100;
     private Rigidbody body;
     private float rotationX = 0f;
-    private bool isGrounded;
-    private bool isCrouching;
-    private bool isRunning;
+    public bool isGrounded;
+    public bool isCrouching;
+    public bool isRunning;
+    public bool isMoving;
+    public bool isTalking;
     private CapsuleCollider playerCollider;
-
     void Start()
     {
         if (HasInputAuthority)
@@ -43,14 +45,15 @@ public class PlayerMouvement : NetworkBehaviour
             HandleRun();
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y-8,transform.position.z);
-                TeleportMesh(pos, transform.rotation);
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
+                Rpc_TeleportMesh(pos, transform.rotation);
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y + 12, transform.position.z);
-                TeleportMesh(pos, transform.rotation);
+                Rpc_TeleportMesh(pos, transform.rotation);
             }
+            
         }
     }
 
@@ -63,6 +66,14 @@ public class PlayerMouvement : NetworkBehaviour
         direction.y = 0;
 
         body.velocity = new Vector3(direction.normalized.x * moveSpeed, body.velocity.y, direction.normalized.z * moveSpeed);
+        if (horizontal != 0 || vertical != 0) 
+        {
+            isMoving = true;
+        }
+        else if(horizontal == 0 && vertical == 0)
+        {
+            isMoving = false;
+        }
     }
 
     void Rotate()
@@ -84,7 +95,7 @@ public class PlayerMouvement : NetworkBehaviour
             Debug.Log("Jump");
             body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
         }
-        
+
     }
 
     void HandleCrouch()
@@ -135,9 +146,26 @@ public class PlayerMouvement : NetworkBehaviour
         }
     }
 
-    public void TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
     {
         transform.position = spawnPosition;
         transform.rotation = rotation;
+    }
+
+    public override void Spawned()
+    {
+        Init();
+    }
+
+    
+    public void Init()
+    {
+        Debug.Log("Init " + NetworkManager.runnerInstance.LocalPlayer);
+        if (GameManager.Instance.NumberOfMesh() == NetworkManager.runnerInstance.ActivePlayers.Count())
+        {
+            Debug.Log("All Mesh Are Here");
+            GameManager.Instance.Rpc_GetAllMeshes();
+        }
     }
 }
