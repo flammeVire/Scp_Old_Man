@@ -168,4 +168,9 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             GameManager.Instance.Rpc_GetAllMeshes();
         }
     }
+
+    public void InstantiateUI()
+    {
+
+    }
 }
