@@ -1,5 +1,6 @@
 ﻿using Fusion;
 using Photon.Voice.Unity;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -79,6 +80,28 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             ManageSpeed();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (HasInputAuthority)
+        {
+            if (other.CompareTag("Corrosion"))
+            {
+                inCorrosionZone = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (HasInputAuthority)
+        {
+            if (other.CompareTag("Corrosion"))
+            {
+                inCorrosionZone = false;
+            }
+        }
+    }
     #endregion
     #region AllMovement
     void Movement()
@@ -120,11 +143,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             isJumping = true;
             playerCollider.height = standingHeight;
             isCrouching = false;
-
-        }
-        else if(isGrounded)
-        {
-            isJumping = false;
+            StartCoroutine(JumpDetection());
         }
 
     }
@@ -228,27 +247,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (HasInputAuthority)
-        {
-            if (other.CompareTag("Corrosion"))
-            {
-                inCorrosionZone = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (HasInputAuthority)
-        {
-            if (other.CompareTag("Corrosion"))
-            {
-                inCorrosionZone = false;
-            }
-        }
-    }
+   
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
@@ -273,14 +272,17 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
     }
 
-
+    IEnumerator JumpDetection()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isJumping = false;
+    }
     #region SpawnManagement
     public override void Spawned()
     {
-        if (HasInputAuthority)
-        {
+        
             Init();
-        }
+        
     }
 
     
@@ -292,7 +294,10 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             Debug.Log("All Mesh Are Here");
             GameManager.Instance.Rpc_GetAllMeshes();
         }
-        InstantiateUI();
+        if (HasInputAuthority)
+        {
+            InstantiateUI();
+        }
     }
 
     public void InstantiateUI()
