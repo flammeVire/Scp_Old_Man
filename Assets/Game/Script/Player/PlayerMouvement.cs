@@ -69,16 +69,9 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             Rotate();
             HandleJump();
             HandleCrouch();
-            
-            if(!isCrouching)
-            {
-                HandleRun();
-            }
-            
-            //marche oklm
-            // cours si debout
-            // accroupe == peut pas courir
-            //saut met le joueur debout + saut
+            HandleRun();
+            ManageStamina(isRunning);
+            ManageSpeed();
         }
     }
     #endregion
@@ -120,10 +113,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         {
             body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
             isJumping = true;
-
-
             playerCollider.height = standingHeight;
-            Speed = moveSpeed;
             isCrouching = false;
 
         }
@@ -139,75 +129,96 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         if (Input.GetButtonDown("Crouch"))
         {
             if (!isCrouching)
-            {
-                playerCollider.height = crouchHeight;
-                Speed = CrouchSpeed;
+            {  
                 isCrouching = true;
             }
             else
             {
-                playerCollider.height = standingHeight;
-                Speed = moveSpeed;
                 isCrouching = false;
             }
+        }
+
+        if (isCrouching)
+        {
+            playerCollider.height = crouchHeight;
+        }
+        else
+        {
+            playerCollider.height = standingHeight;
         }
     }
 
     void HandleRun()
-    {/*
-        if (Input.GetButtonDown("Run"))
+    {
+        if (!isCrouching)
         {
-            if (!isRunning)
+            if (Input.GetButtonDown("Run"))
             {
-                moveSpeed *= 2;
+                Debug.Log("Running");
                 isRunning = true;
             }
-            else
+            else if (Input.GetButtonUp("Run") || stamina <= 0)
             {
-                moveSpeed /= 2;
+                Debug.Log("Not Running");
                 isRunning = false;
             }
-        }*/
-
-        if (Input.GetButtonDown("Run"))
-        {
-            Debug.Log("Running");
-            isRunning = true;
         }
-        else if(Input.GetButtonUp("Run") || stamina <= 0)
+        else
         {
-            Debug.Log("Not Running");
             isRunning = false;
         }
+    }
+    
 
-        if (isRunning)
+    #endregion
+
+    float ManageStamina(bool IsRunning)
+    {
+        float stam = stamina;
+        //case: stamina increase
+        if(IsRunning)
         {
-            if(stamina > 0)
+            if (stamina > 100) 
             {
-                stamina -= decreaseStamina;
+                stam = 100;
             }
             else
             {
-                stamina = 0;
+                stam += 1;
             }
+        }
 
+
+            //case: stamina decrease
+        else if(!IsRunning)
+        {
+            if(stamina < 0)
+            {
+                stam = 0;
+            }
+            else
+            {
+                stam -= 0;
+            }
+        }
+            return stamina;
+    }
+
+    void ManageSpeed()
+    {
+        if (isCrouching)
+        {
+            Speed = CrouchSpeed;
+        }
+        else if (isRunning)
+        {
             Speed = RunSpeed;
         }
         else
         {
-            if(stamina < 100)
-            {
-                stamina += increaseStamina;
-            }
-            else
-            {
-                  stamina = 100; 
-            }
             Speed = moveSpeed;
         }
     }
-
-    #endregion
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)

@@ -192,6 +192,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     IEnumerator WaitUntilConnected()
     {
         yield return new WaitUntil(() => this.GetComponent<NetworkRunner>().IsCloudReady);
+
+       
         CreateGame.SetActive(true);
         Debug.Log("Connected");
     }

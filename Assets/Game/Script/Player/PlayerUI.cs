@@ -38,7 +38,6 @@ public class PlayerUI : MonoBehaviour
     }
     void UpdateSound()
     {
-        Debug.Log("Current PI = " + PlayerPI.CurrentPI);
         SoundsImage.sprite = SoundSprite[PlayerPI.CurrentPI];
     }
     void UpdateTalkie()

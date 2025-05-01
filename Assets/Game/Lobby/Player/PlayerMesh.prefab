@@ -221,15 +221,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7308004822726158644}
+  Speed: 0
   moveSpeed: 3
+  CrouchSpeed: 1
+  RunSpeed: 5
   sensitivity: 2
   jumpForce: 5
-  gravity: 9.81
   crouchHeight: 0.5
   standingHeight: 2
   stamina: 100
+  gravity: 9.81
   isGrounded: 0
   isCrouching: 0
+  isJumping: 0
   isRunning: 0
   isMoving: 0
   isTalking: 0
