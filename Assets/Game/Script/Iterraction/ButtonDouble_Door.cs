@@ -14,7 +14,6 @@ public class ButtonDouble_Door : NetworkBehaviour
         ButtonActive = state;
         TryToOpen();
     }
-
     void TryToOpen()
     {
         Double_Door.CheckAllButton();
