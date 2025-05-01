@@ -292,6 +292,8 @@ MonoBehaviour:
   crouchHeight: 0.5
   standingHeight: 2
   stamina: 100
+  decreaseStamina: 0.2
+  increaseStamina: 0.1
   gravity: 9.81
   isGrounded: 0
   isCrouching: 0

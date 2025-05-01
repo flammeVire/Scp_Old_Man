@@ -20,8 +20,8 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public float crouchHeight = 0.5f;
     public float standingHeight = 2f;
     public float stamina = 100;
-    float decreaseStamina = 0.5f;
-    float increaseStamina = 0.1f;
+    public float decreaseStamina = 0.5f;
+    public float increaseStamina = 0.1f;
 
     private CapsuleCollider playerCollider;
     [HideInInspector]public float gravity = 9.81f;
