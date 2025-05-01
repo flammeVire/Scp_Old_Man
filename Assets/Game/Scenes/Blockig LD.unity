@@ -59469,6 +59469,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 667339430}
     - target: {fileID: 4230701628821106612, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
+      propertyPath: Flags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230701628821106612, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
       propertyPath: SortKey
       value: 3865196109
       objectReference: {fileID: 0}
@@ -60316,6 +60320,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1398517342}
+    - target: {fileID: 6081523415975035676, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
+      propertyPath: m_TagString
+      value: Corrosion
+      objectReference: {fileID: 0}
     - target: {fileID: 6098020378198561809, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -60472,6 +60480,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1020403767}
+    - target: {fileID: 6343970543673402323, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6360548344587424114, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -61879,40 +61891,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9155257667687224521, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9187930030499867887, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 342011188198323284, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3102948571366340717, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8326132987928701395, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6081523415975035676, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 9050176742713938595, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7935800325397566620, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2962455691243095925, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4225477123032536332, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1538669703621554189, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaaf2711108448d49bd8076ac593d553, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

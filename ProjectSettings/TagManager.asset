@@ -9,6 +9,7 @@ TagManager:
   - Interractive
   - Card
   - Hide
+  - Corrosion
   layers:
   - Default
   - TransparentFX

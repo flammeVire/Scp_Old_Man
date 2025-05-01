@@ -34,6 +34,11 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public bool isRunning;
     public bool isMoving;
     public bool isTalking;
+
+    [Header("Slow Corrosion")]
+    private float corrosionSlow = 0.5f;
+    private bool inCorrosionZone = false;
+
     #endregion
     #region Unity default Function
     void Start()
@@ -203,7 +208,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
     }
 
-    void ManageSpeed()
+    public void ManageSpeed()
     {
         if (isCrouching)
         {
@@ -216,6 +221,32 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         else
         {
             Speed = moveSpeed;
+        }
+        if (inCorrosionZone)
+        {
+            Speed *= corrosionSlow;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (HasInputAuthority)
+        {
+            if (other.CompareTag("Corrosion"))
+            {
+                inCorrosionZone = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (HasInputAuthority)
+        {
+            if (other.CompareTag("Corrosion"))
+            {
+                inCorrosionZone = false;
+            }
         }
     }
 
