@@ -38,7 +38,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void Start()
     {
-        StartCoroutine(WaitUntilConnected());
+        
         runnerInstance.JoinSessionLobby(SessionLobby.Shared, lobbyName);
     }
 
@@ -93,6 +93,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         DeleteOldSessionsFromUI(sessionList);
         CompareLists(sessionList);
+        StartCoroutine(WaitUntilConnected());
     }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {

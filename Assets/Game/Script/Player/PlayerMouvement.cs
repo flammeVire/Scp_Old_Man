@@ -280,9 +280,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     #region SpawnManagement
     public override void Spawned()
     {
-        
-            Init();
-        
+        Init();
     }
 
     
