@@ -39,7 +39,7 @@ public class PlayerInterrestPoint : NetworkBehaviour
         {
             input += Increaser[0];
         }
-        if (!mouvement.isJumping) 
+        if (mouvement.isJumping) 
         {
             input += Increaser[1];
         }

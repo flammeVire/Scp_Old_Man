@@ -127,7 +127,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             isCrouching = false;
 
         }
-        else
+        else if(isGrounded)
         {
             isJumping = false;
         }
@@ -221,10 +221,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         if (Input.GetButtonDown("Talk"))
         {
             FindAnyObjectByType<Recorder>().RecordingEnabled = true;
+            isTalking = true;
+            Debug.Log("Talk");
         }
         else if (Input.GetButtonUp("Talk"))
         {
             FindAnyObjectByType<Recorder>().RecordingEnabled = false;
+            isTalking = false;
+            Debug.Log("UnTalk");
         }
     }
 
@@ -246,6 +250,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
         GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
         ui.GetComponent<PlayerUI>().mouvement = this;
+        ui.GetComponent<PlayerUI>().PlayerPI = this.GetComponent<PlayerInterrestPoint>();
     }
 
     public void InstantiateUI()
