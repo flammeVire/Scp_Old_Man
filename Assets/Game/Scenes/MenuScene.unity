@@ -941,7 +941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00036147377}
+  m_AnchoredPosition: {x: 0, y: 0.00036621094}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1253703071
@@ -1403,6 +1403,7 @@ GameObject:
   - component: {fileID: 1935981295}
   - component: {fileID: 1935981297}
   - component: {fileID: 1935981296}
+  - component: {fileID: 1935981298}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1440,6 +1441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyName: default
   sessionListContentParent: {fileID: 1253703070}
+  CreateGame: {fileID: 1996968639}
   lobby_Session_Prefab: {fileID: 4184954513958944229, guid: df8b020cce302b44cb50dc3e99ed5d04, type: 3}
   PlayScene: LobbyScene
   LobbyScene: MenuScene
@@ -1497,6 +1499,18 @@ MonoBehaviour:
   m_Script: {fileID: -1199893898, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1935981298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935981293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8edbe7108d8a43ab838cf8b8d9453df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1996968639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,12 +1524,12 @@ GameObject:
   - component: {fileID: 1996968642}
   - component: {fileID: 1996968641}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Create Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1996968640
 RectTransform:
   m_ObjectHideFlags: 0

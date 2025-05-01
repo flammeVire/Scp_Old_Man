@@ -16,6 +16,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public string lobbyName = "default";
 
     public Transform sessionListContentParent;
+    public GameObject CreateGame;
     public GameObject lobby_Session_Prefab;
     public Dictionary<string, GameObject> SessionListUIDictionary = new Dictionary<string, GameObject>();
 
@@ -37,6 +38,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void Start()
     {
+        StartCoroutine(WaitUntilConnected());
         runnerInstance.JoinSessionLobby(SessionLobby.Shared, lobbyName);
     }
 
@@ -186,5 +188,12 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
     #endregion
+
+    IEnumerator WaitUntilConnected()
+    {
+        yield return new WaitUntil(() => this.GetComponent<NetworkRunner>().IsCloudReady);
+        CreateGame.SetActive(true);
+        Debug.Log("Connected");
+    }
 
 }

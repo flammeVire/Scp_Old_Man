@@ -21,11 +21,8 @@ public class GameManager : NetworkBehaviour
 
     public void SpawnPlayer()
     {
-
-       // NetworkManager.runnerInstance.SpawnAsync(PlayerMeshPrefab, PlayerSpawn[0].position, PlayerSpawn[0].rotation,NetworkManager.runnerInstance.LocalPlayer);
         NetworkSpawnOp spawnOp = NetworkManager.runnerInstance.SpawnAsync(PlayerMeshPrefab,Vector3.zero,Quaternion.identity,NetworkManager.runnerInstance.LocalPlayer);
-        GameObject ui = Instantiate(PlayerUI, Vector3.zero, Quaternion.identity);
-        ui.GetComponent<PlayerUI>().mouvement = spawnOp.Object.GetComponent<PlayerMouvement>();
+        
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]

@@ -1,25 +1,41 @@
 ﻿using Fusion;
+using Photon.Voice.Unity;
 using System.Linq;
 using UnityEngine;
 
 public class PlayerMouvement : NetworkBehaviour, ISpawned
 {
+    #region Data
     public Transform cam;
+    [Header("Speed",order = 0)]
+    public float Speed;
     public float moveSpeed = 3f;
+    public float CrouchSpeed = 1f;
+    public float RunSpeed = 5f;
+
+    [Header("ImportantData")]
     public float sensitivity = 2f;
     public float jumpForce = 5f;
-    public float gravity = 9.81f;
     public float crouchHeight = 0.5f;
     public float standingHeight = 2f;
     public float stamina = 100;
-    private Rigidbody body;
+    float decreaseStamina = 0.5f;
+    float increaseStamina = 0.1f;
+
+    private CapsuleCollider playerCollider;
+    [HideInInspector]public float gravity = 9.81f;
     private float rotationX = 0f;
+    private Rigidbody body;
+    
+    [Header("Boolean")]
     public bool isGrounded;
     public bool isCrouching;
+    public bool isJumping;
     public bool isRunning;
     public bool isMoving;
     public bool isTalking;
-    private CapsuleCollider playerCollider;
+    #endregion
+    #region Unity default Function
     void Start()
     {
         if (HasInputAuthority)
@@ -33,30 +49,40 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             Cursor.visible = false;
         }
     }
-
+    void FixedUpdate()
+    {
+        if (HasInputAuthority)
+        {
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerCollider.bounds.extents.y + 0.1f);
+            if (!isGrounded)
+            {
+                body.velocity += Vector3.down * gravity * Time.fixedDeltaTime;
+            }
+        }
+    }
     void Update()
     {
         if (HasInputAuthority)
         {
+            Talk();
             Movement();
             Rotate();
             HandleJump();
             HandleCrouch();
-            HandleRun();
-            if (Input.GetKeyDown(KeyCode.P))
+            
+            if(!isCrouching)
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
-                Rpc_TeleportMesh(pos, transform.rotation);
-            }
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 12, transform.position.z);
-                Rpc_TeleportMesh(pos, transform.rotation);
+                HandleRun();
             }
             
+            //marche oklm
+            // cours si debout
+            // accroupe == peut pas courir
+            //saut met le joueur debout + saut
         }
     }
-
+    #endregion
+    #region AllMovement
     void Movement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -64,8 +90,8 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 
         Vector3 direction = cam.forward * vertical + cam.right * horizontal;
         direction.y = 0;
+        body.velocity = new Vector3(direction.normalized.x * Speed, body.velocity.y, direction.normalized.z * Speed);
 
-        body.velocity = new Vector3(direction.normalized.x * moveSpeed, body.velocity.y, direction.normalized.z * moveSpeed);
         if (horizontal != 0 || vertical != 0) 
         {
             isMoving = true;
@@ -92,34 +118,44 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            Debug.Log("Jump");
             body.velocity = new Vector3(body.velocity.x, jumpForce, body.velocity.z);
+            isJumping = true;
+
+
+            playerCollider.height = standingHeight;
+            Speed = moveSpeed;
+            isCrouching = false;
+
+        }
+        else
+        {
+            isJumping = false;
         }
 
     }
 
     void HandleCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetButtonDown("Crouch"))
         {
             if (!isCrouching)
             {
                 playerCollider.height = crouchHeight;
-                moveSpeed /= 2;
+                Speed = CrouchSpeed;
                 isCrouching = true;
             }
             else
             {
                 playerCollider.height = standingHeight;
-                moveSpeed *= 2;
+                Speed = moveSpeed;
                 isCrouching = false;
             }
         }
     }
 
     void HandleRun()
-    {
-        if (Input.GetKeyDown(KeyCode.Y))
+    {/*
+        if (Input.GetButtonDown("Run"))
         {
             if (!isRunning)
             {
@@ -131,20 +167,47 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
                 moveSpeed /= 2;
                 isRunning = false;
             }
+        }*/
+
+        if (Input.GetButtonDown("Run"))
+        {
+            Debug.Log("Running");
+            isRunning = true;
+        }
+        else if(Input.GetButtonUp("Run") || stamina <= 0)
+        {
+            Debug.Log("Not Running");
+            isRunning = false;
+        }
+
+        if (isRunning)
+        {
+            if(stamina > 0)
+            {
+                stamina -= decreaseStamina;
+            }
+            else
+            {
+                stamina = 0;
+            }
+
+            Speed = RunSpeed;
+        }
+        else
+        {
+            if(stamina < 100)
+            {
+                stamina += increaseStamina;
+            }
+            else
+            {
+                  stamina = 100; 
+            }
+            Speed = moveSpeed;
         }
     }
 
-    void FixedUpdate()
-    {
-        if (HasInputAuthority)
-        {
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerCollider.bounds.extents.y + 0.1f);
-            if (!isGrounded)
-            {
-                body.velocity += Vector3.down * gravity * Time.fixedDeltaTime;
-            }
-        }
-    }
+    #endregion
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
@@ -153,6 +216,20 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         transform.rotation = rotation;
     }
 
+    public void Talk()
+    {
+        if (Input.GetButtonDown("Talk"))
+        {
+            FindAnyObjectByType<Recorder>().RecordingEnabled = true;
+        }
+        else if (Input.GetButtonUp("Talk"))
+        {
+            FindAnyObjectByType<Recorder>().RecordingEnabled = false;
+        }
+    }
+
+
+    #region SpawnManagement
     public override void Spawned()
     {
         Init();
@@ -167,10 +244,13 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             Debug.Log("All Mesh Are Here");
             GameManager.Instance.Rpc_GetAllMeshes();
         }
+        GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
+        ui.GetComponent<PlayerUI>().mouvement = this;
     }
 
     public void InstantiateUI()
     {
 
     }
+    #endregion
 }

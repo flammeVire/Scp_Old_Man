@@ -28,7 +28,6 @@ public class PlayerInterrestPoint : NetworkBehaviour
     IEnumerator increaseTotalPI()
     {
         yield return new WaitForSeconds(Delay);
-        Debug.Log("increase");
         TotalPI += CurrentPI;
         StartCoroutine(increaseTotalPI());
     }
@@ -40,7 +39,7 @@ public class PlayerInterrestPoint : NetworkBehaviour
         {
             input += Increaser[0];
         }
-        if (!mouvement.isGrounded) 
+        if (!mouvement.isJumping) 
         {
             input += Increaser[1];
         }
@@ -56,7 +55,6 @@ public class PlayerInterrestPoint : NetworkBehaviour
         {
             input += Increaser[4];
         }
-        Debug.Log("PI = " + input);
         input++;
         return input;
     }

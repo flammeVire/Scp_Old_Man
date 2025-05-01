@@ -16,5 +16,6 @@ public class PlayerUI : MonoBehaviour
     void UpdateStamina()
     {
         StaminaImage.fillAmount = mouvement.stamina / 100;
+        Debug.Log("Img fill amout == "+ StaminaImage.fillAmount);
     }
 }
