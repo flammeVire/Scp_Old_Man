@@ -13,12 +13,18 @@ public class PlayerInterrestPoint : NetworkBehaviour
    
     private void Start()
     {
-        StartCoroutine(increaseTotalPI());
+        if (HasInputAuthority)
+        {
+            StartCoroutine(increaseTotalPI());
+        }
 
     }
     private void FixedUpdate()
     {
-        IncreaseCurrentPI();
+        if (HasInputAuthority)
+        {
+            IncreaseCurrentPI();
+        }
     }
     void IncreaseCurrentPI()
     {
