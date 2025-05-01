@@ -27,5 +27,4 @@ public class Sas_Door : NetworkBehaviour
             }
         }
     }
-
 }
