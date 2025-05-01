@@ -172,36 +172,35 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 
     #endregion
 
-    float ManageStamina(bool IsRunning)
+    void ManageStamina(bool IsRunning)
     {
-        float stam = stamina;
+        
         //case: stamina increase
-        if(IsRunning)
+        if(!IsRunning)
         {
             if (stamina > 100) 
             {
-                stam = 100;
+                stamina = 100;
             }
             else
             {
-                stam += 1;
+                stamina += increaseStamina;
             }
         }
 
 
             //case: stamina decrease
-        else if(!IsRunning)
+        else if(IsRunning)
         {
             if(stamina < 0)
             {
-                stam = 0;
+                stamina = 0;
             }
             else
             {
-                stam -= 0;
+                stamina -= decreaseStamina;
             }
         }
-            return stamina;
     }
 
     void ManageSpeed()
