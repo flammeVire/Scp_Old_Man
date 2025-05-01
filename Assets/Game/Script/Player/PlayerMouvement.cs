@@ -248,14 +248,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             Debug.Log("All Mesh Are Here");
             GameManager.Instance.Rpc_GetAllMeshes();
         }
-        GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
-        ui.GetComponent<PlayerUI>().mouvement = this;
-        ui.GetComponent<PlayerUI>().PlayerPI = this.GetComponent<PlayerInterrestPoint>();
+        InstantiateUI();
     }
 
     public void InstantiateUI()
     {
-
+        GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
+        ui.GetComponent<PlayerUI>().mouvement = this;
+        ui.GetComponent<PlayerUI>().PlayerPI = this.GetComponent<PlayerInterrestPoint>();
     }
     #endregion
 }
