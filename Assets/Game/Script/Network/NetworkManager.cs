@@ -47,8 +47,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     #region lobby button
     public static void ReturnToLobby()
     {
-        NetworkManager.runnerInstance.Despawn(runnerInstance.GetPlayerObject(runnerInstance.LocalPlayer));
         NetworkManager.runnerInstance.Shutdown(true, ShutdownReason.Ok);
+        NetworkManager.runnerInstance.Despawn(runnerInstance.GetPlayerObject(runnerInstance.LocalPlayer));
     }
 
     public void CreateRandomSession()

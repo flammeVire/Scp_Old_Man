@@ -6,6 +6,7 @@ public class ReturnToLobby : MonoBehaviour
 {
     public void ReturnLobby()
     {
+        Debug.Log("Button Push");
         NetworkManager.ReturnToLobby();
     }
 }
