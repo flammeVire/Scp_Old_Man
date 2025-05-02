@@ -83,11 +83,5 @@ public class Card_Door : NetworkBehaviour
             }
             
         }
-        else
-        {
-            Debug.Log("Spawning");
-            Door = NetworkManager.runnerInstance.Spawn(DoorPrefabs, spawn.position, spawn.rotation);
-            IsOpen = false;
-        }
     } 
 }
