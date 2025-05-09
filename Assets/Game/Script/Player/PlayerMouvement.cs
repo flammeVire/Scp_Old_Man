@@ -116,6 +116,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         if (horizontal != 0 || vertical != 0) 
         {
             isMoving = true;
+            //MattSounds jouer son marche
         }
         else if(horizontal == 0 && vertical == 0)
         {
@@ -155,11 +156,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             if (!isCrouching)
             {  
                 isCrouching = true;
+                //MattSounds : jouer son accroupi
             }
             else
             {
                 isCrouching = false;
+                //MattSounds : jouer son relevé
             }
+
         }
 
         if (isCrouching)
@@ -210,10 +214,11 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             {
                 stamina += increaseStamina;
             }
+            
         }
 
 
-            //case: stamina decrease
+        //case: stamina decrease
         else if(IsRunning)
         {
             if(stamina < 0)
@@ -224,6 +229,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             {
                 stamina -= decreaseStamina;
             }
+            //MattSounds : jouer son course
         }
     }
 
@@ -263,18 +269,21 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             FindAnyObjectByType<Recorder>().RecordingEnabled = true;
             isTalking = true;
             Debug.Log("Talk");
+            //MattSounds : joueur allumage talkie
         }
         else if (Input.GetButtonUp("Talk"))
         {
             FindAnyObjectByType<Recorder>().RecordingEnabled = false;
             isTalking = false;
             Debug.Log("UnTalk");
+            //MattSounds : jouer eteindre talkie
         }
     }
 
     IEnumerator JumpDetection()
     {
         yield return new WaitForSeconds(0.2f);
+        //MattSounds jouer son saut
         isJumping = false;
     }
     #region SpawnManagement

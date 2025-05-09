@@ -60,6 +60,8 @@ public class SoundDoor : NetworkBehaviour
         {
             Debug.Log("Open the door");
             Rpc_OpenDoor();
+
+            //MattSounds : mettre fonction RPC qui joue un son si le volume dépasse un certain seuil (PI va de 0 a 10)
         }
     }
 

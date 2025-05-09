@@ -24,6 +24,7 @@ public class PlayerInterraction : NetworkBehaviour
                 {
                     if (hit.collider.CompareTag("Interractive"))
                     {
+                        //MattSounds : jouer son interraction (tu peux descendre dans les if selons les son)
                         if (hit.collider.GetComponent<SecurityCam>())
                         {
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
@@ -46,6 +47,7 @@ public class PlayerInterraction : NetworkBehaviour
                     }
                     else if (hit.collider.CompareTag("Hide"))
                     {
+                        //MattSounds (jouer son se cacher (pas encore mis de cachette ingame)
                         Hide(hit.collider.GetComponent<HidingSpot>());
                     }
                 }

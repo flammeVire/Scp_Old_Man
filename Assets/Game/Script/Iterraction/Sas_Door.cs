@@ -19,11 +19,15 @@ public class Sas_Door : NetworkBehaviour
             if (Door != null)
             {
                 NetworkManager.runnerInstance.Despawn(Door);
+                //MattSounds : jouer son ouverture
+                
                 Door = null;
             }
             else
             {
                 Door = NetworkManager.runnerInstance.Spawn(DoorPrefab,Spawn.position,Spawn.rotation);
+
+                //MattSounds : Jouer son fermeture
             }
         }
     }
