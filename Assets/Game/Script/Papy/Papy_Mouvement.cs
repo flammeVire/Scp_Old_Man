@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Fusion;
 using System.Collections;
-public class RandomMovement : NetworkBehaviour
+public class Papy_Mouvement : NetworkBehaviour
 {
     public NavMeshAgent agent;
     public float range = 10f; // Portée des déplacements aléatoires
@@ -53,9 +53,20 @@ public class RandomMovement : NetworkBehaviour
 
     private void Update()
     {
+
         if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
         {
+            Debug.Log("Patrol");
             PatrolMouvement();
+            if (IsPointReach(CurrentPointToReach))
+            {
+                HaveReachThePoint = IsPointReach(CurrentPointToReach);
+                GetAPoint(CurrentPointToReach);
+            }
+            else
+            {
+                Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
+            }
         }
         else if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
         { 
@@ -63,21 +74,20 @@ public class RandomMovement : NetworkBehaviour
         }
         else if(Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
         {
+            Debug.Log("Chasing");
             ChaseMouvement();
         }
     }
 
     public override void FixedUpdateNetwork()
     {
-        if (IsPointReach(CurrentPointToReach)) 
+        /*
+        if (Papy_Manager.Instance.currentState != Papy_Manager.Papy_State.chasing)
         {
-            HaveReachThePoint = IsPointReach(CurrentPointToReach);
-            GetAPoint(CurrentPointToReach);
+            
         }
-        else
-        {
-            Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
-        }
+
+        */
     }
 
     bool IsPointReach(Transform target, float threshold = 1.0f)
@@ -108,10 +118,14 @@ public class RandomMovement : NetworkBehaviour
         }
     }
 
+    
+
     #region Patrol
 
     void PatrolMouvement()
     {
+        Debug.Log("PatrolMenu");
+        agent.enabled = true;
         agent.destination = CurrentPointToReach.position;
     }
 
@@ -124,6 +138,7 @@ public class RandomMovement : NetworkBehaviour
     void ChaseMouvement()
     {
         Debug.Log("ChaseMenu");
+        agent.enabled = false;
         Vector3 currentPosition = transform.position;
 
         float distance = Vector3.Distance(currentPosition, CurrentPointToReach.position);
@@ -132,7 +147,7 @@ public class RandomMovement : NetworkBehaviour
         {
             Vector3 directionOfTravel = (CurrentPointToReach.position - currentPosition).normalized;
             Vector3 newPosition = currentPosition + (directionOfTravel * Speed * NetworkManager.runnerInstance.DeltaTime);
-
+            ///ajouter delay => avance trop vite
             body.MovePosition(newPosition);
         }
     }

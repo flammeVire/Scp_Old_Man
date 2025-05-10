@@ -4,20 +4,20 @@ using UnityEngine;
 public class Papy_Vision : MonoBehaviour
 {
     public float raduis;
-    [Range(0,360)] public float angle;
+    [Range(0, 360)] public float angle;
 
-    public GameObject[] playerMesh;
     public GameObject Target;
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
     public bool canSeePlayer;
-    
+
     private void Update()
     {
-            FieldOfViewCheck();
-            //if bool true change the state of papy-manager
+        FieldOfViewCheck();
+        Debug.Log("Can see Player : " + canSeePlayer);
+        //if bool true change the state of papy-manager
     }
 
     void FieldOfViewCheck()
@@ -29,10 +29,10 @@ public class Papy_Vision : MonoBehaviour
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(transform.forward,directionToTarget) < angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
-                if(!Physics.Raycast(transform.position,directionToTarget, distanceToTarget, obstructionMask))
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
                     Target = rangeChecks[0].gameObject;

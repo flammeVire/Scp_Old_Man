@@ -187,6 +187,7 @@ MonoBehaviour:
   IsOpen:
     _value: 0
   spawn: {fileID: 363698383}
+  doorSound: {fileID: 0}
 --- !u!64 &2857374
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3435,7 +3436,7 @@ GameObject:
   - component: {fileID: 572342845}
   - component: {fileID: 572342844}
   - component: {fileID: 572342843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4801,7 +4802,7 @@ GameObject:
   - component: {fileID: 662513250}
   - component: {fileID: 662513249}
   - component: {fileID: 662513248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5501,6 +5502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75046aa02dded7145bcdf977cc2b8490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUI: {fileID: 9152519619495338691, guid: f69d8df9ea369c74ebcd3a612b15489d, type: 3}
   PlayerMeshPrefab: {fileID: 7439568911862566826, guid: 3307e4ad0a519ff4288f6f573a9fc4ea, type: 3}
   CameraPrefab: {fileID: 6955538818692819018, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
   PlayerSpawn:
@@ -7277,7 +7279,7 @@ PrefabInstance:
     - target: {fileID: 6497669683611506815, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: CurrentPointToReach
       value: 
-      objectReference: {fileID: 585821224}
+      objectReference: {fileID: 2017135814}
     - target: {fileID: 6735115757851825699, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: PointToReach.Array.size
       value: 4
@@ -7451,7 +7453,7 @@ GameObject:
   - component: {fileID: 1413630425}
   - component: {fileID: 1413630424}
   - component: {fileID: 1413630423}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8555,7 +8557,7 @@ GameObject:
   - component: {fileID: 1611550489}
   - component: {fileID: 1611550488}
   - component: {fileID: 1611550487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8908,7 +8910,7 @@ GameObject:
   - component: {fileID: 1658323972}
   - component: {fileID: 1658323971}
   - component: {fileID: 1658323970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12505,7 +12507,7 @@ GameObject:
   - component: {fileID: 2141809206}
   - component: {fileID: 2141809205}
   - component: {fileID: 2141809204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

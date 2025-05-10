@@ -221,7 +221,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -281,9 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e8644902d8da3469940b806449c7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raduis: 7
-  angle: 100
-  playerMesh: []
+  raduis: 14
+  angle: 130
   Target: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -329,6 +328,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pVision: {fileID: 5424327170513824808}
+  pMouvement: {fileID: 6497669683611506815}
 --- !u!195 &6660657577481164751
 NavMeshAgent:
   m_ObjectHideFlags: 0
