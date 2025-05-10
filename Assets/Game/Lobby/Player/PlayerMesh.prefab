@@ -188,14 +188,19 @@ GameObject:
   - component: {fileID: 891973035811709517}
   - component: {fileID: 2206871494453844815}
   - component: {fileID: 636873525013356677}
-  - component: {fileID: 66067729302263490}
   - component: {fileID: 4047595549479562219}
   - component: {fileID: 227268913443682947}
   - component: {fileID: 9158581703884549547}
   - component: {fileID: 5568853269028372429}
   - component: {fileID: 3476804410694073511}
+  - component: {fileID: 66067729302263490}
   - component: {fileID: 8796728106877429974}
   - component: {fileID: 6862435594636010139}
+  - component: {fileID: 8305611882266990457}
+  - component: {fileID: 1164339209079290904}
+  - component: {fileID: 6185572112576330986}
+  - component: {fileID: 4183225888688602141}
+  - component: {fileID: 3476217644119192550}
   m_Layer: 7
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -270,37 +275,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &66067729302263490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7439568911862566826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f67f1f8ad3924408bb5207b7eeb31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 7308004822726158644}
-  Speed: 0
-  moveSpeed: 3
-  CrouchSpeed: 1
-  RunSpeed: 5
-  sensitivity: 2
-  jumpForce: 5
-  crouchHeight: 0.5
-  standingHeight: 2
-  stamina: 100
-  decreaseStamina: 0.2
-  increaseStamina: 0.1
-  gravity: 9.81
-  isGrounded: 0
-  isCrouching: 0
-  isJumping: 0
-  isRunning: 0
-  isMoving: 0
-  isTalking: 0
 --- !u!114 &4047595549479562219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,12 +394,48 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 66067729302263490}
   - {fileID: 4047595549479562219}
   - {fileID: 5568853269028372429}
+  - {fileID: 66067729302263490}
   - {fileID: 8796728106877429974}
   - {fileID: 6862435594636010139}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &66067729302263490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f67f1f8ad3924408bb5207b7eeb31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 7308004822726158644}
+  Speed: 0
+  moveSpeed: 3
+  CrouchSpeed: 1
+  RunSpeed: 5
+  sensitivity: 2
+  jumpForce: 5
+  crouchHeight: 0.5
+  standingHeight: 2
+  stamina: 100
+  decreaseStamina: 0.2
+  increaseStamina: 0.1
+  gravity: 9.81
+  isGrounded: 0
+  isCrouching: 0
+  isJumping: 0
+  isRunning: 0
+  isMoving: 0
+  isTalking: 0
+  walk: {fileID: 6185572112576330986}
+  crouch: {fileID: 0}
+  jump: {fileID: 0}
+  run: {fileID: 3476217644119192550}
+  talkieOn: {fileID: 4183225888688602141}
 --- !u!114 &8796728106877429974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4388441864165681919}
+  inCamera: {fileID: 1164339209079290904}
+  hide: {fileID: 0}
 --- !u!114 &6862435594636010139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +468,144 @@ MonoBehaviour:
   _TotalPI: 0
   Delay: 1
   Increaser: ffffffff03000000010000000200000001000000
+--- !u!114 &8305611882266990457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
+--- !u!114 &1164339209079290904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1727476732
+      Data2: 1206590344
+      Data3: 698371216
+      Data4: -589829335
+    Path: event:/In Camera
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &6185572112576330986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 81965185
+      Data2: 1164316026
+      Data3: 169035958
+      Data4: 1312088102
+    Path: event:/Walk
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4183225888688602141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1578245423
+      Data2: 1109807992
+      Data3: 1432692098
+      Data4: -1044420349
+    Path: event:/Activation Talkie
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &3476217644119192550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1917275627
+      Data2: 1134098194
+      Data3: -597946448
+      Data4: 1795922288
+    Path: event:/Run
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &2687460008266366231
 PrefabInstance:
   m_ObjectHideFlags: 0

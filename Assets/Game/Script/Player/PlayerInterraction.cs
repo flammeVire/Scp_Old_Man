@@ -1,11 +1,14 @@
 using Fusion;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PlayerInterraction : NetworkBehaviour
 {
     public Camera playerCamera;
+    public StudioEventEmitter inCamera;
+    public StudioEventEmitter hide;
     void Update()
     {
         InputManagement();
@@ -27,8 +30,8 @@ public class PlayerInterraction : NetworkBehaviour
                         //MattSounds : jouer son interraction (tu peux descendre dans les if selons les son)
                         if (hit.collider.GetComponent<SecurityCam>())
                         {
+                            inCamera.Play();
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
-
                         }
                         else if (hit.collider.GetComponent<Card_Door>())
                         {
@@ -48,6 +51,7 @@ public class PlayerInterraction : NetworkBehaviour
                     else if (hit.collider.CompareTag("Hide"))
                     {
                         //MattSounds (jouer son se cacher (pas encore mis de cachette ingame)
+                        hide.Play();
                         Hide(hit.collider.GetComponent<HidingSpot>());
                     }
                 }

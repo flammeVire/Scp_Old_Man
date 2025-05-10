@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f383f8d8-f514-45eb-91af-d93989cb3ce7}">
+		<property name="assetPath">
+			<value>Rire 4.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>7.2096371882086165</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{85a7d841-eacd-4079-b930-9bde62025ac8}</destination>
+		</relationship>
+	</object>
+</objects>

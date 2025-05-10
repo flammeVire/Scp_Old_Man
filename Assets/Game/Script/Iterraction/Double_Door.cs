@@ -5,6 +5,7 @@ using Fusion;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.ProBuilder.Shapes;
+using FMODUnity;
 public class Double_Door : NetworkBehaviour
 {
     public ButtonDouble_Door[] ButtonScript;
@@ -12,6 +13,8 @@ public class Double_Door : NetworkBehaviour
     public NetworkObject Door;
     public NetworkBool IsOpen;
     public Transform spawn;
+
+    public StudioEventEmitter doorSound;
 
     public void CheckAllButton()
     {
@@ -44,6 +47,7 @@ public class Double_Door : NetworkBehaviour
                 Debug.Log("Have Authority");
                 NetworkManager.runnerInstance.Despawn(Door);
                 //MattSounds : jouer son ouverture
+                doorSound.Play();
                 IsOpen = true;
             }
         }

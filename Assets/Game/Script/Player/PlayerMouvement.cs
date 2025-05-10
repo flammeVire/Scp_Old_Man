@@ -1,4 +1,5 @@
-﻿using Fusion;
+﻿using FMODUnity;
+using Fusion;
 using Photon.Voice.Unity;
 using System.Collections;
 using System.Linq;
@@ -40,6 +41,13 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     private float corrosionSlow = 0.5f;
     private bool inCorrosionZone = false;
 
+    [Header("SFX")]
+    public StudioEventEmitter walk;
+    public StudioEventEmitter crouch;
+    public StudioEventEmitter jump;
+    public StudioEventEmitter run;
+    public StudioEventEmitter talkieOn;
+
     #endregion
     #region Unity default Function
     void Start()
@@ -63,6 +71,10 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             if (!isGrounded)
             {
                 body.velocity += Vector3.down * gravity * Time.fixedDeltaTime;
+            }
+            else 
+            { 
+            
             }
         }
     }
@@ -115,11 +127,16 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 
         if (horizontal != 0 || vertical != 0) 
         {
+            if (!isMoving)
+            {
+                walk.Play();
+            }
             isMoving = true;
             //MattSounds jouer son marche
         }
         else if(horizontal == 0 && vertical == 0)
         {
+            walk.Stop();
             isMoving = false;
         }
     }
@@ -155,11 +172,13 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         {
             if (!isCrouching)
             {  
+                //crouch.Play();
                 isCrouching = true;
                 //MattSounds : jouer son accroupi
             }
             else
             {
+                //crouch.Play();
                 isCrouching = false;
                 //MattSounds : jouer son relevé
             }
@@ -183,17 +202,40 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             if (Input.GetButtonDown("Run"))
             {
                 Debug.Log("Running");
+
+                if (!isRunning)
+                {
+                    run.Play();
+                }
+
+
                 isRunning = true;
+
+
             }
             else if (Input.GetButtonUp("Run") || stamina <= 0)
             {
                 Debug.Log("Not Running");
+                run.Stop();
                 isRunning = false;
+                if (isMoving)
+                {
+                    walk.Play();
+                    //MattSounds jouer son marche
+                }
+
+
             }
         }
         else
         {
+            run.Stop();
             isRunning = false;
+            if (isMoving)
+            {
+                walk.Play();
+                //MattSounds jouer son marche
+            }
         }
     }
     
@@ -228,6 +270,10 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             else
             {
                 stamina -= decreaseStamina;
+            }
+            if(isMoving == true)
+            {
+                walk.Stop();
             }
             //MattSounds : jouer son course
         }
@@ -270,6 +316,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             isTalking = true;
             Debug.Log("Talk");
             //MattSounds : joueur allumage talkie
+            talkieOn.Play();
         }
         else if (Input.GetButtonUp("Talk"))
         {
@@ -277,13 +324,16 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             isTalking = false;
             Debug.Log("UnTalk");
             //MattSounds : jouer eteindre talkie
+            talkieOn.Play();
         }
     }
 
     IEnumerator JumpDetection()
     {
+        jump.Play();
         yield return new WaitForSeconds(0.2f);
         //MattSounds jouer son saut
+        
         isJumping = false;
     }
     #region SpawnManagement

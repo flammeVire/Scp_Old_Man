@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{3d04c321-2984-4942-94e4-b4c8b9a852a3}">
+		<property name="assetPath">
+			<value>activation talkie.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.312</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{85a7d841-eacd-4079-b930-9bde62025ac8}</destination>
+		</relationship>
+	</object>
+</objects>

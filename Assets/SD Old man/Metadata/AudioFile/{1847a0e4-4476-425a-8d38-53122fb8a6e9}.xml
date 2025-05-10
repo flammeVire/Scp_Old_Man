@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{1847a0e4-4476-425a-8d38-53122fb8a6e9}">
+		<property name="assetPath">
+			<value>courir.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.6160000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{85a7d841-eacd-4079-b930-9bde62025ac8}</destination>
+		</relationship>
+	</object>
+</objects>
