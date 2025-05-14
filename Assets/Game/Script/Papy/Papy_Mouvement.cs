@@ -70,7 +70,7 @@ public class Papy_Mouvement : NetworkBehaviour
             if (IsPointReach(CurrentPointToReach))
             {
                 HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                Rpc_GetAPoint(CurrentPointToReach);
+                GetAPoint(CurrentPointToReach);
             }
         }
         else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
@@ -98,8 +98,7 @@ public class Papy_Mouvement : NetworkBehaviour
         return distance <= MinimumDistance;
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void Rpc_GetAPoint(Transform oldPoint)
+    public void GetAPoint(Transform oldPoint)
     {
         if (HasStateAuthority)
         {
@@ -108,7 +107,7 @@ public class Papy_Mouvement : NetworkBehaviour
 
             if (Papy_Manager.Instance.PointToReach[index] == oldPoint)
             {
-                Rpc_GetAPoint(oldPoint);
+                GetAPoint(oldPoint);
                 return;
             }
 
@@ -159,13 +158,13 @@ public class Papy_Mouvement : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void Rpc_CaughtPlayer(GameObject obj)
+    public void Rpc_CaughtPlayer(NetworkObject obj)
     {
         obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
         Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
         Papy_Manager.Instance.Rpc_TeleportPapy();
         Papy_Manager.Instance.currentState = Papy_Manager.Papy_State.Patrol;
-        Rpc_GetAPoint(obj.transform);
+        GetAPoint(obj.transform);
 
     }
     #endregion
@@ -176,7 +175,7 @@ public class Papy_Mouvement : NetworkBehaviour
         if (collision.gameObject.layer == 7) // PayerLayer
         {
             Debug.Log("Papy touch player");
-            Rpc_CaughtPlayer(collision.gameObject);
+            Rpc_CaughtPlayer(collision.gameObject.GetComponent<NetworkObject>());
         }
         if (collision.gameObject.layer == 6) // wall
         {
