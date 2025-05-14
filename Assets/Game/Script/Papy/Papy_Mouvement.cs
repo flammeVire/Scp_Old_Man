@@ -176,11 +176,14 @@ public class Papy_Mouvement : NetworkBehaviour
         {
             Debug.Log("Papy touch player");
             Rpc_CaughtPlayer(collision.gameObject.GetComponent<NetworkObject>());
+            Papy_Manager.Instance.currentState = Papy_Manager.Papy_State.Patrol;
+            GetAPoint(collision.transform);
         }
         if (collision.gameObject.layer == 6) // wall
         {
             //spawn portal
             Debug.Log("Touche Wall");
+
            // Papy_Manager.Instance.WRpc_SpawnPortals(collision.transform.position,collision.transform.rotation);
         }
     }
