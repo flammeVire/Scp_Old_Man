@@ -204,7 +204,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638824944558836678
+  lastModified: 638824945290000000
   FileSizes:
   - Name: Desktop
     Value: 506
@@ -273,7 +273,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 7918942106794123258}
   cacheVersion: 131847
-  cacheTime: 638824944558901557
+  cacheTime: 638824945290000000
   SerializableEventsDict:
   - key: event:/Run
     index: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824944558901557
+  lastModified: 638824945290000000
   FileSizes:
   - Name: Desktop
     Value: 2337280
@@ -446,7 +446,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824944558901557
+  lastModified: 638824945290000000
   FileSizes:
   - Name: Desktop
     Value: 1392
