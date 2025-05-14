@@ -70,7 +70,7 @@ public class Papy_Mouvement : NetworkBehaviour
             if (IsPointReach(CurrentPointToReach))
             {
                 HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                GetAPoint(CurrentPointToReach);
+                Rpc_GetAPoint(CurrentPointToReach);
             }
         }
         else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
@@ -98,25 +98,30 @@ public class Papy_Mouvement : NetworkBehaviour
         return distance <= MinimumDistance;
     }
 
-    public void GetAPoint(Transform oldPoint)
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_GetAPoint(Transform oldPoint)
     {
-        int index = UnityEngine.Random.Range(0, Papy_Manager.Instance.PointToReach.Length);
-
-        if (Papy_Manager.Instance.PointToReach[index] == oldPoint)
+        if (HasStateAuthority)
         {
-            GetAPoint(oldPoint);
-            return;
-        }
 
-        for (int i = 0; i < Papy_Manager.Instance.PointToReach.Length; i++)
-        {
-            if (i == index)
+            int index = UnityEngine.Random.Range(0, Papy_Manager.Instance.PointToReach.Length);
+
+            if (Papy_Manager.Instance.PointToReach[index] == oldPoint)
             {
-                CurrentPointToReach = Papy_Manager.Instance.PointToReach[i];
-                break;
+                Rpc_GetAPoint(oldPoint);
+                return;
             }
 
+            for (int i = 0; i < Papy_Manager.Instance.PointToReach.Length; i++)
+            {
+                if (i == index)
+                {
+                    CurrentPointToReach = Papy_Manager.Instance.PointToReach[i];
+                    break;
+                }
 
+
+            }
         }
     }
 
@@ -152,13 +157,15 @@ public class Papy_Mouvement : NetworkBehaviour
             body.MovePosition(newPosition);
         }
     }
-    public void CaughtPlayer(GameObject obj)
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_CaughtPlayer(GameObject obj)
     {
         obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
         Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
         Papy_Manager.Instance.Rpc_TeleportPapy();
         Papy_Manager.Instance.currentState = Papy_Manager.Papy_State.Patrol;
-        GetAPoint(obj.transform);
+        Rpc_GetAPoint(obj.transform);
 
     }
     #endregion
@@ -169,7 +176,7 @@ public class Papy_Mouvement : NetworkBehaviour
         if (collision.gameObject.layer == 7) // PayerLayer
         {
             Debug.Log("Papy touch player");
-            CaughtPlayer(collision.gameObject);
+            Rpc_CaughtPlayer(collision.gameObject);
         }
         if (collision.gameObject.layer == 6) // wall
         {
