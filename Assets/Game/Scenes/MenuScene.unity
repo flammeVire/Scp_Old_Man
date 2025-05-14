@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyName: default
   sessionListContentParent: {fileID: 1253703070}
+  CreateGame: {fileID: 2173093772581516504, guid: 09109d6d53b160c4db070893120e6b34, type: 3}
   lobby_Session_Prefab: {fileID: 4184954513958944229, guid: df8b020cce302b44cb50dc3e99ed5d04, type: 3}
   PlayScene: LobbyScene
   LobbyScene: MenuScene

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Photon.Voice;
 
 public class Papy_Manager : NetworkBehaviour
 {
@@ -18,7 +19,8 @@ public class Papy_Manager : NetworkBehaviour
     public GameObject WallPortalPrefab;
     public GameObject WallPortal;
 
-    public GameObject FloorPortalPrefab;
+    public GameObject FloorPortalPrefab1;
+    public GameObject FloorPortalPrefab2;
     public GameObject FloorPortal;
     public enum Papy_State
     {
@@ -64,14 +66,14 @@ public class Papy_Manager : NetworkBehaviour
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_FloorSpawnPortals(Vector3 position, Quaternion rotation)
-    {if (HasStateAuthority)
+    {
+        if (HasStateAuthority)
         {
             Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
             Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
 
-            NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, position, transform.rotation);
-            NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, projectedPositionInTargetWorld, transform.rotation);
-
+            NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab1, position, transform.rotation);
+            NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab2, projectedPositionInTargetWorld, transform.rotation);
         }
     }
     
@@ -85,8 +87,8 @@ public class Papy_Manager : NetworkBehaviour
                 Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
                 Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
 
-                NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, position, transform.rotation);
-                NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, projectedPositionInTargetWorld, transform.rotation);
+                NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab1, position, transform.rotation);
+                NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab2, projectedPositionInTargetWorld, transform.rotation);
                 WallPortal = clone.gameObject;
                 //NetworkManager.runnerInstance.Despawn(clone);
             }
@@ -101,11 +103,23 @@ public class Papy_Manager : NetworkBehaviour
         //transform.LookAt(TargetPosition); // si look, n'avance plus 
     }
 
-    void CheckWallCollision()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_TeleportPapy()
     {
-        
+        if (HasStateAuthority)
+        {
+            int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
+            if (Vector3.Distance(this.transform.position, PointToReach[randomPoint].position) < 5) 
+            {
+                Rpc_TeleportPapy();
+            }
+            else
+            {
+                transform.position = PointToReach[randomPoint].position;
+                transform.rotation = PointToReach[randomPoint].rotation;
+            }
+        }
     }
-
 
 
 

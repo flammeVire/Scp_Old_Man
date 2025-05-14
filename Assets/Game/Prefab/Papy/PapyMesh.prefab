@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 3866663276510667390}
   - component: {fileID: 1592549638573335581}
   - component: {fileID: 1922071849379129232}
-  - component: {fileID: 2077340065875786000}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -192,18 +191,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2077340065875786000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408357239621385428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc101c37f1643474a9d3753bd64b97e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3562420142735117020
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +324,6 @@ MonoBehaviour:
   - {fileID: 6291375659420119098}
   - {fileID: 6497669683611506815}
   - {fileID: 6735115757851825699}
-  - {fileID: 2077340065875786000}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &5424327170513824808
 MonoBehaviour:
@@ -403,7 +389,8 @@ MonoBehaviour:
   pMouvement: {fileID: 6497669683611506815}
   WallPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
   WallPortal: {fileID: 0}
-  FloorPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
+  FloorPortalPrefab1: {fileID: 6159837283091451951, guid: ee886ee25f3b9664c94d52fced6f95bd, type: 3}
+  FloorPortalPrefab2: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
   FloorPortal: {fileID: 0}
 --- !u!195 &6660657577481164751
 NavMeshAgent:

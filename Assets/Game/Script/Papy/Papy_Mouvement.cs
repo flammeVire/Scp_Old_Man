@@ -155,9 +155,10 @@ public class Papy_Mouvement : NetworkBehaviour
     public void CaughtPlayer(GameObject obj)
     {
         obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
+        Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
+        Papy_Manager.Instance.Rpc_TeleportPapy();
         Papy_Manager.Instance.currentState = Papy_Manager.Papy_State.Patrol;
         GetAPoint(obj.transform);
-        Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
 
     }
     #endregion
