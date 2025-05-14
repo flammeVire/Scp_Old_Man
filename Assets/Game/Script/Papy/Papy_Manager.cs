@@ -15,7 +15,11 @@ public class Papy_Manager : NetworkBehaviour
     public Papy_Vision pVision;
     public Papy_Mouvement pMouvement;
 
-    public GameObject PortalPrefab;
+    public GameObject WallPortalPrefab;
+    public GameObject WallPortal;
+
+    public GameObject FloorPortalPrefab;
+    public GameObject FloorPortal;
     public enum Papy_State
     {
         Patrol,
@@ -59,16 +63,33 @@ public class Papy_Manager : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void Rpc_SpawnPortals(Vector3 position, Quaternion rotation)
+    public void Rpc_FloorSpawnPortals(Vector3 position, Quaternion rotation)
     {if (HasStateAuthority)
         {
-        
             Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
             Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
 
-            NetworkObject clone = NetworkManager.runnerInstance.Spawn(PortalPrefab, position, transform.rotation);
-            NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(PortalPrefab, projectedPositionInTargetWorld, transform.rotation);
-          //  clone.gameObject.transform.position = GameManager.
+            NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, position, transform.rotation);
+            NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, projectedPositionInTargetWorld, transform.rotation);
+
+        }
+    }
+    
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_WallSpawnPortals(Vector3 position, Quaternion rotation)
+    {
+        if (HasStateAuthority)
+        {
+            if (WallPortal == null)
+            {
+                Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
+                Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
+
+                NetworkObject clone = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, position, transform.rotation);
+                NetworkObject clonePocket = NetworkManager.runnerInstance.Spawn(FloorPortalPrefab, projectedPositionInTargetWorld, transform.rotation);
+                WallPortal = clone.gameObject;
+                //NetworkManager.runnerInstance.Despawn(clone);
+            }
         }
     }
 

@@ -10,7 +10,7 @@ public class Papy_PocketWorld : NetworkBehaviour
         if(other.gameObject.layer == 6)
         {
             Debug.Log("Enter In Wall");
-            Papy_Manager.Instance.Rpc_SpawnPortals(transform.position,transform.rotation);
+            //Papy_Manager.Instance.Rpc_SpawnPortals(transform.position,transform.rotation);
         }
     }
 

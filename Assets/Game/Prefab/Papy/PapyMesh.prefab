@@ -401,7 +401,10 @@ MonoBehaviour:
   - {fileID: 0}
   pVision: {fileID: 5424327170513824808}
   pMouvement: {fileID: 6497669683611506815}
-  PortalPrefab: {fileID: 0}
+  WallPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
+  WallPortal: {fileID: 0}
+  FloorPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
+  FloorPortal: {fileID: 0}
 --- !u!195 &6660657577481164751
 NavMeshAgent:
   m_ObjectHideFlags: 0

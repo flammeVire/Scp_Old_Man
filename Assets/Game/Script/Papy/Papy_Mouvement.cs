@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using Photon.Voice;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 public class Papy_Mouvement : NetworkBehaviour
 {
     public NavMeshAgent agent;
@@ -16,6 +17,7 @@ public class Papy_Mouvement : NetworkBehaviour
     public Rigidbody body;
     public Transform CurrentPointToReach;
     public NetworkBool HaveReachThePoint;
+
     //Header("Data")]
     [SerializeField] float Speed;
     private void OnValidate()
@@ -64,7 +66,6 @@ public class Papy_Mouvement : NetworkBehaviour
 
         if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
         {
-            Debug.Log("Patrol");
             PatrolMouvement();
             if (IsPointReach(CurrentPointToReach))
             {
@@ -78,7 +79,6 @@ public class Papy_Mouvement : NetworkBehaviour
         }
         else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
         {
-            Debug.Log("Chasing");
             ChaseMouvement();
         }
         Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
@@ -86,13 +86,10 @@ public class Papy_Mouvement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        /*
-        if (Papy_Manager.Instance.currentState != Papy_Manager.Papy_State.chasing)
+        if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
         {
-            
+            //SphereCheck();
         }
-
-        */
     }
 
     bool IsPointReach(Transform target)
@@ -160,7 +157,7 @@ public class Papy_Mouvement : NetworkBehaviour
         obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
         Papy_Manager.Instance.currentState = Papy_Manager.Papy_State.Patrol;
         GetAPoint(obj.transform);
-        Papy_Manager.Instance.Rpc_SpawnPortals(transform.position, transform.rotation);
+        Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
 
     }
     #endregion
@@ -176,7 +173,8 @@ public class Papy_Mouvement : NetworkBehaviour
         if (collision.gameObject.layer == 6) // wall
         {
             //spawn portal
-            Papy_Manager.Instance.Rpc_SpawnPortals(collision.transform.position,collision.transform.rotation);
+            Debug.Log("Touche Wall");
+           // Papy_Manager.Instance.WRpc_SpawnPortals(collision.transform.position,collision.transform.rotation);
         }
     }
 
@@ -248,6 +246,36 @@ public class Papy_Mouvement : NetworkBehaviour
         }
 
         return closestTransform;
+    }
+
+    void SphereCheck()
+    {
+        Debug.Log("SpereCheck");
+        RaycastHit[] hits = new RaycastHit[5]; // Taille fixe
+        Ray ray = new Ray(transform.position, transform.forward);
+        LayerMask mask = LayerMask.GetMask("Wall");
+
+        int hitCount = Physics.SphereCastNonAlloc(ray, 0.1f, hits, 6, mask);
+
+        Debug.Log("HIT COUNT = " + hitCount);
+        for (int i = 0; i < hitCount; i++)
+        {
+            GameObject hitObject = hits[i].collider.gameObject;
+
+            if (hitObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                Vector3 contactPoint = hits[i].point;
+                Vector3 contactNormal = hits[i].normal;
+                Transform hitTransform = hits[i].transform;
+
+                // Créer un transform virtuel (ou positionner un objet helper)
+                GameObject marker = new GameObject("HitPoint");
+                marker.transform.position = contactPoint;
+                Papy_Manager.Instance.Rpc_WallSpawnPortals(marker.transform.position, marker.transform.rotation);
+                Destroy(marker.gameObject);
+                break;
+            }
+        }
     }
 }
 
