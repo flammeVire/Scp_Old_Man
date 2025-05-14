@@ -19,11 +19,13 @@ public class FovPapyEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.raduis);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.raduis);
 
+        
         if (fov.canSeePlayer)
         {
             Handles.color = Color.yellow;
             Handles.DrawLine(fov.transform.position, fov.Target.transform.position);
         }
+        
     }
 
 

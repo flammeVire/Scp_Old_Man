@@ -10,7 +10,11 @@ public class GameManager : NetworkBehaviour
     public GameObject PlayerMeshPrefab;
     public GameObject CameraPrefab;
     public Transform[] PlayerSpawn;
+    public Transform[] PocketDimentionSpawn;
 
+
+    public GameObject World;
+    public GameObject PocketWorld;
     public GameObject[] PlayerMeshes;
     public static GameManager Instance;
     private void Start()
