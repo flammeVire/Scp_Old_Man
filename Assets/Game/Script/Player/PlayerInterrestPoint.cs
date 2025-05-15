@@ -65,5 +65,9 @@ public class PlayerInterrestPoint : NetworkBehaviour
         return input;
     }
 
-
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_ResetPI()
+    {
+        TotalPI = 0;
+    }
 }

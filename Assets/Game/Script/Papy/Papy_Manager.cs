@@ -9,7 +9,7 @@ public class Papy_Manager : NetworkBehaviour
     NetworkBool IsFlashed = false;
     NetworkBool CanPassByWall = false;
     public static Papy_Manager Instance;
-    public Papy_State currentState;
+    public Papy_State currentState { get; private set; }
 
     public Transform[] PointToReach;
 
@@ -56,11 +56,9 @@ public class Papy_Manager : NetworkBehaviour
         }
         else if(currentState == Papy_State.chasing) 
         {
-           // currentState = Papy_State.Patrol;
-            // Rpc_ChangeStatus(0);
+
         }
 
-        //ChooseTarget();
 
     }
 
@@ -108,26 +106,32 @@ public class Papy_Manager : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
-            if (Vector3.Distance(this.transform.position, PointToReach[randomPoint].position) < 5) 
-            {
-                Rpc_TeleportPapy();
-            }
-            else
-            {
-                transform.position = PointToReach[randomPoint].position;
-                transform.rotation = PointToReach[randomPoint].rotation;
-            }
+
+
+                int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
+                if (Vector3.Distance(this.transform.position, PointToReach[randomPoint].position) < 5)
+                {
+                    Rpc_TeleportPapy();
+                }
+                else
+                {
+                    transform.position = PointToReach[randomPoint].position;
+                    transform.rotation = PointToReach[randomPoint].rotation;
+                }
+            
         }
     }
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_TeleportToPreciseLocation(Vector3 TargetPosition, Quaternion rotation)
+    {
 
+        transform.position = TargetPosition;
+        transform.rotation = rotation;
+    }
 
 
     /*
-    void ChooseTarget()
-    {
-        // check in update wich player have more of IP (interrest point)
-    }
+    
     [Rpc(RpcSources.All,RpcTargets.All)]
     void Rpc_SetAuthorityToPlayerOne()
     {
@@ -141,19 +145,19 @@ public class Papy_Manager : NetworkBehaviour
         }
     }
   
-    
+    */
     [Rpc(RpcSources.All,RpcTargets.All)]
-    void Rpc_ChangeStatus(int Status)
+    public void Rpc_ChangeStatus(int Status)
     {
         switch (Status)
         {
-            case 0:
+            case 1:
                  currentState = Papy_State.Patrol;
                 break;
-            case 1:
+            case 2:
                 currentState = Papy_State.searching;
                 break;
-            case 2:
+            case 3:
                 currentState = Papy_State.chasing;
                 break;
             default:
@@ -161,5 +165,5 @@ public class Papy_Manager : NetworkBehaviour
                 break;
         }
     }
-    */ //pas utile pour le moment
+    
 }

@@ -9640,6 +9640,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6497669683611506815, guid: 759e88e1c9f772042929062e06af9380, type: 3}
+      propertyPath: MinimumPI
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497669683611506815, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: CurrentPointToReach
       value: 
       objectReference: {fileID: 2017135814}
