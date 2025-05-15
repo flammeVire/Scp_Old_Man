@@ -5,7 +5,7 @@
 			<value>Walk Water</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{e6f01ea4-d712-47fb-87ed-4d40015348ee}">
 		<relationship name="effects">
 			<destination>{c8be2e26-5054-43e5-b0cf-3645fa9b7f5c}</destination>
+			<destination>{67d62ef6-428d-489e-8ecd-47c902fc809a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{956b53e8-20d3-4fe4-97f5-1555a7772c88}" />
@@ -127,5 +128,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{b4128e38-2c7f-4525-bebe-c43098d2f7c6}" />
 	<object class="MixerBusFader" id="{c8be2e26-5054-43e5-b0cf-3645fa9b7f5c}" />
+	<object class="SpatialiserEffect" id="{67d62ef6-428d-489e-8ecd-47c902fc809a}" />
 	<object class="MixerBusFader" id="{35f5dbd8-d7e5-4e3a-9ac2-f37363e9ca72}" />
 </objects>
