@@ -287,16 +287,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b559588f6fbf35e47894f4b3c68f8c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouvement: {fileID: 66067729302263490}
   pickupRange: 2
   playerCamera: {fileID: 4388441864165681919}
-  hand: {fileID: 811229714410248958}
-  CurrentItem: {fileID: 0}
-  inventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  PossiblesItem:
-  - {fileID: 11400000, guid: 4906d3db0eff81e4290b57ada7c6eca7, type: 2}
-  NumberOfFlashBang: 0
+  GrenadePrefab: {fileID: 4282193333015139091, guid: a85bc19fd9c1da6488a0eea77074e23e, type: 3}
+  NumberOfFlashGrenade: 0
   HaveCardLvL1: 0
   HaveCardLvL2: 0
   HaveCardLvL3: 0
@@ -414,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7308004822726158644}
+  playerUI: {fileID: 0}
   Speed: 0
   moveSpeed: 3
   CrouchSpeed: 1
@@ -435,7 +431,6 @@ MonoBehaviour:
   PlayerSound: {fileID: 1930982688142283677}
   crouch: {fileID: 0}
   jump: {fileID: 0}
-  run: {fileID: 3476217644119192550}
   talkieOn: {fileID: 4183225888688602141}
 --- !u!114 &1930982688142283677
 MonoBehaviour:

@@ -170,7 +170,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638829241938107024
+  lastModified: 638829317637402970
   FileSizes:
   - Name: Desktop
     Value: 1262
@@ -209,7 +209,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -64219275045265025}
   cacheVersion: 131847
-  cacheTime: 638829241938107024
+  cacheTime: 638829317637402970
   SerializableEventsDict:
   - key: event:/Run
     index: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638829241938046750
+  lastModified: 638829317637402970
   FileSizes:
   - Name: Desktop
     Value: 901216

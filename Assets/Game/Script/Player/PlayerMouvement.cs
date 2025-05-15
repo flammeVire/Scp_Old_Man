@@ -10,6 +10,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 {
     #region Data
     public Transform cam;
+    public PlayerUI playerUI;
     [Header("Speed",order = 0)]
     public float Speed;
     public float moveSpeed = 3f;
@@ -361,8 +362,9 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public void InstantiateUI()
     {
         GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
-        ui.GetComponent<PlayerUI>().mouvement = this;
-        ui.GetComponent<PlayerUI>().PlayerPI = this.GetComponent<PlayerInterrestPoint>();
+        playerUI = ui.GetComponent<PlayerUI>();
+        playerUI.mouvement = this;
+        playerUI.PlayerPI = this.GetComponent<PlayerInterrestPoint>();
     }
     #endregion
 }

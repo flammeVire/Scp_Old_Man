@@ -12,6 +12,8 @@ public class Papy_Manager : NetworkBehaviour
     [SerializeField] public Papy_State currentState;
 
     public Transform[] PointToReach;
+    
+    public NetworkObject PocketPapy;
 
     public Papy_Vision pVision;
     public Papy_Mouvement pMouvement;
@@ -41,9 +43,19 @@ public class Papy_Manager : NetworkBehaviour
     public void Update()
     {
         UpdateState();
-        
+        Rpc_UpdatePocketPapyPos();
     }
 
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    void Rpc_UpdatePocketPapyPos()
+    {
+        Debug.Log("Update Pos");
+        Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
+        Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
+        Debug.Log(projectedPositionInTargetWorld);
+        PocketPapy.transform.position = projectedPositionInTargetWorld;
+        PocketPapy.transform.rotation = transform.rotation;
+    }
     public void UpdateState()
     {
 
