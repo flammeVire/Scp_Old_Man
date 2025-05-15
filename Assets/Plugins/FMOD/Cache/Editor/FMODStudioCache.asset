@@ -21,7 +21,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -75,39 +75,12 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 10368
---- !u!114 &-5916395425267553383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bonne carte
-  m_EditorClassIdentifier: 
-  Path: event:/Bonne carte
-  Guid:
-    Data1: 1020001220
-    Data2: 1224327942
-    Data3: 204109243
-    Data4: 1704794484
-  Banks:
-  - {fileID: 6814729813117789673}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 446
 --- !u!114 &-4543158433779747658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +102,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
@@ -150,38 +123,11 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638822288765152289
+  lastModified: 638829122869527018
   FileSizes:
   - Name: Desktop
     Value: 506
   Exists: 1
---- !u!114 &-1218284065769486147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TP SCP
-  m_EditorClassIdentifier: 
-  Path: event:/TP SCP
-  Guid:
-    Data1: 1888625822
-    Data2: 1143661970
-    Data3: 893901223
-    Data4: -919339502
-  Banks:
-  - {fileID: 6814729813117789673}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 7209
 --- !u!114 &-555697660586606569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +149,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
@@ -224,10 +170,10 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638829243231821809
+  lastModified: 638829241938107024
   FileSizes:
   - Name: Desktop
-    Value: 1392
+    Value: 1262
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -257,16 +203,13 @@ MonoBehaviour:
   - {fileID: -7043479833453239630}
   - {fileID: 8066970370468275890}
   - {fileID: 4462667030371004684}
-  - {fileID: 6118982532515605145}
-  - {fileID: -1218284065769486147}
-  - {fileID: -5916395425267553383}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6814729813117789673}
   StringsBanks:
   - {fileID: -64219275045265025}
   cacheVersion: 131847
-  cacheTime: 638829243231821809
+  cacheTime: 638829241938107024
   SerializableEventsDict:
   - key: event:/Run
     index: 0
@@ -290,12 +233,6 @@ MonoBehaviour:
     index: 9
   - key: event:/Activation Talkie
     index: 10
-  - key: event:/Dimension
-    index: 11
-  - key: event:/TP SCP
-    index: 12
-  - key: event:/Bonne carte
-    index: 13
 --- !u!114 &752438006568333545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +254,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -344,7 +281,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -364,10 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Activation Talkie
   Guid:
-    Data1: 1578245423
-    Data2: 1109807992
-    Data3: 1432692098
-    Data4: -1044420349
+    Data1: 466403591
+    Data2: 1222738837
+    Data3: 600183213
+    Data4: -1312949043
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
@@ -377,33 +314,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 312
---- !u!114 &6118982532515605145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Dimension
-  m_EditorClassIdentifier: 
-  Path: event:/Dimension
-  Guid:
-    Data1: 1889385837
-    Data2: 1231282504
-    Data3: 962531466
-    Data4: -942542950
-  Banks:
-  - {fileID: 6814729813117789673}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 126798
 --- !u!114 &6814729813117789673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,10 +329,10 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638829243231821809
+  lastModified: 638829241938046750
   FileSizes:
   - Name: Desktop
-    Value: 2337280
+    Value: 901216
   Exists: 1
 --- !u!114 &7385498497008673777
 MonoBehaviour:
@@ -445,7 +355,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -472,7 +382,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
@@ -499,7 +409,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 6814729813117789673}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1

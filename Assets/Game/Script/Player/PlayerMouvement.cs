@@ -3,6 +3,7 @@ using Fusion;
 using Photon.Voice.Unity;
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMouvement : NetworkBehaviour, ISpawned
@@ -58,6 +59,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             playerCollider = GetComponent<CapsuleCollider>();
 
             cam.GetComponent<Camera>().enabled = true;
+            cam.AddComponent<StudioListener>();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

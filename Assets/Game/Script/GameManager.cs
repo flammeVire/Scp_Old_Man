@@ -58,10 +58,13 @@ public class GameManager : NetworkBehaviour
         {
             for(int i = 0; i < PlayerMeshes.Length; i++)
             {
-                if(movements[i] != null)
+                if (PlayerMeshes[i] != null)
                 {
-                    Debug.Log("Teleporting " + movements[i].name);
-                    movements[i].Rpc_TeleportMesh(PlayerSpawn[i].position, PlayerSpawn[i].rotation);
+                    if (movements[i] != null)
+                    {
+                        Debug.Log("Teleporting " + movements[i].name);
+                        movements[i].Rpc_TeleportMesh(PlayerSpawn[i].position, PlayerSpawn[i].rotation);
+                    }
                 }
             }
         }
