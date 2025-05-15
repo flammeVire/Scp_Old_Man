@@ -1,128 +1,153 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.03.00">
-	<object class="Event" id="{5e121d2f-5378-4226-8225-65550369bfc1}">
-		<property name="name">
-			<value>Activation Talkie</value>
-		</property>
-		<property name="outputFormat">
-			<value>1</value>
-		</property>
-		<relationship name="folder">
-			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
-		</relationship>
-		<relationship name="mixer">
-			<destination>{c640a1b4-5e88-4eee-9d25-15596bbff2b5}</destination>
-		</relationship>
-		<relationship name="masterTrack">
-			<destination>{d05e43a5-3d7b-44ba-a265-121c26ef740e}</destination>
-		</relationship>
-		<relationship name="mixerInput">
-			<destination>{ce1c4cff-a3be-4b28-ba22-d5f7aa158535}</destination>
-		</relationship>
-		<relationship name="automatableProperties">
-			<destination>{5e66b5de-0bd1-4e7a-b672-12f8fd13a8c4}</destination>
-		</relationship>
-		<relationship name="markerTracks">
-			<destination>{8103e11f-cde1-44ea-b88d-e84b3def853c}</destination>
-		</relationship>
-		<relationship name="groupTracks">
-			<destination>{dbcce540-3092-4f61-9787-1575cfe9e161}</destination>
-		</relationship>
-		<relationship name="timeline">
-			<destination>{4b346df9-eb93-4d63-a495-24b11de4fb46}</destination>
-		</relationship>
-		<relationship name="banks">
-			<destination>{500dfad2-2828-421d-8193-9aa851bdbef4}</destination>
-		</relationship>
-	</object>
-	<object class="EventMixer" id="{c640a1b4-5e88-4eee-9d25-15596bbff2b5}">
-		<relationship name="masterBus">
-			<destination>{fc4c5951-5b3a-4575-9119-f040319049e8}</destination>
-		</relationship>
-	</object>
-	<object class="MasterTrack" id="{d05e43a5-3d7b-44ba-a265-121c26ef740e}">
-		<relationship name="mixerGroup">
-			<destination>{fc4c5951-5b3a-4575-9119-f040319049e8}</destination>
-		</relationship>
-	</object>
-	<object class="MixerInput" id="{ce1c4cff-a3be-4b28-ba22-d5f7aa158535}">
-		<relationship name="effectChain">
-			<destination>{35c1c412-6645-40d3-a751-8e0009184780}</destination>
-		</relationship>
-		<relationship name="panner">
-			<destination>{3dc16156-87bb-4921-8df4-b536eca4b76c}</destination>
-		</relationship>
-		<relationship name="output">
-			<destination>{9b61ac3e-ba43-4e01-85fb-7d22a4014074}</destination>
-		</relationship>
-	</object>
-	<object class="EventAutomatableProperties" id="{5e66b5de-0bd1-4e7a-b672-12f8fd13a8c4}" />
-	<object class="MarkerTrack" id="{8103e11f-cde1-44ea-b88d-e84b3def853c}" />
-	<object class="GroupTrack" id="{dbcce540-3092-4f61-9787-1575cfe9e161}">
-		<relationship name="modules">
-			<destination>{d92714c7-3711-456c-aa30-c6064535089f}</destination>
-		</relationship>
-		<relationship name="mixerGroup">
-			<destination>{0f6924e4-90aa-4a2e-9d34-316650934657}</destination>
-		</relationship>
-	</object>
-	<object class="Timeline" id="{4b346df9-eb93-4d63-a495-24b11de4fb46}">
-		<relationship name="modules">
-			<destination>{d92714c7-3711-456c-aa30-c6064535089f}</destination>
-		</relationship>
-	</object>
-	<object class="EventMixerMaster" id="{fc4c5951-5b3a-4575-9119-f040319049e8}">
-		<relationship name="effectChain">
-			<destination>{cf655657-f949-467c-8199-45d5d391a6d2}</destination>
-		</relationship>
-		<relationship name="panner">
-			<destination>{29d24a90-ff25-4ddd-acb7-3e98092cf3a3}</destination>
-		</relationship>
-		<relationship name="mixer">
-			<destination>{c640a1b4-5e88-4eee-9d25-15596bbff2b5}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusEffectChain" id="{35c1c412-6645-40d3-a751-8e0009184780}">
-		<relationship name="effects">
-			<destination>{bf76505a-e506-4096-9cfd-6970b379de84}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusPanner" id="{3dc16156-87bb-4921-8df4-b536eca4b76c}" />
-	<object class="SingleSound" id="{d92714c7-3711-456c-aa30-c6064535089f}">
-		<property name="length">
-			<value>0.312</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{3d04c321-2984-4942-94e4-b4c8b9a852a3}</destination>
-		</relationship>
-	</object>
-	<object class="EventMixerGroup" id="{0f6924e4-90aa-4a2e-9d34-316650934657}">
-		<property name="name">
-			<value>Audio 1</value>
-		</property>
-		<relationship name="effectChain">
-			<destination>{f4ed40e0-0b72-424e-8999-041d1b404fed}</destination>
-		</relationship>
-		<relationship name="panner">
-			<destination>{ae517731-dfff-468b-a947-e16158acb5f1}</destination>
-		</relationship>
-		<relationship name="output">
-			<destination>{fc4c5951-5b3a-4575-9119-f040319049e8}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusEffectChain" id="{cf655657-f949-467c-8199-45d5d391a6d2}">
-		<relationship name="effects">
-			<destination>{b6843b0b-241b-420c-ae3b-04491eb29cd4}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusPanner" id="{29d24a90-ff25-4ddd-acb7-3e98092cf3a3}" />
-	<object class="MixerBusFader" id="{bf76505a-e506-4096-9cfd-6970b379de84}" />
-	<object class="MixerBusEffectChain" id="{f4ed40e0-0b72-424e-8999-041d1b404fed}">
-		<relationship name="effects">
-			<destination>{52817cdb-9eb5-43d9-8c98-1366e7f0896d}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusPanner" id="{ae517731-dfff-468b-a947-e16158acb5f1}" />
-	<object class="MixerBusFader" id="{b6843b0b-241b-420c-ae3b-04491eb29cd4}" />
-	<object class="MixerBusFader" id="{52817cdb-9eb5-43d9-8c98-1366e7f0896d}" />
-</objects>
+
+            //    return;
+
+            if (renderer == null || m_sharedMaterial == null)
+                return;
+
+            // Only update the material if it has changed.
+            if (m_renderer.sharedMaterial == null || m_renderer.sharedMaterial.GetInstanceID() != m_sharedMaterial.GetInstanceID())
+                m_renderer.sharedMaterial = m_sharedMaterial;
+        }
+
+
+        /// <summary>
+        /// Function to be used to force recomputing of character padding when Shader / Material properties have been changed via script.
+        /// </summary>
+        public override void UpdateMeshPadding()
+        {
+            m_padding = ShaderUtilities.GetPadding(m_sharedMaterial, m_enableExtraPadding, m_isUsingBold);
+            m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
+            m_havePropertiesChanged = true;
+            checkPaddingRequired = false;
+
+            // Return if text object is not awake yet.
+            if (m_textInfo == null) return;
+
+            // Update sub text objects
+            for (int i = 1; i < m_textInfo.materialCount; i++)
+                m_subTextObjects[i].UpdateMeshPadding(m_enableExtraPadding, m_isUsingBold);
+        }
+
+
+        /// <summary>
+        /// Function to force regeneration of the text object before its normal process time. This is useful when changes to the text object properties need to be applied immediately.
+        /// </summary>
+        /// <param name="ignoreActiveState">Ignore Active State of text objects. Inactive objects are ignored by default.</param>
+        /// <param name="forceTextReparsing">Force re-parsing of the text.</param>
+        public override void ForceMeshUpdate(bool ignoreActiveState = false, bool forceTextReparsing = false)
+        {
+            m_havePropertiesChanged = true;
+            m_ignoreActiveState = ignoreActiveState;
+            OnPreRenderObject();
+        }
+
+
+        /// <summary>
+        /// Function used to evaluate the length of a text string.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public override TMP_TextInfo GetTextInfo(string text)
+        {
+            SetText(text);
+            SetArraySizes(m_TextProcessingArray);
+
+            m_renderMode = TextRenderFlags.DontRender;
+
+            ComputeMarginSize();
+
+            GenerateTextMesh();
+
+            m_renderMode = TextRenderFlags.Render;
+
+            return this.textInfo;
+        }
+
+
+        /// <summary>
+        /// Function to clear the geometry of the Primary and Sub Text objects.
+        /// </summary>
+        public override void ClearMesh(bool updateMesh)
+        {
+            if (m_textInfo.meshInfo[0].mesh == null) m_textInfo.meshInfo[0].mesh = m_mesh;
+
+            m_textInfo.ClearMeshInfo(updateMesh);
+        }
+
+
+        /// <summary>
+        /// Event to allow users to modify the content of the text info before the text is rendered.
+        /// </summary>
+        public override event Action<TMP_TextInfo> OnPreRenderText;
+
+
+        /// <summary>
+        /// Function to update the geometry of the main and sub text objects.
+        /// </summary>
+        /// <param name="mesh"></param>
+        /// <param name="index"></param>
+        public override void UpdateGeometry(Mesh mesh, int index)
+        {
+            mesh.RecalculateBounds();
+        }
+
+
+        /// <summary>
+        /// Function to upload the updated vertex data and renderer.
+        /// </summary>
+        public override void UpdateVertexData(TMP_VertexDataUpdateFlags flags)
+        {
+            int materialCount = m_textInfo.materialCount;
+
+            for (int i = 0; i < materialCount; i++)
+            {
+                Mesh mesh;
+
+                if (i == 0)
+                    mesh = m_mesh;
+                else
+                {
+                    // Clear unused vertices
+                    // TODO: Causes issues when sorting geometry as last vertex data attribute get wiped out.
+                    //m_textInfo.meshInfo[i].ClearUnusedVertices();
+
+                    mesh = m_subTextObjects[i].mesh;
+                }
+
+                //mesh.MarkDynamic();
+
+                if ((flags & TMP_VertexDataUpdateFlags.Vertices) == TMP_VertexDataUpdateFlags.Vertices)
+                    mesh.vertices = m_textInfo.meshInfo[i].vertices;
+
+                if ((flags & TMP_VertexDataUpdateFlags.Uv0) == TMP_VertexDataUpdateFlags.Uv0)
+                    mesh.uv = m_textInfo.meshInfo[i].uvs0;
+
+                if ((flags & TMP_VertexDataUpdateFlags.Uv2) == TMP_VertexDataUpdateFlags.Uv2)
+                    mesh.uv2 = m_textInfo.meshInfo[i].uvs2;
+
+                //if ((flags & TMP_VertexDataUpdateFlags.Uv4) == TMP_VertexDataUpdateFlags.Uv4)
+                //    mesh.uv4 = m_textInfo.meshInfo[i].uvs4;
+
+                if ((flags & TMP_VertexDataUpdateFlags.Colors32) == TMP_VertexDataUpdateFlags.Colors32)
+                    mesh.colors32 = m_textInfo.meshInfo[i].colors32;
+
+                mesh.RecalculateBounds();
+            }
+        }
+
+
+        /// <summary>
+        /// Function to upload the updated vertex data and renderer.
+        /// </summary>
+        public override void UpdateVertexData()
+        {
+            int materialCount = m_textInfo.materialCount;
+
+            for (int i = 0; i < materialCount; i++)
+            {
+                Mesh mesh;
+
+                if (i == 0)
+                    mesh = m_mesh;
+                else
+          
