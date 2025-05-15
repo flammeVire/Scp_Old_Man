@@ -9,7 +9,7 @@ public class Papy_Manager : NetworkBehaviour
     NetworkBool IsFlashed = false;
     NetworkBool CanPassByWall = false;
     public static Papy_Manager Instance;
-    public Papy_State currentState { get; private set; }
+    [SerializeField] public Papy_State currentState;
 
     public Transform[] PointToReach;
 

@@ -36,7 +36,7 @@ public class PlayerSound : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_Run(bool isRunning)
     {
-        if (walk != null)
+        if (run != null)
         {
             if (isRunning == true)
             {

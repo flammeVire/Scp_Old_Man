@@ -5,7 +5,7 @@
 			<value>Idle SCP</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -133,6 +133,7 @@
 	<object class="MixerBusEffectChain" id="{78eefbc0-4261-479d-90e6-9f7154004944}">
 		<relationship name="effects">
 			<destination>{0946f8ea-8c86-413e-84e3-dd6c976e30b3}</destination>
+			<destination>{da1c90d9-92ea-4da2-8804-4d491de80253}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{f62fa59e-80de-4a30-9bf7-c29c819dcc22}" />
@@ -144,5 +145,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{57a039b1-0299-4aa9-ad47-36c2e0bfc00d}" />
 	<object class="MixerBusFader" id="{0946f8ea-8c86-413e-84e3-dd6c976e30b3}" />
+	<object class="SpatialiserEffect" id="{da1c90d9-92ea-4da2-8804-4d491de80253}" />
 	<object class="MixerBusFader" id="{ffde5165-ab47-4909-807a-60c8eb4c2509}" />
 </objects>

@@ -5,7 +5,7 @@
 			<value>Corrosion</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{6f276a04-066d-4448-ac21-7135cc9bb648}">
 		<relationship name="effects">
 			<destination>{9c918e7c-3291-420a-82eb-c8df7d05a219}</destination>
+			<destination>{9b4ec6fa-48a0-4319-82ad-ed235b9c8d94}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0d8c5bcc-c471-4d2f-822b-08baada64bef}" />
@@ -135,6 +136,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{34cd3022-d769-4cb0-89eb-06b9975a6945}" />
 	<object class="MixerBusFader" id="{9c918e7c-3291-420a-82eb-c8df7d05a219}" />
+	<object class="SpatialiserEffect" id="{9b4ec6fa-48a0-4319-82ad-ed235b9c8d94}" />
 	<object class="AutomationPoint" id="{9a2d5ab3-4564-488f-8b97-74d5c3ce0ccd}">
 		<property name="position">
 			<value>23.5</value>

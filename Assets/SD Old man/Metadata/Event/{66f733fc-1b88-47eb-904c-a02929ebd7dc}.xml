@@ -5,7 +5,7 @@
 			<value>in Camera</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -130,6 +130,7 @@
 	<object class="MixerBusEffectChain" id="{4ddbab6c-57fd-402c-acbd-7f99530945e4}">
 		<relationship name="effects">
 			<destination>{6930ad29-590a-404f-a814-a5f962362658}</destination>
+			<destination>{95cb6faf-20ba-478a-944c-1d363881ca5e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e3fd477e-5718-4350-bf1e-ba87ff8c4603}" />
@@ -141,5 +142,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{13be4cfd-3e41-4d04-8c77-3922d9ee72a6}" />
 	<object class="MixerBusFader" id="{6930ad29-590a-404f-a814-a5f962362658}" />
+	<object class="SpatialiserEffect" id="{95cb6faf-20ba-478a-944c-1d363881ca5e}" />
 	<object class="MixerBusFader" id="{56ff6a3d-f3b5-4c80-9df0-a6adc47a727d}" />
 </objects>

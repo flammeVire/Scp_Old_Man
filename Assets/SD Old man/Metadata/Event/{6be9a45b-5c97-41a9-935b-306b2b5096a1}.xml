@@ -5,7 +5,7 @@
 			<value>Accroupir</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -77,9 +77,11 @@
 	<object class="MixerBusEffectChain" id="{e86ab5a4-1228-43fd-906d-0bee061c3f22}">
 		<relationship name="effects">
 			<destination>{c4b4ae07-cc35-4aa3-bf91-4a849b2b31d0}</destination>
+			<destination>{85376ce6-281f-4d78-a256-f230005a1fd8}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{bc1682fa-7b7e-4992-9b63-49f7b73566b0}" />
 	<object class="MixerBusFader" id="{4df988f3-1503-4588-820d-2c394c6d9ef2}" />
 	<object class="MixerBusFader" id="{c4b4ae07-cc35-4aa3-bf91-4a849b2b31d0}" />
+	<object class="SpatialiserEffect" id="{85376ce6-281f-4d78-a256-f230005a1fd8}" />
 </objects>

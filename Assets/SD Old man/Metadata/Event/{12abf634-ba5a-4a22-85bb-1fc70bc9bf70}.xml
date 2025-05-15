@@ -5,7 +5,7 @@
 			<value>Battement Coeur</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cee761fb-3aaa-4388-8b5a-026dee1dba71}</destination>
@@ -113,6 +113,7 @@
 	<object class="MixerBusEffectChain" id="{70542812-6401-4dda-a9f5-17dbfb25d658}">
 		<relationship name="effects">
 			<destination>{a249574b-c6cb-492f-afc7-7087618f7cbc}</destination>
+			<destination>{4e4a6b4f-c5e1-4308-b29f-db0fbd5a7c79}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{41dbc35b-234d-4454-99a3-67cfd357aacd}" />
@@ -124,5 +125,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{47a0db28-1b38-4d56-b524-844994d214db}" />
 	<object class="MixerBusFader" id="{a249574b-c6cb-492f-afc7-7087618f7cbc}" />
+	<object class="SpatialiserEffect" id="{4e4a6b4f-c5e1-4308-b29f-db0fbd5a7c79}" />
 	<object class="MixerBusFader" id="{4b17a996-010b-4f81-a387-5e8342217224}" />
 </objects>
