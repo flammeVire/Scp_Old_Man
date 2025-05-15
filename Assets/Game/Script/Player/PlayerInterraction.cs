@@ -7,7 +7,6 @@ using FMOD.Studio;
 public class PlayerInterraction : NetworkBehaviour
 {
     public Camera playerCamera;
-    public StudioEventEmitter inCamera;
     public StudioEventEmitter hide;
     void Update()
     {
@@ -30,7 +29,6 @@ public class PlayerInterraction : NetworkBehaviour
                         //MattSounds : jouer son interraction (tu peux descendre dans les if selons les son)
                         if (hit.collider.GetComponent<SecurityCam>())
                         {
-                            inCamera.Play();
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
                         }
                         else if (hit.collider.GetComponent<Card_Door>())

@@ -42,10 +42,9 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     private bool inCorrosionZone = false;
 
     [Header("SFX")]
-    public StudioEventEmitter walk;
+    public PlayerSound PlayerSound;
     public StudioEventEmitter crouch;
     public StudioEventEmitter jump;
-    public StudioEventEmitter run;
     public StudioEventEmitter talkieOn;
 
     #endregion
@@ -129,14 +128,14 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         {
             if (!isMoving)
             {
-                walk.Play();
+                PlayerSound.Rpc_Walk(true);
             }
             isMoving = true;
             //MattSounds jouer son marche
         }
         else if(horizontal == 0 && vertical == 0)
         {
-            walk.Stop();
+            PlayerSound.Rpc_Walk(false);
             isMoving = false;
         }
     }
@@ -205,7 +204,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 
                 if (!isRunning)
                 {
-                    run.Play();
+                    PlayerSound.Rpc_Run(true);
                 }
 
 
@@ -216,11 +215,11 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             else if (Input.GetButtonUp("Run") || stamina <= 0)
             {
                 Debug.Log("Not Running");
-                run.Stop();
+                PlayerSound.Rpc_Run(false);
                 isRunning = false;
                 if (isMoving)
                 {
-                    walk.Play();
+                    PlayerSound.Rpc_Walk(true);
                     //MattSounds jouer son marche
                 }
 
@@ -229,11 +228,11 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         }
         else
         {
-            run.Stop();
+            PlayerSound.Rpc_Run(false);
             isRunning = false;
             if (isMoving)
             {
-                walk.Play();
+                PlayerSound.Rpc_Walk(true);
                 //MattSounds jouer son marche
             }
         }
@@ -273,7 +272,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             }
             if(isMoving == true)
             {
-                walk.Stop();
+                PlayerSound.Rpc_Walk(true);
             }
             //MattSounds : jouer son course
         }
