@@ -390,8 +390,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/SD Old man/SD SCP papy.fspro
-  sourceBankPath: Assets/SD Old man/Build
+  sourceProjectPath: 
+  sourceBankPath: 
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -412,10 +412,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks:
-  - Master
-  Banks:
-  - Bank A
+  MasterBanks: []
+  Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
