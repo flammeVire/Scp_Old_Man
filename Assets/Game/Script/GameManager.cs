@@ -45,7 +45,6 @@ public class GameManager : NetworkBehaviour
 
 
             PlayerMeshes[i] = movements[i].gameObject;
-
         }
 
         StartCoroutine(TeleportAllMeshes(movements));

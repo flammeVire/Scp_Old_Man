@@ -45,11 +45,15 @@ public class PlayerInterraction : NetworkBehaviour
                         {
                             Sas_Door(hit.collider.GetComponent<Sas_Door>());
                         }
+                        else if (hit.collider.GetComponent<EndGame>())
+                        {
+                            EndGame(hit.collider.GetComponent<EndGame>());
+                        }
                     }
                     else if (hit.collider.CompareTag("Hide"))
                     {
                         //MattSounds (jouer son se cacher (pas encore mis de cachette ingame)
-                        hide.Play();
+                        //hide.Play();
                         Hide(hit.collider.GetComponent<HidingSpot>());
                     }
                 }
@@ -83,12 +87,25 @@ public class PlayerInterraction : NetworkBehaviour
         StartCoroutine(WaitUntilInterractIsUp(sas));
     }
 
+    void EndGame(EndGame endGame)
+    {
+        Debug.Log("EndGame");
+        endGame.Rpc_ClosingEndSas(true);
+        StartCoroutine(WaitUntilInterractIsUp(endGame));
+    }
     IEnumerator WaitUntilInterractIsUp(Sas_Door sas)
     {
         yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
         yield return new WaitForSecondsRealtime(sas.Delay);
         Debug.Log("Interract is up");
         sas.Rpc_OpeningSas(false);
+    }
+    IEnumerator WaitUntilInterractIsUp(EndGame endGame)
+    {
+        yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
+        yield return new WaitForSecondsRealtime(endGame.Delay);
+        Debug.Log("Interract is up");
+        endGame.Rpc_ClosingEndSas(false);
     }
     void Hide(HidingSpot hidingSpot)
     {

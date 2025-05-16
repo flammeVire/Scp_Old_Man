@@ -6,17 +6,13 @@ using System.Collections;
 
 public class PickItem : NetworkBehaviour
 {
-
+    public PlayerMouvement mouvement;
     public float pickupRange = 2f;
     public Camera playerCamera;
-    public Transform hand;
 
-    [Header("Inventory")]
-    public Item CurrentItem;
-    public Item[] inventory = new Item[2];
-    public List<Item> PossiblesItem;
-    public int NumberOfFlashBang = 0;
-    int index = 0;
+    [Header("Flash")]
+    public GameObject GrenadePrefab;
+    public int NumberOfFlashGrenade = 0;
 
     [Header("Card")]
     public bool HaveCardLvL1;
@@ -38,26 +34,14 @@ public class PickItem : NetworkBehaviour
                 TryPickupItem();
             }
 
-            else if (Input.GetButtonDown("DropItem"))
+            else if (Input.GetButtonDown("DropItem") && !mouvement.IsInPocketDim)
             {
                 Debug.Log("Drop");
                 DropItem();
             }
-            else if (Input.GetButtonDown("Fire1"))
-            {
-                Debug.Log("Throw");
-                Throw();
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-            {
-                Debug.Log("index: " + index + " | item selected is: " + inventory[index]);
-                RemoveObj();
-                ChangeItem();
-                ShowItem(inventory[index]);
-            }
         }
     }
-
+    /*
     #region manage
     void ChangeItem()
     {
@@ -76,6 +60,7 @@ public class PickItem : NetworkBehaviour
         CurrentItem = inventory[index];
     }
 
+    
     void ShowItem(Item item)
     {
         if (item != null)
@@ -105,6 +90,7 @@ public class PickItem : NetworkBehaviour
     }
     
     #endregion
+    */
     #region pick
 
     void TryPickupItem()
@@ -147,7 +133,7 @@ public class PickItem : NetworkBehaviour
             if (Type == "Item")
             {
                 Debug.Log("Player is the local player");
-                PickupItem(netObj.gameObject.name);
+                PickupItem();
             }
             else if(Type =="Card")
             {
@@ -157,58 +143,16 @@ public class PickItem : NetworkBehaviour
         if (netObj.HasStateAuthority)
         {
             Debug.Log("Have Authority : despawn");
-            NetworkManager.runnerInstance.Despawn(netObj.GetComponent<NetworkObject>()); // Déspawn l'objet du réseau
-        }
-        else
-        {
-            Debug.Log("Have not Authority : do nothing");
+            NetworkManager.runnerInstance.Despawn(netObj.GetComponent<NetworkObject>()); // Despawn l'objet du réseau
         }
     }
 
-    void PickupItem(string item)
+    void PickupItem()
     {
-        if (inventory[index] == null && item != null)
-        {
-            Debug.Log("inventory item = " +inventory[index]);
-            Debug.Log("item = " + item);
-            foreach (Item possibleItem in PossiblesItem)
-            {
-                Debug.Log("possibleItem = " + possibleItem);
-                Debug.Log("possibleItem Name= " + possibleItem.Name + "| item Name" + item );
-                if (possibleItem != null)
-                {
-                    Debug.Log("PossibleItem != null");
-                    if (possibleItem.Name == item)
-                    {
-                        Debug.Log(possibleItem.Name + " == " +item);
-                        inventory[index] = possibleItem;
-                        CurrentItem = possibleItem;
-                        ShowItem(possibleItem);
-                        break;
-                    }
-                    else if (possibleItem.Name + "(Clone)" == item)
-                    {
-                        Debug.Log(possibleItem.Name + "(Clone)" + " == " + item );
-                        inventory[index] = possibleItem;
-                        CurrentItem = possibleItem;
-                        ShowItem(possibleItem);
-                        break;
-
-                    }
-                    else
-                    {
-                        Debug.Log("Name incorrect");
-                    }
-                }
-                else
-                {
-                    Debug.Log("item non ramassé");
-                }
-            }
-
-            Debug.Log("pickUpFinished");
-
-        }
+        
+        NumberOfFlashGrenade++;
+        mouvement.playerUI.FlashText.text = NumberOfFlashGrenade.ToString();
+        Debug.Log("pickUpFinished");
     }
 
     void PickUpCard(string objName)
@@ -217,14 +161,19 @@ public class PickItem : NetworkBehaviour
         if (objName == CardMesh[0].name)
         {
             HaveCardLvL1 = true;
+            mouvement.playerUI.Card1.gameObject.SetActive(true);
         }
         else if (objName == CardMesh[1].name)
         {
             HaveCardLvL2 = true;
+            mouvement.playerUI.Card2.gameObject.SetActive(true);
+
         }
         else if(objName == CardMesh[2].name)
         {
             HaveCardLvL3 = true;
+            mouvement.playerUI.Card3.gameObject.SetActive(true);
+
         }
 
     }
@@ -251,41 +200,15 @@ public class PickItem : NetworkBehaviour
 
     void DropItem()
     {
-        if (CurrentItem != null)
-        {
-            RemoveObj();
-            NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(CurrentItem.FloorMesh, hand.transform.position, hand.transform.rotation, NetworkManager.runnerInstance.LocalPlayer);
-            //obj.Object.name = CurrentItem.Name;
-            RemoveItemFromInventory();
+        if (NumberOfFlashGrenade > 0)
+        { 
+            NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(GrenadePrefab, transform.position, transform.rotation, NetworkManager.runnerInstance.LocalPlayer);
+            NumberOfFlashGrenade--;
+            mouvement.playerUI.FlashText.text = NumberOfFlashGrenade.ToString();
         }
+
     }
 
-    void RemoveItemFromInventory()
-    {
-        inventory[index] = null;
-        CurrentItem = null;
-    }
 
-    #endregion
-    #region throw
-
-    void Throw()
-    {
-        if (CurrentItem != null)
-        {
-            RemoveObj();
-            NetworkSpawnOp obj = NetworkManager.runnerInstance.SpawnAsync(CurrentItem.FloorMesh, hand.position, hand.rotation, NetworkManager.runnerInstance.LocalPlayer);
-           // obj.Object.name = CurrentItem.Name;
-
-            // Ajoute une force pour le lancer
-            Rigidbody rb = obj.Object.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddForce(playerCamera.transform.forward * 10f, ForceMode.Impulse); // Lancer vers l'avant
-            }
-            RemoveItemFromInventory();
-
-        }
-    }
     #endregion
 }

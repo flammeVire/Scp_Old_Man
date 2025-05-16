@@ -213,14 +213,23 @@ public class Papy_Mouvement : NetworkBehaviour
 
     public void CaughtPlayer(NetworkObject obj)
     {
-        
-        obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
+        if (obj.GetComponent<PickItem>() != null && obj.GetComponent<PickItem>().NumberOfFlashGrenade <= 0)
+        {
+            Debug.Log("Have not flash");
+            obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
+            obj.GetComponent<PlayerMouvement>().IsInPocketDim = true;
+            //GetAPoint(obj.transform);
+        }
+        else
+        {
+            Debug.Log("Have Flash");
+            obj.GetComponent<PickItem>().NumberOfFlashGrenade--;
+            obj.GetComponent<PlayerMouvement>().playerUI.FlashText.text = obj.GetComponent<PickItem>().NumberOfFlashGrenade.ToString();
+        }
         obj.GetComponent<PlayerInterrestPoint>().Rpc_ResetPI();
         Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
         Papy_Manager.Instance.Rpc_TeleportPapy();
         Papy_Manager.Instance.Rpc_ChangeStatus(1);
-      //GetAPoint(obj.transform);
-
     }
     #endregion
 

@@ -10,6 +10,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 {
     #region Data
     public Transform cam;
+    public PlayerUI playerUI;
     [Header("Speed",order = 0)]
     public float Speed;
     public float moveSpeed = 3f;
@@ -29,14 +30,16 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     [HideInInspector]public float gravity = 9.81f;
     private float rotationX = 0f;
     private Rigidbody body;
-    
+
     [Header("Boolean")]
+    public bool IsInPocketDim;
     public bool isGrounded;
     public bool isCrouching;
     public bool isJumping;
     public bool isRunning;
     public bool isMoving;
     public bool isTalking;
+
 
     [Header("Slow Corrosion")]
     private float corrosionSlow = 0.5f;
@@ -73,10 +76,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             {
                 body.velocity += Vector3.down * gravity * Time.fixedDeltaTime;
             }
-            else 
-            { 
-            
-            }
+            ManageStamina(isRunning);
         }
     }
     void Update()
@@ -89,7 +89,6 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             HandleJump();
             HandleCrouch();
             HandleRun();
-            ManageStamina(isRunning);
             ManageSpeed();
         }
     }
@@ -361,8 +360,9 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public void InstantiateUI()
     {
         GameObject ui = Instantiate(GameManager.Instance.PlayerUI, Vector3.zero, Quaternion.identity);
-        ui.GetComponent<PlayerUI>().mouvement = this;
-        ui.GetComponent<PlayerUI>().PlayerPI = this.GetComponent<PlayerInterrestPoint>();
+        playerUI = ui.GetComponent<PlayerUI>();
+        playerUI.mouvement = this;
+        playerUI.PlayerPI = this.GetComponent<PlayerInterrestPoint>();
     }
     #endregion
 }

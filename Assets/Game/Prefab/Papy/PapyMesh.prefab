@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1444185762481787093}
   - component: {fileID: 1394705452921827786}
   - component: {fileID: 956504571683743570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3866663276510667390}
   - component: {fileID: 1592549638573335581}
   - component: {fileID: 1922071849379129232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,79 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2921780042251280794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3118773707094833736}
+  - component: {fileID: 4094838915705669771}
+  - component: {fileID: 6216126448015354994}
+  m_Layer: 10
+  m_Name: Searching Raduis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3118773707094833736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921780042251280794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3698982810514209557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4094838915705669771
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921780042251280794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6216126448015354994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921780042251280794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2487d93d96c014945bc1d6cabd3cc96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HidingSpot_OnRaduis: 0
+  SearchingChance: 100
+  Masklayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pManager: {fileID: 6735115757851825699}
+  pMouvement: {fileID: 6497669683611506815}
 --- !u!1 &3562420142735117020
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +281,7 @@ GameObject:
   - component: {fileID: 6497669683611506815}
   - component: {fileID: 6735115757851825699}
   - component: {fileID: 6660657577481164751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PapyMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,6 +301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3118773707094833736}
   - {fileID: 8025975256789399548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -362,6 +436,7 @@ MonoBehaviour:
   agent: {fileID: 6660657577481164751}
   MinimumDistance: 10
   ChaseDelay: 0
+  MinimumPI: 0
   body: {fileID: 2448305031573488392}
   CurrentPointToReach: {fileID: 0}
   HaveReachThePoint:
@@ -385,6 +460,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PocketPapy: {fileID: 0}
   pVision: {fileID: 5424327170513824808}
   pMouvement: {fileID: 6497669683611506815}
   WallPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}

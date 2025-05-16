@@ -23,6 +23,7 @@ public class Papy_PocketWorld : NetworkBehaviour
         {
             Debug.Log("Player in portal");
             other.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetOtherWorldTransform(),other.transform.rotation);
+            other.GetComponent<PlayerMouvement>().IsInPocketDim = false;
         }
     }
 
