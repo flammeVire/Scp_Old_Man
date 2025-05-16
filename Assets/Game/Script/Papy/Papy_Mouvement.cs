@@ -217,7 +217,7 @@ public class Papy_Mouvement : NetworkBehaviour
         {
             Debug.Log("Have not flash");
             obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
-            
+            obj.GetComponent<PlayerMouvement>().IsInPocketDim = true;
             //GetAPoint(obj.transform);
         }
         else

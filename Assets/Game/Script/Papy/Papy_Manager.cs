@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using Photon.Voice;
+using System.Threading.Tasks;
 
 public class Papy_Manager : NetworkBehaviour
 {
@@ -59,14 +60,13 @@ public class Papy_Manager : NetworkBehaviour
 
         if (pVision.canSeePlayer) // si vois le joueur
         {
-            //Rpc_ChangeStatus(2);
-            currentState = Papy_State.chasing;
+            Rpc_ChangeStatus(3);
 
             pMouvement.CurrentPointToReach = pVision.Target.transform;
         }
-        else if(currentState == Papy_State.chasing) 
+        else if(currentState == Papy_State.chasing && !pVision.canSeePlayer) 
         {
-
+           // Rpc_ChangeStatus(2);
         }
 
 
@@ -176,4 +176,32 @@ public class Papy_Manager : NetworkBehaviour
         }
     }
     
+    public void SearchingLocker(NetworkObject obj)
+    {
+        pMouvement.MinimumDistance = 0.1f;
+        pMouvement.CurrentPointToReach = obj.transform;
+        GetPlayerInLocker(obj);
+        Rpc_StopSearching(obj);
+    }
+
+    public void GetPlayerInLocker(NetworkObject obj)
+    {
+        if (obj.GetComponent<HidingSpot>().IsSomeoneHide)
+        {
+            obj.GetComponent<HidingSpot>().Rpc_ShowPlayerMesh();
+        }
+    }
+
+
+    public async void Rpc_StopSearching(NetworkObject obj)
+    {
+        await Task.Delay(1000);
+        Rpc_ChangeStatus(1);
+        if (obj.HasStateAuthority)
+        {
+            NetworkManager.runnerInstance.Despawn(obj);
+        }
+        pMouvement.MinimumDistance = 10f;
+        pMouvement.GetAPoint(obj.transform);
+    }
 }
