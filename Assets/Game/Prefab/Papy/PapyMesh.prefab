@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1444185762481787093}
   - component: {fileID: 1394705452921827786}
   - component: {fileID: 956504571683743570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3866663276510667390}
   - component: {fileID: 1592549638573335581}
   - component: {fileID: 1922071849379129232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6497669683611506815}
   - component: {fileID: 6735115757851825699}
   - component: {fileID: 6660657577481164751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PapyMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,6 +362,7 @@ MonoBehaviour:
   agent: {fileID: 6660657577481164751}
   MinimumDistance: 10
   ChaseDelay: 0
+  MinimumPI: 0
   body: {fileID: 2448305031573488392}
   CurrentPointToReach: {fileID: 0}
   HaveReachThePoint:
@@ -385,6 +386,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PocketPapy: {fileID: 0}
   pVision: {fileID: 5424327170513824808}
   pMouvement: {fileID: 6497669683611506815}
   WallPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
