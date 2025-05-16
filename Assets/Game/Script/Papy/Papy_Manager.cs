@@ -49,10 +49,8 @@ public class Papy_Manager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     void Rpc_UpdatePocketPapyPos()
     {
-        Debug.Log("Update Pos");
         Vector3 localPos = GameManager.Instance.World.transform.InverseTransformPoint(transform.position);
         Vector3 projectedPositionInTargetWorld = GameManager.Instance.PocketWorld.transform.TransformPoint(localPos);
-        Debug.Log(projectedPositionInTargetWorld);
         PocketPapy.transform.position = projectedPositionInTargetWorld;
         PocketPapy.transform.rotation = transform.rotation;
     }

@@ -34,7 +34,7 @@ public class PickItem : NetworkBehaviour
                 TryPickupItem();
             }
 
-            else if (Input.GetButtonDown("DropItem"))
+            else if (Input.GetButtonDown("DropItem") && !mouvement.IsInPocketDim)
             {
                 Debug.Log("Drop");
                 DropItem();

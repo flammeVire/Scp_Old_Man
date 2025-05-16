@@ -34,7 +34,10 @@ public class PlayerInterrestPoint : NetworkBehaviour
     IEnumerator increaseTotalPI()
     {
         yield return new WaitForSeconds(Delay);
-        TotalPI += CurrentPI;
+        if (!mouvement.IsInPocketDim)
+        {
+            TotalPI += CurrentPI;
+        }
         StartCoroutine(increaseTotalPI());
     }
 
