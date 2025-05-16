@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6514325259211997499}
+  - component: {fileID: 5050787314700614157}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -31,6 +32,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4967346304208301872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5050787314700614157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075214725232375505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -22027477
+      Data2: 1202016949
+      Data3: 924139409
+      Data4: -2107877677
+    Path: event:/Alarme
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2156382250334549833
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,6 +77,9 @@ GameObject:
   - component: {fileID: 7199379987264334761}
   - component: {fileID: 7252205395678423196}
   - component: {fileID: 466930080817431082}
+  - component: {fileID: 6057729370264039160}
+  - component: {fileID: 2559089436334443059}
+  - component: {fileID: 4305853319154243278}
   m_Layer: 0
   m_Name: Carte
   m_TagString: Interractive
@@ -156,6 +191,7 @@ MonoBehaviour:
     _value: 0
   spawn: {fileID: 6514325259211997499}
   needCard: 0
+  doorsSound: {fileID: 4305853319154243278}
   CardLvL: 1
 --- !u!114 &466930080817431082
 MonoBehaviour:
@@ -176,6 +212,84 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7252205395678423196}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &6057729370264039160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156382250334549833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 699334723
+      Data2: 1233612155
+      Data3: 91350696
+      Data4: -1817759375
+    Path: event:/Good Card
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2559089436334443059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156382250334549833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1983523798
+      Data2: 1337678590
+      Data3: 664359610
+      Data4: 2145857094
+    Path: event:/Mauvaise carte
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4305853319154243278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156382250334549833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cc9fd1f81c2b849994111274bf55ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: {fileID: 6057729370264039160}
+  Bad: {fileID: 2559089436334443059}
+  Open: {fileID: 5050787314700614157}
+  Close: {fileID: 0}
 --- !u!1 &4371923139527811333
 GameObject:
   m_ObjectHideFlags: 0

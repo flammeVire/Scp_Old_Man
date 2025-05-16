@@ -11,6 +11,7 @@ public class Card_Door : NetworkBehaviour
     public NetworkBool IsOpen;
     public Transform spawn;
     public bool needCard;
+    public DoorsSound doorsSound;
     [Range(1,3)]public int CardLvL;
 
     public void Interract(PickItem player)
@@ -32,7 +33,12 @@ public class Card_Door : NetworkBehaviour
         if (CheckPlayerCard(player))
         {
             Debug.Log("PlayerHaveCard");
+            doorsSound.Rpc_Good();
             Rpc_ManageOpening();
+        }
+        else 
+        {
+            doorsSound.Rpc_Bad();
         }
     }
 
@@ -72,17 +78,18 @@ public class Card_Door : NetworkBehaviour
     {
         Debug.Log("Door ==" + Door);
         Debug.Log("Is Open is " + IsOpen);
+
         if (!IsOpen)
         {
-            
+            doorsSound.Rpc_Open();
             if (Door.HasStateAuthority)
             {
+
                 Debug.Log("Have Authority");
                 NetworkManager.runnerInstance.Despawn(Door);
                 //MattSounds : jouer son ouverture
                 IsOpen = true;
             }
-            
         }
     } 
 }
