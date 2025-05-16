@@ -53,7 +53,7 @@ public class PlayerInterraction : NetworkBehaviour
                     else if (hit.collider.CompareTag("Hide"))
                     {
                         //MattSounds (jouer son se cacher (pas encore mis de cachette ingame)
-                        hide.Play();
+                        //hide.Play();
                         Hide(hit.collider.GetComponent<HidingSpot>());
                     }
                 }
