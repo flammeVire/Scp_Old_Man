@@ -365,7 +365,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 5025834304225173591}
   cacheVersion: 131847
-  cacheTime: 638830213578428177
+  cacheTime: 638830262547326916
   SerializableEventsDict:
   - key: event:/Activation Talkie
     index: 0
@@ -375,20 +375,22 @@ MonoBehaviour:
     index: 2
   - key: event:/Battement Coeur
     index: 3
-  - key: event:/Walk Water
-    index: 4
   - key: event:/Idle SCP
-    index: 5
+    index: 4
   - key: event:/Walk
-    index: 6
+    index: 5
   - key: event:/Corrosion
-    index: 7
+    index: 6
   - key: event:/Flash
-    index: 8
+    index: 7
   - key: event:/Mauvaise carte
-    index: 9
+    index: 8
   - key: event:/In Camera
+    index: 9
+  - key: event:/Good Card
     index: 10
+  - key: event:/Jump
+    index: 11
 --- !u!114 &455721294245173713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,7 +595,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638830213578428177
+  lastModified: 638830262547326916
   FileSizes:
   - Name: Desktop
     Value: 1288
@@ -741,7 +743,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638830213578383111
+  lastModified: 638830262547316920
   FileSizes:
   - Name: Desktop
     Value: 920096
