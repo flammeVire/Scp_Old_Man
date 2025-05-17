@@ -14,7 +14,7 @@ public class Papy_Searching : MonoBehaviour
     {
         if (other.gameObject.tag == "Hide")
         {
-            if (pManager.currentState == Papy_Manager.Papy_State.Patrol && WantToSearch())
+            if (pManager.currentState == Papy_Manager.Papy_State.searching && WantToSearch())
             {
                 HidingSpot_OnRaduis = true;
                 pManager.SearchingLocker(other.GetComponent<NetworkObject>());
@@ -36,7 +36,7 @@ public class Papy_Searching : MonoBehaviour
     bool WantToSearch() 
     {
         int random = UnityEngine.Random.Range(0,100);
-
+        
         if(random <= SearchingChance)
         {
             Debug.Log("I WANT TO SEARCH");

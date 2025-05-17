@@ -196,12 +196,12 @@ public class Papy_Manager : NetworkBehaviour
     public async void Rpc_StopSearching(NetworkObject obj)
     {
         await Task.Delay(1000);
-        Rpc_ChangeStatus(1);
         if (obj.HasStateAuthority)
         {
             NetworkManager.runnerInstance.Despawn(obj);
         }
         pMouvement.MinimumDistance = 10f;
         pMouvement.GetAPoint(obj.transform);
+        Rpc_ChangeStatus(1);
     }
 }
