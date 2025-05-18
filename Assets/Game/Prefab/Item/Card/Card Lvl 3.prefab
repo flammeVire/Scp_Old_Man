@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7771613786341639212}
   - component: {fileID: 4523023147412123662}
   - component: {fileID: 1563279878986844474}
-  - component: {fileID: 563603575657873017}
   - component: {fileID: 574752852106103205}
   m_Layer: 0
   m_Name: Card Lvl 3
@@ -66,6 +65,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6e6525e42cc0f954c92e40af69958409, type: 2}
+  - {fileID: 2100000, guid: 19d99193761f3f54c833552ad11ddc5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,20 +126,6 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0
---- !u!114 &563603575657873017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4252093643712534944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Guid:
-    RawGuidValue: f3b137e9dde07ae46b965b21d4c4e2bf
 --- !u!54 &574752852106103205
 Rigidbody:
   m_ObjectHideFlags: 0

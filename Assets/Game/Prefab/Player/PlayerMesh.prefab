@@ -416,7 +416,7 @@ MonoBehaviour:
   CrouchSpeed: 1
   RunSpeed: 5
   sensitivity: 2
-  jumpForce: 2
+  jumpForce: 3.5
   crouchHeight: 0.5
   standingHeight: 2
   stamina: 100
