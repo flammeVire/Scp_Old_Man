@@ -5497,7 +5497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3698982810514209557, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.67
+      value: -16.61
       objectReference: {fileID: 0}
     - target: {fileID: 3698982810514209557, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15555,6 +15555,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848675266195277738, guid: b2f3fb13277c9954fa24f577f60cef33, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6455104609896097547, guid: b2f3fb13277c9954fa24f577f60cef33, type: 3}
       propertyPath: m_Name
       value: SecurityPanel
@@ -15625,6 +15629,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce9cbdf14a1842489603c438ac911f5, type: 3}
+--- !u!1001 &5148578859440403846
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 876364411680458508, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859288169815444739, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
+      propertyPath: m_Name
+      value: PorteCoupeFeu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb13aa7f8471d144a9f21d27ca18d718, type: 3}
 --- !u!4 &7224563616061112617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4706332249010469971, guid: a85bc19fd9c1da6488a0eea77074e23e, type: 3}
@@ -15724,3 +15785,4 @@ SceneRoots:
   - {fileID: 626427940}
   - {fileID: 1451083841}
   - {fileID: 550391313139244092}
+  - {fileID: 5148578859440403846}

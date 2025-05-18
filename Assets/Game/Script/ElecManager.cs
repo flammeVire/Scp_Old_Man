@@ -21,7 +21,8 @@ public class ElecManager : NetworkBehaviour
     {
         if(other.gameObject.layer == 10)
         {
-
+            ActivateDoor();
+            ComplexeHaveElectricity = false;
         }
     }
 }

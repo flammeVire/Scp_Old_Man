@@ -10,7 +10,7 @@ public class PorteCoupeFeu : MonoBehaviour
     ElecManager ElecManager;
 
     
-    private void Close()
+    public void Close()
     {
         //    
     }
