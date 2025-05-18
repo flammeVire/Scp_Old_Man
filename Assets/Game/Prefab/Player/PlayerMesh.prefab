@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 4183225888688602141}
   - component: {fileID: 3476217644119192550}
   - component: {fileID: 2320364910326168229}
+  - component: {fileID: 1454503359220462052}
   m_Layer: 7
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -431,7 +432,6 @@ MonoBehaviour:
   isMoving: 0
   isTalking: 0
   PlayerSound: {fileID: 1930982688142283677}
-  crouch: {fileID: 0}
   jump: {fileID: 2320364910326168229}
   talkieOn: {fileID: 4183225888688602141}
 --- !u!114 &1930982688142283677
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walk: {fileID: 6185572112576330986}
-  crouch: {fileID: 0}
+  crouch: {fileID: 1454503359220462052}
   jump: {fileID: 2320364910326168229}
   run: {fileID: 3476217644119192550}
 --- !u!114 &8796728106877429974
@@ -625,6 +625,37 @@ MonoBehaviour:
       Data3: -1268900940
       Data4: -623623169
     Path: event:/Jump
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1454503359220462052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439568911862566826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1810474075
+      Data2: 1101618327
+      Data3: 1798331283
+      Data4: -1583984597
+    Path: event:/Accroupir
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

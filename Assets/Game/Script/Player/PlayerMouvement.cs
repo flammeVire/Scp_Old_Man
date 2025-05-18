@@ -47,7 +47,6 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
 
     [Header("SFX")]
     public PlayerSound PlayerSound;
-    public StudioEventEmitter crouch;
     public StudioEventEmitter jump;
     public StudioEventEmitter talkieOn;
 
@@ -171,14 +170,15 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         if (Input.GetButtonDown("Crouch"))
         {
             if (!isCrouching)
-            {  
-                //crouch.Play();
+            {
+
+                PlayerSound.Rpc_crouch();
                 isCrouching = true;
                 //MattSounds : jouer son accroupi
             }
             else
             {
-                //crouch.Play();
+                PlayerSound.Rpc_crouch();
                 isCrouching = false;
                 //MattSounds : jouer son relevé
             }

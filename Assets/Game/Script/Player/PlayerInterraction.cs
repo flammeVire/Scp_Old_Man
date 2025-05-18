@@ -8,6 +8,8 @@ public class PlayerInterraction : NetworkBehaviour
 {
     public Camera playerCamera;
     public StudioEventEmitter hide;
+    public StudioEventEmitter Grab;
+    public StudioEventEmitter Give;
     void Update()
     {
         InputManagement();
