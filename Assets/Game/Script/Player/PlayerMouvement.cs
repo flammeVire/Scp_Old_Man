@@ -32,6 +32,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     private Rigidbody body;
 
     [Header("Boolean")]
+    public bool CanMove;
     public bool IsInPocketDim;
     public bool isGrounded;
     public bool isCrouching;
@@ -84,12 +85,15 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
         if (HasInputAuthority)
         {
             Talk();
-            Movement();
             Rotate();
-            HandleJump();
-            HandleCrouch();
-            HandleRun();
-            ManageSpeed();
+            if (CanMove)
+            {
+                Movement();
+                HandleJump();
+                HandleCrouch();
+                HandleRun();
+                ManageSpeed();
+            }
         }
     }
 

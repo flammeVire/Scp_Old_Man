@@ -423,6 +423,7 @@ MonoBehaviour:
   decreaseStamina: 0.2
   increaseStamina: 0.1
   gravity: 9.81
+  CanMove: 1
   IsInPocketDim: 0
   isGrounded: 0
   isCrouching: 0
@@ -464,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4388441864165681919}
   hide: {fileID: 0}
+  mouvement: {fileID: 66067729302263490}
 --- !u!114 &6862435594636010139
 MonoBehaviour:
   m_ObjectHideFlags: 0
