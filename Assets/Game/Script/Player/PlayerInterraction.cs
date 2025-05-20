@@ -8,8 +8,12 @@ public class PlayerInterraction : NetworkBehaviour
 {
     public Camera playerCamera;
     public StudioEventEmitter hide;
+
     public StudioEventEmitter Grab;
     public StudioEventEmitter Give;
+
+    public PlayerMouvement mouvement;
+
     void Update()
     {
         InputManagement();
@@ -85,8 +89,12 @@ public class PlayerInterraction : NetworkBehaviour
     }
     void Sas_Door(Sas_Door sas)
     {
-        sas.Rpc_OpeningSas(true);
-        StartCoroutine(WaitUntilInterractIsUp(sas));
+        if (!sas.anim.isPlaying)
+        {
+            mouvement.CanMove = false;
+            sas.Rpc_OpeningSas(mouvement);
+
+        }
     }
 
     void EndGame(EndGame endGame)
@@ -94,13 +102,6 @@ public class PlayerInterraction : NetworkBehaviour
         Debug.Log("EndGame");
         endGame.Rpc_ClosingEndSas(true);
         StartCoroutine(WaitUntilInterractIsUp(endGame));
-    }
-    IEnumerator WaitUntilInterractIsUp(Sas_Door sas)
-    {
-        yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
-        yield return new WaitForSecondsRealtime(sas.Delay);
-        Debug.Log("Interract is up");
-        sas.Rpc_OpeningSas(false);
     }
     IEnumerator WaitUntilInterractIsUp(EndGame endGame)
     {
