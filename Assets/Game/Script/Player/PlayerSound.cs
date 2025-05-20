@@ -50,4 +50,15 @@ public class PlayerSound : NetworkBehaviour
             }
         }
     }
+
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_crouch()
+    {
+        if (crouch != null)
+        {
+            crouch.Stop();
+            crouch.Play();
+        }
+    }
 }
