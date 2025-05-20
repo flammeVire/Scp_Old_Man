@@ -17,13 +17,7 @@ public class Sas_Door : NetworkBehaviour
 
     public float Delay;
 
-    public void OnValidate()
-    {
-        Collider1.center = Button1.localPosition;
-        Collider1.size = Button1.localScale;
-        Collider2.center = Button2.localPosition;
-        Collider2.size = Button2.localScale;
-    }
+
 
 
     [Rpc(RpcSources.All, RpcTargets.All)]
