@@ -5,13 +5,28 @@ using UnityEngine;
 
 public class PorteCoupeFeu : MonoBehaviour
 {
-    NetworkObject Door;
 
-    ElecManager ElecManager;
+    public Animation anim;
 
-    
-    public void Close()
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    public void Rpc_Close()
     {
-        //    
+        if (!anim.isPlaying)
+        {
+            anim.Play();
+            anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
+            anim[anim.clip.name].time = 0;
+        }
+    }
+
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    public void Rpc_Open()
+    {
+        if (!anim.isPlaying)
+        {
+            anim.Play();
+            anim[anim.clip.name].speed = -1;              // Joue l’animation en sens inverse
+            anim[anim.clip.name].time = anim[anim.clip.name].length;
+        }
     }
 }

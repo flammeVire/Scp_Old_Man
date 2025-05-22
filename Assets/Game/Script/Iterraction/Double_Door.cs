@@ -6,13 +6,14 @@ using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.ProBuilder.Shapes;
 using FMODUnity;
+using System.Threading.Tasks;
 public class Double_Door : NetworkBehaviour
 {
     public ButtonDouble_Door[] ButtonScript;
-    public GameObject DoorPrefabs;
-    public NetworkObject Door;
+    public NetworkObject Door1;
+    public NetworkObject Door2;
     public NetworkBool IsOpen;
-    public Transform spawn;
+    public Animation anim;
 
     public StudioEventEmitter doorSound;
 
@@ -35,21 +36,57 @@ public class Double_Door : NetworkBehaviour
         Rpc_ManageOpening(CanOpen);
     }
 
-
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void Rpc_ManageOpening(bool Activate)
+    public async void Rpc_ManageOpening(bool Activate)
     {
-        Debug.Log("Door ==" + Door);
-        if (Door.HasStateAuthority)
+        /*
+        if (!IsOpen)
         {
-            if (Activate)
+            doorsSound.Rpc_Open();
+            if (Door.HasStateAuthority)
             {
+
                 Debug.Log("Have Authority");
                 NetworkManager.runnerInstance.Despawn(Door);
                 //MattSounds : jouer son ouverture
-                doorSound.Play();
                 IsOpen = true;
             }
+        }
+        */
+        if (Activate)
+        {
+            if (!anim.isPlaying)
+            {
+                anim.Play();
+                anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
+                anim[anim.clip.name].time = 0;
+            }
+
+            await WaitForAnimationEnd();
+
+            if (Door1.HasStateAuthority)
+            {
+
+                Debug.Log("Have Authority");
+                NetworkManager.runnerInstance.Despawn(Door1);
+
+                //MattSounds : jouer son ouverture
+                IsOpen = true;
+            }
+            if (Door2.HasStateAuthority)
+            {
+                NetworkManager.runnerInstance.Despawn(Door2);
+                IsOpen = true;
+            }
+        }
+
+    }
+    private async Task WaitForAnimationEnd()
+    {
+        // Attend que l'animation finisse
+        while (anim.isPlaying)
+        {
+            await Task.Yield(); // Attend la frame suivante
         }
     }
 }

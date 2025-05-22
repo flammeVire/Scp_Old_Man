@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using Unity.Properties;
+using System.Threading.Tasks;
 
 public class Card_Door : NetworkBehaviour
 {
-    public GameObject DoorPrefabs;
-    public NetworkObject Door;
+    public NetworkObject Door1;
+    public NetworkObject Door2;
     public NetworkBool IsOpen;
-    public Transform spawn;
     public bool needCard;
     public DoorsSound doorsSound;
-    [Range(1,3)]public int CardLvL;
+    public Animation anim;
+    [Range(1, 3)] public int CardLvL;
 
     public void Interract(PickItem player)
     {
-        if (needCard)
+        if (!IsOpen)
         {
-            Debug.Log("Card Need");
-            CardAccess(player);
-        }
-        else
-        {
-            Debug.Log("Free access");
-            FreeAccess();
+            if (needCard)
+            {
+                Debug.Log("Card Need");
+                CardAccess(player);
+            }
+            else
+            {
+                Debug.Log("Free access");
+                FreeAccess();
+            }
         }
     }
 
@@ -36,7 +40,7 @@ public class Card_Door : NetworkBehaviour
             doorsSound.Rpc_Good();
             Rpc_ManageOpening();
         }
-        else 
+        else
         {
             doorsSound.Rpc_Bad();
         }
@@ -74,11 +78,9 @@ public class Card_Door : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    void Rpc_ManageOpening()
+    public async void Rpc_ManageOpening()
     {
-        Debug.Log("Door ==" + Door);
-        Debug.Log("Is Open is " + IsOpen);
-
+        /*
         if (!IsOpen)
         {
             doorsSound.Rpc_Open();
@@ -91,5 +93,39 @@ public class Card_Door : NetworkBehaviour
                 IsOpen = true;
             }
         }
-    } 
+        */
+        if (!anim.isPlaying)
+        {
+            anim.Play();
+            anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
+            anim[anim.clip.name].time = 0;
+        }
+
+        await WaitForAnimationEnd();
+
+        if (Door1.HasStateAuthority)
+        {
+
+            Debug.Log("Have Authority");
+            NetworkManager.runnerInstance.Despawn(Door1);
+            
+            //MattSounds : jouer son ouverture
+            IsOpen = true;
+        }
+        if (Door2.HasStateAuthority) 
+        {
+            NetworkManager.runnerInstance.Despawn(Door2);
+            IsOpen = true;
+        }
+
+    }
+    private async Task WaitForAnimationEnd()
+    {
+        // Attend que l'animation finisse
+        while (anim.isPlaying)
+        {
+            await Task.Yield(); // Attend la frame suivante
+        }
+    }
+
 }

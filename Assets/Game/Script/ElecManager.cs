@@ -8,11 +8,18 @@ public class ElecManager : NetworkBehaviour
     public NetworkBool ComplexeHaveElectricity;
     PorteCoupeFeu[] porte;
 
+    public static ElecManager instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     void ActivateDoor()
     {
         foreach (PorteCoupeFeu feu in porte)
         {
-            feu.Close();
+            feu.Rpc_Close();
         }
     }
 
