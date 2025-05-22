@@ -87,9 +87,18 @@ public class PlayerInterraction : NetworkBehaviour
         if (!sas.anim.isPlaying)
         {
             mouvement.CanMove = false;
-            sas.Rpc_OpeningSas(mouvement);
 
+            sas.Rpc_OpeningSas(mouvement);
+            StartCoroutine(MoveDelay(sas.Delay));
         }
+    }
+
+    IEnumerator MoveDelay(float delay)
+    {
+        Debug.Log("Wait for " + delay);
+        yield return new WaitForSeconds(delay);
+        mouvement.CanMove = true;
+        Debug.Log("CanMove == " + mouvement.CanMove);
     }
 
     void EndGame(EndGame endGame)

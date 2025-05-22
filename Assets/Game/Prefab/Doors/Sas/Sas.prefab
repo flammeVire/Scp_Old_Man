@@ -547,9 +547,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 3590143976792193451}
   Spawn: {fileID: 0}
-  Button1: {fileID: 0}
+  Button1: {fileID: 6493334603807318217}
   Collider1: {fileID: 7082114897458195832}
-  Button2: {fileID: 0}
+  Button2: {fileID: 1962607713599293193}
   Collider2: {fileID: 998568247974754236}
   Delay: 0.2
 --- !u!114 &4209639301763020912

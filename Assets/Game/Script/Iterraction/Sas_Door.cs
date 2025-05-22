@@ -23,7 +23,7 @@ public class Sas_Door : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public async void Rpc_OpeningSas(PlayerMouvement mouvement)
     {
-        if (HasStateAuthority)
+       // if (HasStateAuthority)
         {
 
 
@@ -41,7 +41,6 @@ public class Sas_Door : NetworkBehaviour
                 anim.Play();
                 anim[anim.clip.name].speed = -1;              // Joue l’animation en sens inverse
                 anim[anim.clip.name].time = anim[anim.clip.name].length;
-                mouvement.CanMove = true;
             }
 
         }
