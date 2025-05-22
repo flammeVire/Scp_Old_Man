@@ -8,12 +8,7 @@ public class PlayerInterraction : NetworkBehaviour
 {
     public Camera playerCamera;
     public StudioEventEmitter hide;
-
-    public StudioEventEmitter Grab;
-    public StudioEventEmitter Give;
-
     public PlayerMouvement mouvement;
-
     void Update()
     {
         InputManagement();
