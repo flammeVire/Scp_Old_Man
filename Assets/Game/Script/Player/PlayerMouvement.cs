@@ -50,6 +50,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public PlayerSound PlayerSound;
     public StudioEventEmitter jump;
     public StudioEventEmitter talkieOn;
+    public StudioEventEmitter dim;
 
     #endregion
     #region Unity default Function
@@ -83,7 +84,15 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     {
         if (HasInputAuthority)
         {
-            Talk();
+            if (!dim.IsPlaying() && IsInPocketDim)
+            {
+                dim.Play();
+            }
+            else if (dim.IsPlaying() && !IsInPocketDim)
+            {
+                dim.Stop();
+            }
+                Talk();
             Rotate();
             if (CanMove)
             {
@@ -308,6 +317,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportMesh(Vector3 spawnPosition, Quaternion rotation)
     {
+
         transform.position = spawnPosition;
         transform.rotation = rotation;
     }

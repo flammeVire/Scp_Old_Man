@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 3866663276510667390}
   - component: {fileID: 1592549638573335581}
   - component: {fileID: 1922071849379129232}
+  - component: {fileID: 3350896335186822066}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -191,6 +192,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3350896335186822066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408357239621385428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 257113982
+      Data2: 1289746054
+      Data3: 1690113161
+      Data4: -1578901325
+    Path: event:/Idle SCP
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2921780042251280794
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,9 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HidingSpot_OnRaduis: 0
   SearchingChance: 100
-  Masklayer:
-    serializedVersion: 2
-    m_Bits: 0
   pManager: {fileID: 6735115757851825699}
   pMouvement: {fileID: 6497669683611506815}
 --- !u!1 &3562420142735117020
@@ -281,6 +310,8 @@ GameObject:
   - component: {fileID: 6497669683611506815}
   - component: {fileID: 6735115757851825699}
   - component: {fileID: 6660657577481164751}
+  - component: {fileID: 4513459695431654484}
+  - component: {fileID: 2010956723417945776}
   m_Layer: 10
   m_Name: PapyMesh
   m_TagString: Untagged
@@ -468,6 +499,7 @@ MonoBehaviour:
   FloorPortalPrefab1: {fileID: 6159837283091451951, guid: ee886ee25f3b9664c94d52fced6f95bd, type: 3}
   FloorPortalPrefab2: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
   FloorPortal: {fileID: 0}
+  rire: {fileID: 4513459695431654484}
 --- !u!195 &6660657577481164751
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -490,3 +522,65 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4513459695431654484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562420142735117020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 18919335
+      Data2: 1220585646
+      Data3: -1769588348
+      Data4: -883963237
+    Path: event:/Rire
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2010956723417945776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562420142735117020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 81965185
+      Data2: 1164316026
+      Data3: 169035958
+      Data4: 1312088102
+    Path: event:/Walk
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

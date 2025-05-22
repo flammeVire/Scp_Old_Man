@@ -4,6 +4,8 @@ using UnityEngine;
 using Fusion;
 using Photon.Voice;
 using System.Threading.Tasks;
+using FMOD;
+using FMODUnity;
 
 public class Papy_Manager : NetworkBehaviour
 {
@@ -25,6 +27,9 @@ public class Papy_Manager : NetworkBehaviour
     public GameObject FloorPortalPrefab1;
     public GameObject FloorPortalPrefab2;
     public GameObject FloorPortal;
+
+    public StudioEventEmitter rire;
+
     public enum Papy_State
     {
         Patrol,
@@ -116,9 +121,9 @@ public class Papy_Manager : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-
-
-                int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
+            rire.Stop();
+            rire.Play();
+            int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
                 if (Vector3.Distance(this.transform.position, PointToReach[randomPoint].position) < 5)
                 {
                     Rpc_TeleportPapy();
@@ -134,7 +139,8 @@ public class Papy_Manager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportToPreciseLocation(Vector3 TargetPosition, Quaternion rotation)
     {
-
+        rire.Stop();
+        rire.Play();
         transform.position = TargetPosition;
         transform.rotation = rotation;
     }

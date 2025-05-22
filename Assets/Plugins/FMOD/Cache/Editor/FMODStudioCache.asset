@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8893678895817564464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dimension
+  m_EditorClassIdentifier: 
+  Path: event:/Dimension
+  Guid:
+    Data1: 539095838
+    Data2: 1150080130
+    Data3: -755770223
+    Data4: -1954335794
+  Banks:
+  - {fileID: -2160820590216036516}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 126798
 --- !u!114 &-8744915298295201292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,11 +285,38 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638833445863853469
+  lastModified: 638835284216136051
   FileSizes:
   - Name: Desktop
-    Value: 950144
+    Value: 2382944
   Exists: 1
+--- !u!114 &-1369707490330691381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Rire
+  m_EditorClassIdentifier: 
+  Path: event:/Rire
+  Guid:
+    Data1: 18919335
+    Data2: 1220585646
+    Data3: -1769588348
+    Data4: -883963237
+  Banks:
+  - {fileID: -2160820590216036516}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7209
 --- !u!114 &-1114490174344610931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,13 +376,15 @@ MonoBehaviour:
   - {fileID: -8744915298295201292}
   - {fileID: -8201323738335243758}
   - {fileID: 8299624331989722651}
+  - {fileID: -1369707490330691381}
+  - {fileID: -8893678895817564464}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2160820590216036516}
   StringsBanks:
   - {fileID: 661019586601191761}
   cacheVersion: 131847
-  cacheTime: 638833445863853469
+  cacheTime: 638835284216221570
   SerializableEventsDict:
   - key: event:/Activation Talkie
     index: 0
@@ -360,6 +416,10 @@ MonoBehaviour:
     index: 13
   - key: event:/In Camera
     index: 14
+  - key: event:/Rire
+    index: 15
+  - key: event:/Dimension
+    index: 16
 --- !u!114 &661019586601191761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,10 +435,10 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638833445863853469
+  lastModified: 638835284216221570
   FileSizes:
   - Name: Desktop
-    Value: 1418
+    Value: 1504
   Exists: 1
 --- !u!114 &738076157148916717
 MonoBehaviour:

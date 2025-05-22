@@ -63,7 +63,8 @@ GameObject:
   - component: {fileID: 4941029011774127737}
   - component: {fileID: 3056970762185357396}
   - component: {fileID: 2456033419322401849}
-  - component: {fileID: 4879114679082055528}
+  - component: {fileID: 4329699298336537942}
+  - component: {fileID: 6092659693549098238}
   m_Layer: 6
   m_Name: Cadre De porte
   m_TagString: Untagged
@@ -136,14 +137,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4879114679082055528
-MeshCollider:
+--- !u!65 &4329699298336537942
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348619674965462798}
-  m_Material: {fileID: 13400000, guid: 5e9cd1cbf6af6784fb82dbd10789ddfb, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,10 +155,30 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4621693398369858082, guid: b103238a101a3e04ba7f862e317c2f7a, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.0039843866, y: 0.0050134696, z: 0.036188807}
+  m_Center: {x: 0.00036523334, y: -0.012003948, z: 0.016106887}
+--- !u!65 &6092659693549098238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348619674965462798}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0039843866, y: 0.005071214, z: 0.036188807}
+  m_Center: {x: 0.00036523334, y: 0.012487548, z: 0.016106887}
 --- !u!1 &3641921791047601458
 GameObject:
   m_ObjectHideFlags: 0
