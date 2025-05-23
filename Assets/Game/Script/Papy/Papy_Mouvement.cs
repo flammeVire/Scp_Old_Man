@@ -216,6 +216,7 @@ public class Papy_Mouvement : NetworkBehaviour
 
     public void CaughtPlayer(NetworkObject obj)
     {
+        NetworkManager.runnerInstance.Spawn(Papy_Manager.Instance.Corrosion,obj.transform.position+Vector3.down,obj.transform.rotation);
         if (obj.GetComponent<PickItem>() != null && obj.GetComponent<PickItem>().NumberOfFlashGrenade <= 0)
         {
             Debug.Log("Have not flash");
@@ -244,7 +245,7 @@ public class Papy_Mouvement : NetworkBehaviour
             Debug.Log("Papy touch player");
             CaughtPlayer(collision.gameObject.GetComponent<NetworkObject>());
         }
-        if (collision.gameObject.layer == 6) // wall
+        if (collision.gameObject.layer == 8) // wall
         {
             //spawn portal
             Debug.Log("Touche Wall");
@@ -345,6 +346,7 @@ public class Papy_Mouvement : NetworkBehaviour
                 {
                     Debug.Log("Despawn props");
                     NetworkManager.runnerInstance.Despawn(hitObject.GetComponent<NetworkObject>());
+                    NetworkManager.runnerInstance.Spawn(Papy_Manager.Instance.Corrosion, hitObject.transform.position, Quaternion.identity);
                 }
             }
         }

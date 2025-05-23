@@ -24,7 +24,7 @@ public class Papy_Manager : NetworkBehaviour
 
     public GameObject WallPortalPrefab;
     public GameObject WallPortal;
-
+    public NetworkObject Corrosion;
     public GameObject FloorPortalPrefab1;
     public GameObject FloorPortalPrefab2;
     public GameObject FloorPortal;
@@ -220,8 +220,10 @@ public class Papy_Manager : NetworkBehaviour
         if (obj.HasStateAuthority)
         {
             NetworkManager.runnerInstance.Despawn(obj);
+            NetworkManager.runnerInstance.Spawn(Papy_Manager.Instance.Corrosion,obj.transform.position, Quaternion.identity);
+
         }
-        pMouvement.MinimumDistance = 10f;
+        pMouvement.MinimumDistance = 0.5f;
         pMouvement.GetAPoint(obj.transform.position);
         Rpc_ChangeStatus(1);
     }

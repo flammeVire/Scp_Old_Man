@@ -445,12 +445,16 @@ MonoBehaviour:
   raduis: 14
   angle: 130
   Target: {fileID: 0}
+  LastestTargetPos: {fileID: 0}
   targetMask:
     serializedVersion: 2
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
+  obstructionMask2:
+    serializedVersion: 2
+    m_Bits: 0
   canSeePlayer: 0
 --- !u!114 &6497669683611506815
 MonoBehaviour:
@@ -469,7 +473,7 @@ MonoBehaviour:
   ChaseDelay: 0
   MinimumPI: 0
   body: {fileID: 2448305031573488392}
-  CurrentPointToReach: {fileID: 0}
+  CurrentPointToReach: {x: 0, y: 0, z: 0}
   HaveReachThePoint:
     _value: 0
   Speed: 2.5
@@ -496,6 +500,7 @@ MonoBehaviour:
   pMouvement: {fileID: 6497669683611506815}
   WallPortalPrefab: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
   WallPortal: {fileID: 0}
+  Corrosion: {fileID: -1006067379688137108, guid: 55acabc94833f4c4d80e71c89daf7cea, type: 3}
   FloorPortalPrefab1: {fileID: 6159837283091451951, guid: ee886ee25f3b9664c94d52fced6f95bd, type: 3}
   FloorPortalPrefab2: {fileID: 6159837283091451951, guid: a4283ee6a5cd49249ab8d4a4a05bcdf1, type: 3}
   FloorPortal: {fileID: 0}
