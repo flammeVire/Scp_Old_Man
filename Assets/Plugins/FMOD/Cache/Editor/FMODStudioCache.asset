@@ -285,10 +285,10 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638835391848527110
+  lastModified: 638836134994213914
   FileSizes:
   - Name: Desktop
-    Value: 2382944
+    Value: 2433440
   Exists: 1
 --- !u!114 &-1369707490330691381
 MonoBehaviour:
@@ -378,13 +378,14 @@ MonoBehaviour:
   - {fileID: 8299624331989722651}
   - {fileID: -1369707490330691381}
   - {fileID: -8893678895817564464}
+  - {fileID: 5935882620363733117}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2160820590216036516}
   StringsBanks:
   - {fileID: 661019586601191761}
   cacheVersion: 131847
-  cacheTime: 638835391848527110
+  cacheTime: 638836134994287388
   SerializableEventsDict:
   - key: event:/Activation Talkie
     index: 0
@@ -420,6 +421,8 @@ MonoBehaviour:
     index: 15
   - key: event:/Dimension
     index: 16
+  - key: event:/OpenDoor1
+    index: 17
 --- !u!114 &661019586601191761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,10 +438,10 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638835391848527110
+  lastModified: 638836134994287388
   FileSizes:
   - Name: Desktop
-    Value: 1504
+    Value: 1544
   Exists: 1
 --- !u!114 &738076157148916717
 MonoBehaviour:
@@ -494,6 +497,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2800
+--- !u!114 &5935882620363733117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OpenDoor1
+  m_EditorClassIdentifier: 
+  Path: event:/OpenDoor1
+  Guid:
+    Data1: -2073169755
+    Data2: 1221408492
+    Data3: -476354161
+    Data4: 466445150
+  Banks:
+  - {fileID: -2160820590216036516}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2188
 --- !u!114 &6195267262478381600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,7 +620,7 @@ MonoBehaviour:
   Path: Assets/SD Old man/Build/Desktop/Bank A.bank
   Name: Bank A
   StudioPath: bank:/Bank A
-  lastModified: 638829122869527018
+  lastModified: 638822288765152289
   FileSizes:
   - Name: Desktop
     Value: 506
