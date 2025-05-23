@@ -6,6 +6,7 @@ using Photon.Voice;
 using System.Threading.Tasks;
 using FMOD;
 using FMODUnity;
+using TMPro;
 
 public class Papy_Manager : NetworkBehaviour
 {
@@ -48,8 +49,11 @@ public class Papy_Manager : NetworkBehaviour
     }
     public void Update()
     {
-        UpdateState();
-        Rpc_UpdatePocketPapyPos();
+        if (HasStateAuthority)
+        {
+            UpdateState();
+            Rpc_UpdatePocketPapyPos();
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -66,14 +70,18 @@ public class Papy_Manager : NetworkBehaviour
         if (pVision.canSeePlayer) // si vois le joueur
         {
             Rpc_ChangeStatus(3);
-
-            pMouvement.CurrentPointToReach = pVision.Target.transform;
+            pMouvement.CurrentPointToReach = pVision.Target.transform.position;
+            
         }
-        else if(currentState == Papy_State.chasing && !pVision.canSeePlayer) 
+        if(currentState == Papy_State.chasing && !pVision.canSeePlayer) 
         {
-           // Rpc_ChangeStatus(2);
-        }
+            UnityEngine.Debug.Log("OUI");
+            Rpc_ChangeStatus(2);
+            pMouvement.CurrentPointToReach = pVision.LastestTargetPos.position;
+            pMouvement.MinimumDistance = 0.5f;
 
+        }
+        TryToLookAt(pMouvement.CurrentPointToReach);
 
     }
 
@@ -109,11 +117,18 @@ public class Papy_Manager : NetworkBehaviour
     }
 
 
-    public void LookAt(Vector3 TargetPosition)
-    {
-        TargetPosition = new Vector3(TargetPosition.x,transform.position.y,TargetPosition.z);
 
-        //transform.LookAt(TargetPosition); // si look, n'avance plus 
+    public void TryToLookAt(Vector3 targetPosition)
+    {
+        // Ignore la hauteur pour une rotation horizontale
+        targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+        Vector3 direction = (targetPosition - transform.position).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            pMouvement.body.MoveRotation(targetRotation);
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -184,8 +199,8 @@ public class Papy_Manager : NetworkBehaviour
     
     public void SearchingLocker(NetworkObject obj)
     {
-        pMouvement.MinimumDistance = 0.1f;
-        pMouvement.CurrentPointToReach = obj.transform;
+        pMouvement.MinimumDistance = 0.5f;
+        pMouvement.CurrentPointToReach = obj.transform.position;
         GetPlayerInLocker(obj);
         Rpc_StopSearching(obj);
     }
@@ -207,7 +222,7 @@ public class Papy_Manager : NetworkBehaviour
             NetworkManager.runnerInstance.Despawn(obj);
         }
         pMouvement.MinimumDistance = 10f;
-        pMouvement.GetAPoint(obj.transform);
+        pMouvement.GetAPoint(obj.transform.position);
         Rpc_ChangeStatus(1);
     }
 }

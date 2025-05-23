@@ -16,7 +16,7 @@ public class Papy_Mouvement : NetworkBehaviour
     private bool canPassThroughWalls = false;
 
     public Rigidbody body;
-    public Transform CurrentPointToReach;
+    public Vector3 CurrentPointToReach;
     public NetworkBool HaveReachThePoint;
 
     //Header("Data")]
@@ -64,32 +64,34 @@ public class Papy_Mouvement : NetworkBehaviour
 
     private void Update()
     {
-        if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
+        if (HasStateAuthority)
         {
-            ChooseTarget();
-            PatrolMouvement();
-            if (IsPointReach(CurrentPointToReach))
+            if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
             {
-                HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                GetAPoint(CurrentPointToReach);
+                ChooseTarget();
+                PatrolMouvement();
+                if (IsPointReach(CurrentPointToReach))
+                {
+                    HaveReachThePoint = IsPointReach(CurrentPointToReach);
+                    GetAPoint(CurrentPointToReach);
+                }
             }
-        }
-        else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
-        {
-            Debug.Log("Searching");
-            SearchingMouvement();
-            if (IsPointReach(CurrentPointToReach))
+            else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
             {
-                HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                GetAPoint(CurrentPointToReach);
+                Debug.Log("Searching");
+                SearchingMouvement();
+                if (IsPointReach(CurrentPointToReach))
+                {
+                    HaveReachThePoint = IsPointReach(CurrentPointToReach);
+                    GetAPoint(CurrentPointToReach);
+                }
             }
+            else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
+            {
+                ChaseMouvement();
+            }
+            SphereCheck();
         }
-        else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
-        {
-            ChaseMouvement();
-        }
-        Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
-        SphereCheck();  
     }
 
     public override void FixedUpdateNetwork()
@@ -100,20 +102,20 @@ public class Papy_Mouvement : NetworkBehaviour
         }
     }
 
-    bool IsPointReach(Transform target)
+    bool IsPointReach(Vector3 target)
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector3.Distance(transform.position, target);
         return distance <= MinimumDistance;
     }
 
-    public void GetAPoint(Transform oldPoint)
+    public void GetAPoint(Vector3 oldPoint)
     {
         if (HasStateAuthority)
         {
 
             int index = UnityEngine.Random.Range(0, Papy_Manager.Instance.PointToReach.Length);
 
-            if (Papy_Manager.Instance.PointToReach[index] == oldPoint)
+            if (Papy_Manager.Instance.PointToReach[index].position == oldPoint)
             {
                 GetAPoint(oldPoint);
                 return;
@@ -123,7 +125,7 @@ public class Papy_Mouvement : NetworkBehaviour
             {
                 if (i == index)
                 {
-                    CurrentPointToReach = Papy_Manager.Instance.PointToReach[i];
+                    CurrentPointToReach = Papy_Manager.Instance.PointToReach[i].position;
                     break;
                 }
             }
@@ -139,7 +141,7 @@ public class Papy_Mouvement : NetworkBehaviour
     {
         Debug.Log("PatrolMenu");
         agent.enabled = true;
-        agent.destination = CurrentPointToReach.position;
+        agent.destination = CurrentPointToReach;
     }
 
     #endregion
@@ -148,7 +150,7 @@ public class Papy_Mouvement : NetworkBehaviour
     void SearchingMouvement()
     {
         agent.enabled = true;
-        agent.destination = CurrentPointToReach.position;
+        agent.destination = CurrentPointToReach;
 
     }
     void ChooseTarget()
@@ -202,11 +204,11 @@ public class Papy_Mouvement : NetworkBehaviour
         agent.enabled = false;
         Vector3 currentPosition = transform.position;
 
-        float distance = Vector3.Distance(currentPosition, CurrentPointToReach.position);
+        float distance = Vector3.Distance(currentPosition, CurrentPointToReach);
 
         if (distance > 0)
         {
-            Vector3 directionOfTravel = (CurrentPointToReach.position - currentPosition).normalized;
+            Vector3 directionOfTravel = (CurrentPointToReach - currentPosition).normalized;
             Vector3 newPosition = currentPosition + (directionOfTravel * Speed * NetworkManager.runnerInstance.DeltaTime);
             body.MovePosition(newPosition);
         }
@@ -324,11 +326,11 @@ public class Papy_Mouvement : NetworkBehaviour
     void SphereCheck()
     {
         Debug.Log("SpereCheck");
-        RaycastHit[] hits = new RaycastHit[5]; // Taille fixe
+        RaycastHit[] hits = new RaycastHit[10]; // Taille fixe
         Ray ray = new Ray(transform.position, transform.forward);
         LayerMask mask = LayerMask.GetMask("Props");
 
-        int hitCount = Physics.SphereCastNonAlloc(ray, 0.1f, hits, 6, mask);
+        int hitCount = Physics.SphereCastNonAlloc(ray, 0.1f, hits,0.1f, mask);
 
         Debug.Log("HIT COUNT = " + hitCount);
         for (int i = 0; i < hitCount; i++)
