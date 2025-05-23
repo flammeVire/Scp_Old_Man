@@ -89,6 +89,7 @@ public class Papy_Mouvement : NetworkBehaviour
             ChaseMouvement();
         }
         Papy_Manager.Instance.LookAt(CurrentPointToReach.position);
+        SphereCheck();  
     }
 
     public override void FixedUpdateNetwork()
@@ -325,27 +326,24 @@ public class Papy_Mouvement : NetworkBehaviour
         Debug.Log("SpereCheck");
         RaycastHit[] hits = new RaycastHit[5]; // Taille fixe
         Ray ray = new Ray(transform.position, transform.forward);
-        LayerMask mask = LayerMask.GetMask("Wall");
+        LayerMask mask = LayerMask.GetMask("Props");
 
         int hitCount = Physics.SphereCastNonAlloc(ray, 0.1f, hits, 6, mask);
 
         Debug.Log("HIT COUNT = " + hitCount);
         for (int i = 0; i < hitCount; i++)
         {
+            
             GameObject hitObject = hits[i].collider.gameObject;
 
-            if (hitObject.layer == LayerMask.NameToLayer("Wall"))
+            if (hitObject.layer == LayerMask.NameToLayer("Props"))
             {
-                Vector3 contactPoint = hits[i].point;
-                Vector3 contactNormal = hits[i].normal;
-                Transform hitTransform = hits[i].transform;
-
-                // Créer un transform virtuel (ou positionner un objet helper)
-                GameObject marker = new GameObject("HitPoint");
-                marker.transform.position = contactPoint;
-                Papy_Manager.Instance.Rpc_WallSpawnPortals(marker.transform.position, marker.transform.rotation);
-                Destroy(marker.gameObject);
-                break;
+                Debug.Log("Hit props");
+                if (hitObject.GetComponent<NetworkObject>() && hitObject.GetComponent<NetworkObject>().HasStateAuthority)
+                {
+                    Debug.Log("Despawn props");
+                    NetworkManager.runnerInstance.Despawn(hitObject.GetComponent<NetworkObject>());
+                }
             }
         }
     }

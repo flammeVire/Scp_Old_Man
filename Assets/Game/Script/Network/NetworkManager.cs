@@ -202,4 +202,9 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("Connected");
     }
 
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

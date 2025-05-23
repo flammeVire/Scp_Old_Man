@@ -20,6 +20,7 @@ public class PlayerUI : MonoBehaviour
     public Image Card1;
     public Image Card2;
     public Image Card3;
+
     private void Update()
     {
         UpdateStamina();
@@ -51,4 +52,8 @@ public class PlayerUI : MonoBehaviour
             TalkieImage.sprite= TalkieOffSprite;
         }
     }
+
+    
+
+    
 }
