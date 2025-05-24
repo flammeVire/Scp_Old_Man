@@ -8,16 +8,21 @@ public class Papy_Vision : MonoBehaviour
 
     public GameObject Target;
 
+    public Transform LastestTargetPos;
     public LayerMask targetMask;
     public LayerMask obstructionMask;
+    public LayerMask obstructionMask2;
 
     public bool canSeePlayer;
 
     private void Update()
     {
         FieldOfViewCheck();
-        Debug.Log("Can see Player : " + canSeePlayer);
-        //if bool true change the state of papy-manager
+        if (!canSeePlayer && Target != null)
+        {
+            LastestTargetPos = Target.transform;
+            Target = null;
+        }
     }
 
     void FieldOfViewCheck()
@@ -32,7 +37,11 @@ public class Papy_Vision : MonoBehaviour
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+
+                // Combine les deux masks d'obstruction
+                LayerMask combinedObstructionMask = obstructionMask | obstructionMask2;
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, combinedObstructionMask))
                 {
                     canSeePlayer = true;
                     Target = rangeChecks[0].gameObject;
