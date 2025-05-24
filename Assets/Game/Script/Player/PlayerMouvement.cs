@@ -11,6 +11,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     #region Data
     public Transform cam;
     public PlayerUI playerUI;
+    public PlayerAnimation playerAnimation;
     [Header("Speed",order = 0)]
     public float Speed;
     public float moveSpeed = 3f;
@@ -102,6 +103,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
                 HandleRun();
                 ManageSpeed();
             }
+            playerAnimation.Idle();
         }
     }
 
