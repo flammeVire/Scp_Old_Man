@@ -96,6 +96,7 @@ public class Card_Door : NetworkBehaviour
         */
         if (!anim.isPlaying)
         {
+            doorsSound.Rpc_Open();
             anim.Play();
             anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
             anim[anim.clip.name].time = 0;
