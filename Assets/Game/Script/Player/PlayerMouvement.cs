@@ -103,7 +103,12 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
                 HandleRun();
                 ManageSpeed();
             }
-            playerAnimation.Idle();
+            /*
+            if (!isMoving && !isCrouching && !isRunning)
+            {
+                playerAnimation.Idle();
+            }
+            */
         }
     }
 
@@ -144,6 +149,7 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
             if (!isMoving)
             {
                 PlayerSound.Rpc_Walk(true);
+               // playerAnimation.Walk();
             }
             isMoving = true;
             //MattSounds jouer son marche
