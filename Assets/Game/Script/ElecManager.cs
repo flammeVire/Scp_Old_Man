@@ -12,10 +12,11 @@ public class ElecManager : NetworkBehaviour
     private void Start()
     {
         instance = this;
-        ActivateElectricity();
+        Rpc_ActivateElectricity();
     }
 
-    void ActivateDoor()
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    void Rpc_ActivateDoor()
     {
         ComplexeHaveElectricity = false;
         foreach (PorteCoupeFeu feu in porte)
@@ -24,8 +25,8 @@ public class ElecManager : NetworkBehaviour
         }
     }
 
-
-    public void ActivateElectricity()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_ActivateElectricity()
     {
         if (!ElecManager.instance.ComplexeHaveElectricity)
         {
@@ -42,7 +43,7 @@ private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 7)
         {
-            ActivateDoor();
+            Rpc_ActivateDoor();
            // ComplexeHaveElectricity = false;
         }
     }

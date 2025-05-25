@@ -62,7 +62,7 @@ public class PlayerInterraction : NetworkBehaviour
                         Debug.Log("Interact with elect : state == " + ElecManager.instance.ComplexeHaveElectricity);
                         if(ElecManager.instance.ComplexeHaveElectricity == false)
                         {
-                            ElecManager.instance.ActivateElectricity();
+                            ElecManager.instance.Rpc_ActivateElectricity();
                         }
                     }
                 }
