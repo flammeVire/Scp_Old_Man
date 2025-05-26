@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
-using Unity.VisualScripting;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class SoundDoor : NetworkBehaviour
 {
     [Range(0,10)]public int SoundRequired;
-    public int ActualSound;
     public Operation operation;
-    public NetworkObject Door;
-    bool IsOpen;
 
+    public Animation anim;
+    public NetworkObject Door1;
+    public NetworkObject Door2;
+    bool IsOpen;
     bool SomeoneInside;
 
+    [SerializeField] Sprite[] soundSpite = new Sprite[10];
+    [SerializeField] Image soundImage;
     
     List<GameObject> PlayerInside = new List<GameObject>();
 
@@ -45,8 +49,10 @@ public class SoundDoor : NetworkBehaviour
         {
             Debug.Log("SomeoneInside");
             CheckPlayerPI();
+            
         }
     }
+
 
     public void CheckPlayerPI()
     {
@@ -55,6 +61,7 @@ public class SoundDoor : NetworkBehaviour
         {
             globalPI += go.GetComponent<PlayerInterrestPoint>().CurrentPI;
         }
+        Rpc_UpdateUI(globalPI);
         Debug.Log("global PI inDoor = " + globalPI);
         if (checkOperation(globalPI))
         {
@@ -93,12 +100,55 @@ public class SoundDoor : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All,RpcTargets.All)]
-    void Rpc_OpenDoor()
+    async void Rpc_OpenDoor()
     {
         if (HasStateAuthority)
         {
-            NetworkManager.runnerInstance.Despawn(Door);
+            if (!anim.isPlaying)
+            {
+                anim.Play();
+                anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
+                anim[anim.clip.name].time = 0;
+            }
+
+            await WaitForAnimationEnd();
+
+            if (Door1.HasStateAuthority)
+            {
+
+                Debug.Log("Have Authority");
+                NetworkManager.runnerInstance.Despawn(Door1);
+
+                //MattSounds : jouer son ouverture
+                IsOpen = true;
+            }
+            if (Door2.HasStateAuthority)
+            {
+                NetworkManager.runnerInstance.Despawn(Door2);
+                IsOpen = true;
+            }
+
         }
     }
-    
+
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    private void Rpc_UpdateUI(int globalPi)
+    {
+        if(globalPi < 10)
+        {
+            soundImage.sprite = soundSpite[globalPi];
+        }
+        else
+        {
+            soundImage.sprite = soundSpite[11];
+        }
+    }
+    private async Task WaitForAnimationEnd()
+{
+    // Attend que l'animation finisse
+    while (anim.isPlaying)
+    {
+        await Task.Yield(); // Attend la frame suivante
+    }
+}
 }
