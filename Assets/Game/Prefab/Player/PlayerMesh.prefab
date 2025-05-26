@@ -2091,6 +2091,7 @@ GameObject:
   - component: {fileID: 6848621987920963186}
   - component: {fileID: 8522511517726725807}
   - component: {fileID: 6763329687408358999}
+  - component: {fileID: 8637877917746275258}
   m_Layer: 0
   m_Name: prisonner
   m_TagString: Untagged
@@ -2153,6 +2154,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8522511517726725807}
   mouvement: {fileID: 66067729302263490}
+--- !u!114 &8637877917746275258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071100534126099656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 8522511517726725807}
+  ApplyTiming: 1
+  SyncSettings: 127
+  StateHashes: 000000006c908eb85f23ab8f2b1a167c794069556bd5a32d398fdc0420e23b685928a8ce2ef6da876d58e98412390cd4218a29e3
+  TriggerHashes: 000000002b1a167c6bd5a32d20e23b682ef6da8712390cd4
+  TotalWords: 4
 --- !u!1 &6270445336094385723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2930,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &5568853269028372429
 MonoBehaviour:
@@ -2959,6 +2978,7 @@ MonoBehaviour:
   - {fileID: 1930982688142283677}
   - {fileID: 8796728106877429974}
   - {fileID: 6862435594636010139}
+  - {fileID: 8637877917746275258}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &66067729302263490
 MonoBehaviour:
@@ -3754,7 +3774,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1850177062598645736, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1973890765422304325, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
       propertyPath: m_LocalScale.x

@@ -57,6 +57,14 @@ public class PlayerInterraction : NetworkBehaviour
                         //hide.Play();
                         Hide(hit.collider.GetComponent<HidingSpot>());
                     }
+                    else if (hit.collider.CompareTag("elect"))
+                    {
+                        Debug.Log("Interact with elect : state == " + ElecManager.instance.ComplexeHaveElectricity);
+                        if(ElecManager.instance.ComplexeHaveElectricity == false)
+                        {
+                            ElecManager.instance.Rpc_ActivateElectricity();
+                        }
+                    }
                 }
             }
         }

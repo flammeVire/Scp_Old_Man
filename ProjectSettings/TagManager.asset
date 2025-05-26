@@ -10,6 +10,7 @@ TagManager:
   - Card
   - Hide
   - Corrosion
+  - elect
   layers:
   - Default
   - TransparentFX

@@ -5,31 +5,46 @@ using UnityEngine;
 
 public class ElecManager : NetworkBehaviour
 {
-    public NetworkBool ComplexeHaveElectricity;
-    PorteCoupeFeu[] porte;
-
+    public bool ComplexeHaveElectricity;
+    public PorteCoupeFeu[] porte;
     public static ElecManager instance;
 
     private void Start()
     {
         instance = this;
+        Rpc_ActivateElectricity();
     }
 
-    void ActivateDoor()
+    [Rpc(RpcSources.All,RpcTargets.All)]
+    void Rpc_ActivateDoor()
     {
+        ComplexeHaveElectricity = false;
         foreach (PorteCoupeFeu feu in porte)
         {
             feu.Rpc_Close();
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void Rpc_ActivateElectricity()
     {
-        if(other.gameObject.layer == 10)
+        if (!ElecManager.instance.ComplexeHaveElectricity)
         {
-            ActivateDoor();
-            ComplexeHaveElectricity = false;
+            ElecManager.instance.ComplexeHaveElectricity = true;
+            foreach (PorteCoupeFeu feu in porte)
+            {
+                feu.Rpc_Open();
+            }
+        }
+    }
+
+
+private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 7)
+        {
+            Rpc_ActivateDoor();
+           // ComplexeHaveElectricity = false;
         }
     }
 }

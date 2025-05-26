@@ -36,11 +36,11 @@ public class PlayerMouvement : NetworkBehaviour, ISpawned
     public bool CanMove;
     public bool IsInPocketDim;
     public bool isGrounded;
-    public bool isCrouching;
-    public bool isJumping;
-    public bool isRunning;
-    public bool isMoving;
-    public bool isTalking;
+    [Networked]public NetworkBool isCrouching {  get; private set; }
+    [Networked]public NetworkBool isJumping { get; private set; }
+    [Networked]public NetworkBool isRunning { get; private set; }
+    [Networked] public NetworkBool isMoving{  get; private set; }
+    [Networked] public NetworkBool isTalking { get; private set; }
 
 
     [Header("Slow Corrosion")]
