@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 8842789730008648953}
   - component: {fileID: 8433277435279280547}
   - component: {fileID: 1973316234606080952}
+  - component: {fileID: 1837381693368448905}
+  - component: {fileID: 403844727136565435}
   m_Layer: 6
   m_Name: Carte droite
   m_TagString: Interractive
@@ -208,6 +210,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1973316234606080952}
+  - {fileID: 1837381693368448905}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1973316234606080952
 MonoBehaviour:
@@ -224,6 +227,54 @@ MonoBehaviour:
   ButtonActive:
     _value: 0
   Double_Door: {fileID: 125794787574566465}
+  sound: {fileID: 1837381693368448905}
+--- !u!114 &1837381693368448905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242535021118541944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cc9fd1f81c2b849994111274bf55ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: {fileID: 403844727136565435}
+  Bad: {fileID: 0}
+  Open: {fileID: 0}
+  Close: {fileID: 0}
+--- !u!114 &403844727136565435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242535021118541944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 699334723
+      Data2: 1233612155
+      Data3: 91350696
+      Data4: -1817759375
+    Path: event:/Good Card
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1786418105697190974
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +432,8 @@ GameObject:
   - component: {fileID: 6936505077617078565}
   - component: {fileID: 1601782138334372958}
   - component: {fileID: 4112060367805444352}
+  - component: {fileID: 7400595272046653561}
+  - component: {fileID: 4490989021855461099}
   m_Layer: 6
   m_Name: gauche
   m_TagString: Interractive
@@ -492,6 +545,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4112060367805444352}
+  - {fileID: 4490989021855461099}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4112060367805444352
 MonoBehaviour:
@@ -508,6 +562,54 @@ MonoBehaviour:
   ButtonActive:
     _value: 0
   Double_Door: {fileID: 125794787574566465}
+  sound: {fileID: 4490989021855461099}
+--- !u!114 &7400595272046653561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758816385707607585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 699334723
+      Data2: 1233612155
+      Data3: 91350696
+      Data4: -1817759375
+    Path: event:/Good Card
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4490989021855461099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758816385707607585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cc9fd1f81c2b849994111274bf55ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: {fileID: 7400595272046653561}
+  Bad: {fileID: 0}
+  Open: {fileID: 0}
+  Close: {fileID: 0}
 --- !u!1 &4206499598997312846
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +790,8 @@ GameObject:
   - component: {fileID: 6921818394400094589}
   - component: {fileID: 125794787574566465}
   - component: {fileID: 2844284953739070326}
+  - component: {fileID: 2675425917368306665}
+  - component: {fileID: 7614575120170195761}
   m_Layer: 6
   m_Name: DoubleDoor
   m_TagString: Untagged
@@ -754,7 +858,7 @@ MonoBehaviour:
   IsOpen:
     _value: 0
   anim: {fileID: 2268243869382594427}
-  doorSound: {fileID: 7456400453267765241}
+  doorSound: {fileID: 7614575120170195761}
 --- !u!114 &2844284953739070326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +881,55 @@ MonoBehaviour:
   - {fileID: 1454427194004668077}
   NetworkedBehaviours:
   - {fileID: 125794787574566465}
+  - {fileID: 7614575120170195761}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &2675425917368306665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972214196433316242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2073169755
+      Data2: 1221408492
+      Data3: -476354161
+      Data4: 466445150
+    Path: event:/OpenDoor1
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7614575120170195761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972214196433316242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cc9fd1f81c2b849994111274bf55ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: {fileID: 0}
+  Bad: {fileID: 0}
+  Open: {fileID: 2675425917368306665}
+  Close: {fileID: 0}
 --- !u!1 &8305130992070102708
 GameObject:
   m_ObjectHideFlags: 0
