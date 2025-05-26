@@ -123,7 +123,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     private void CreateEntryUI(SessionInfo session)
     {
         GameObject newEntry = Instantiate(lobby_Session_Prefab);
-        newEntry.transform.parent = sessionListContentParent;
         SessionListEntry entryScript = newEntry.GetComponent<SessionListEntry>();
         SessionListUIDictionary.Add(session.Name, newEntry);
         entryScript.roomName.text = session.Name;
@@ -131,6 +130,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         entryScript.JoinButton.interactable = session.IsOpen;
 
         newEntry.SetActive(session.IsVisible);
+        newEntry.transform.parent = sessionListContentParent;
     }
 
     private void UpdateEntryUI(SessionInfo session)

@@ -6604,12 +6604,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517031786177405396, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3517031786177405396, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: NetworkedBehaviours.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 694463447}
     - target: {fileID: 3517031786177405396, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: NetworkedBehaviours.Array.data[2]
       value: 
@@ -6632,7 +6632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3698982810514209557, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.61
+      value: -14.86
       objectReference: {fileID: 0}
     - target: {fileID: 3698982810514209557, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6731,6 +6731,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 759e88e1c9f772042929062e06af9380, type: 3}
+--- !u!114 &694463447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3189545987551745985, guid: 759e88e1c9f772042929062e06af9380, type: 3}
+  m_PrefabInstance: {fileID: 694463446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &726134184
 Mesh:
   m_ObjectHideFlags: 0
@@ -7562,6 +7573,7 @@ MonoBehaviour:
   porte:
   - {fileID: 1855878925}
   - {fileID: 42242559}
+  Light: []
 --- !u!65 &853796911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10999,7 +11011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3517031786177405396, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3517031786177405396, guid: 759e88e1c9f772042929062e06af9380, type: 3}
       propertyPath: NetworkedBehaviours.Array.data[1]
