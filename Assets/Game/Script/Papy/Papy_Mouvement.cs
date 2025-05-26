@@ -21,10 +21,7 @@ public class Papy_Mouvement : NetworkBehaviour
 
     //Header("Data")]
     [SerializeField] float Speed;
-    private void OnValidate()
-    {
-        Speed = GetComponent<NavMeshAgent>().speed - 1;
-    }
+
     /*
     void Start()
     {
@@ -66,42 +63,39 @@ public class Papy_Mouvement : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
+            if (Papy_Manager.Instance.CanMove)
             {
-                ChooseTarget();
-                PatrolMouvement();
-                if (IsPointReach(CurrentPointToReach))
-                {
-                    HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                    GetAPoint(CurrentPointToReach);
-                }
-            }
-            else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
-            {
-                Debug.Log("Searching");
-                SearchingMouvement();
-                if (IsPointReach(CurrentPointToReach))
-                {
-                    HaveReachThePoint = IsPointReach(CurrentPointToReach);
-                    GetAPoint(CurrentPointToReach);
-                }
-            }
-            else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
-            {
-                ChaseMouvement();
-            }
-            SphereCheck();
-        }
-    }
 
-    public override void FixedUpdateNetwork()
-    {
-        if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
-        {
-            //SphereCheck();
+                if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.Patrol)
+                {
+                    ChooseTarget();
+                    PatrolMouvement();
+                    if (IsPointReach(CurrentPointToReach))
+                    {
+                        HaveReachThePoint = IsPointReach(CurrentPointToReach);
+                        GetAPoint(CurrentPointToReach);
+                    }
+                }
+                else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
+                {
+                    Debug.Log("Searching");
+                    SearchingMouvement();
+                    if (IsPointReach(CurrentPointToReach))
+                    {
+                        HaveReachThePoint = IsPointReach(CurrentPointToReach);
+                        GetAPoint(CurrentPointToReach);
+                    }
+                }
+                else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.chasing)
+                {
+                    ChaseMouvement();
+                }
+                SphereCheck();
+                Papy_Manager.Instance.pAnim.Walk();
+            }
         }
+        
     }
-
     bool IsPointReach(Vector3 target)
     {
         float distance = Vector3.Distance(transform.position, target);
@@ -217,10 +211,25 @@ public class Papy_Mouvement : NetworkBehaviour
     public void CaughtPlayer(NetworkObject obj)
     {
         NetworkManager.runnerInstance.Spawn(Papy_Manager.Instance.Corrosion,obj.transform.position+Vector3.down,obj.transform.rotation);
+
+        Transform target = Papy_Manager.Instance.gameObject.transform;
+        Vector3 direction = target.position - obj.transform.position;
+
+        // Supprimer l'influence verticale
+        direction.y = 0;
+
+        // S'il reste une direction, appliquer la rotation
+        if (direction != Vector3.zero)
+        {
+            obj.transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+
+
         if (obj.GetComponent<PickItem>() != null && obj.GetComponent<PickItem>().NumberOfFlashGrenade <= 0)
         {
             Debug.Log("Have not flash");
-            obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
+       //     obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
             obj.GetComponent<PlayerMouvement>().IsInPocketDim = true;
             //GetAPoint(obj.transform);
         }

@@ -11,7 +11,9 @@ using TMPro;
 public class Papy_Manager : NetworkBehaviour
 {
     NetworkBool IsFlashed = false;
-    NetworkBool CanPassByWall = false;
+
+    public Transform Head;
+    [Networked]public NetworkBool CanMove {get; set;} = false;
     public static Papy_Manager Instance;
     [SerializeField] public Papy_State currentState;
 
@@ -21,6 +23,7 @@ public class Papy_Manager : NetworkBehaviour
 
     public Papy_Vision pVision;
     public Papy_Mouvement pMouvement;
+    public Papy_Animation pAnim;
 
     public GameObject WallPortalPrefab;
     public GameObject WallPortal;
@@ -147,10 +150,13 @@ public class Papy_Manager : NetworkBehaviour
                 {
                     transform.position = PointToReach[randomPoint].position;
                     transform.rotation = PointToReach[randomPoint].rotation;
-                }
+                pAnim.Teleport();
+            }
             
         }
     }
+
+
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportToPreciseLocation(Vector3 TargetPosition, Quaternion rotation)
     {
@@ -158,8 +164,8 @@ public class Papy_Manager : NetworkBehaviour
         rire.Play();
         transform.position = TargetPosition;
         transform.rotation = rotation;
+        pAnim.Teleport();
     }
-
 
     /*
     
