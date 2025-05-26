@@ -2931,7 +2931,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5568853269028372429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,11 +3010,16 @@ MonoBehaviour:
   CanMove: 1
   IsInPocketDim: 0
   isGrounded: 0
-  isCrouching: 0
-  isJumping: 0
-  isRunning: 0
-  isMoving: 0
-  isTalking: 0
+  _isCrouching:
+    _value: 0
+  _isJumping:
+    _value: 0
+  _isRunning:
+    _value: 0
+  _isMoving:
+    _value: 0
+  _isTalking:
+    _value: 0
   PlayerSound: {fileID: 1930982688142283677}
   jump: {fileID: 2320364910326168229}
   talkieOn: {fileID: 4183225888688602141}
@@ -3786,11 +3791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620967035665896483, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.656
+      value: 0.586
       objectReference: {fileID: 0}
     - target: {fileID: 4620967035665896483, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 4620967035665896483, guid: 829f6da8397ebde468048f315d1ef013, type: 3}
       propertyPath: m_LocalRotation.w
