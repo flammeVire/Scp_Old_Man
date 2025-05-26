@@ -326,6 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400935450675656556}
+  - component: {fileID: 6214670270422313351}
   m_Layer: 6
   m_Name: Door holder
   m_TagString: Untagged
@@ -349,6 +350,37 @@ Transform:
   - {fileID: 777813336230521047}
   m_Father: {fileID: 2528084634079049270}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6214670270422313351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5709235411583344819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2073169755
+      Data2: 1221408492
+      Data3: -476354161
+      Data4: 466445150
+    Path: event:/OpenDoor1
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5948381845338582790
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +499,7 @@ GameObject:
   - component: {fileID: 998568247974754236}
   - component: {fileID: 5167000871818744386}
   - component: {fileID: 4209639301763020912}
+  - component: {fileID: 662740996999399509}
   m_Layer: 0
   m_Name: Button Holder
   m_TagString: Interractive
@@ -551,6 +584,7 @@ MonoBehaviour:
   Collider1: {fileID: 7082114897458195832}
   Button2: {fileID: 1962607713599293193}
   Collider2: {fileID: 998568247974754236}
+  sound: {fileID: 662740996999399509}
   Delay: 0.2
 --- !u!114 &4209639301763020912
 MonoBehaviour:
@@ -571,6 +605,22 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 5167000871818744386}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &662740996999399509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805717446080201773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cc9fd1f81c2b849994111274bf55ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Good: {fileID: 0}
+  Bad: {fileID: 0}
+  Open: {fileID: 6214670270422313351}
+  Close: {fileID: 0}
 --- !u!1 &8051125903198081154
 GameObject:
   m_ObjectHideFlags: 0

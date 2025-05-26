@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842441090384184076}
   - component: {fileID: 572285780836320632}
+  - component: {fileID: 6202068700308854817}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -83,6 +84,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &6202068700308854817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787918878903725128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee3bc998386304fb4ce315bec336de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grainMaterial: {fileID: 2100000, guid: cae6997a87b9fc745b180cf8e92f0389, type: 2}
+  intensity: 0.1
+  grainSize: 0.1
+  speed: 0.5
 --- !u!1 &2348551762994064095
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3443109923210840319}
   - component: {fileID: 741754482842114113}
+  - component: {fileID: 5007311628577384952}
   m_Layer: 0
   m_Name: Camera (1)
   m_TagString: Untagged
@@ -166,6 +184,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &5007311628577384952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348551762994064095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee3bc998386304fb4ce315bec336de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grainMaterial: {fileID: 2100000, guid: cae6997a87b9fc745b180cf8e92f0389, type: 2}
+  intensity: 0.1
+  grainSize: 0.1
+  speed: 0.5
 --- !u!1 &4678939070946220953
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5946083461817018598}
   - component: {fileID: 1533078019361073588}
+  - component: {fileID: 3618647878046312484}
   m_Layer: 0
   m_Name: Camera (2)
   m_TagString: Untagged
@@ -249,6 +284,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &3618647878046312484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678939070946220953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee3bc998386304fb4ce315bec336de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grainMaterial: {fileID: 2100000, guid: cae6997a87b9fc745b180cf8e92f0389, type: 2}
+  intensity: 0.1
+  grainSize: 0.1
+  speed: 0.5
 --- !u!1 &6455104609896097547
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117057128309895788}
   - component: {fileID: 3214191540515189796}
+  - component: {fileID: 3685209653158496082}
   m_Layer: 0
   m_Name: Camera (3)
   m_TagString: Untagged
@@ -461,6 +513,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &3685209653158496082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309481951668247003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee3bc998386304fb4ce315bec336de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grainMaterial: {fileID: 2100000, guid: cae6997a87b9fc745b180cf8e92f0389, type: 2}
+  intensity: 0.1
+  grainSize: 0.1
+  speed: 0.5
 --- !u!1001 &8234010191903780311
 PrefabInstance:
   m_ObjectHideFlags: 0

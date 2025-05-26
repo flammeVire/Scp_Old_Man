@@ -14,7 +14,7 @@ public class Sas_Door : NetworkBehaviour
     [SerializeField] Transform Button2;
     [SerializeField] BoxCollider Collider2;
 
-
+    public DoorsSound sound;
     public float Delay;
 
 
@@ -29,6 +29,7 @@ public class Sas_Door : NetworkBehaviour
 
             if (!anim.isPlaying)
             {
+                sound.Rpc_Open();
                 anim.Play();
                 anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
                 anim[anim.clip.name].time = 0;
