@@ -2152,6 +2152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8522511517726725807}
+  mouvement: {fileID: 66067729302263490}
 --- !u!1 &6270445336094385723
 GameObject:
   m_ObjectHideFlags: 0
