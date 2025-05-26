@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonActive:
     _value: 0
-  Double_Door: {fileID: 0}
+  Double_Door: {fileID: 125794787574566465}
 --- !u!1 &1786418105697190974
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonActive:
     _value: 0
-  Double_Door: {fileID: 0}
+  Double_Door: {fileID: 125794787574566465}
 --- !u!1 &4206499598997312846
 GameObject:
   m_ObjectHideFlags: 0
