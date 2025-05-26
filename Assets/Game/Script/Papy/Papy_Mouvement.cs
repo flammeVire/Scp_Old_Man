@@ -229,9 +229,9 @@ public class Papy_Mouvement : NetworkBehaviour
         if (obj.GetComponent<PickItem>() != null && obj.GetComponent<PickItem>().NumberOfFlashGrenade <= 0)
         {
             Debug.Log("Have not flash");
-       //     obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
+            obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
             obj.GetComponent<PlayerMouvement>().IsInPocketDim = true;
-            //GetAPoint(obj.transform);
+            GetAPoint(obj.transform.position);
         }
         else
         {

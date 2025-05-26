@@ -128,9 +128,9 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         entryScript.roomName.text = session.Name;
         entryScript.PlayerCount.text = session.PlayerCount.ToString() + "/" + session.MaxPlayers.ToString();
         entryScript.JoinButton.interactable = session.IsOpen;
+        newEntry.transform.SetParent(sessionListContentParent,false);
 
         newEntry.SetActive(session.IsVisible);
-        newEntry.transform.parent = sessionListContentParent;
     }
 
     private void UpdateEntryUI(SessionInfo session)
