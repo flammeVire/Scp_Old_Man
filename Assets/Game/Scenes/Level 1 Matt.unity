@@ -56811,6 +56811,18 @@ PrefabInstance:
       propertyPath: SortKey
       value: 2115163595
       objectReference: {fileID: 0}
+    - target: {fileID: 2268243869382594427, guid: ed0a615adbef465428245f0f438969e8, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 8d127d95ea9f30c45b8757b911ffe41e, type: 2}
+    - target: {fileID: 2268243869382594427, guid: ed0a615adbef465428245f0f438969e8, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268243869382594427, guid: ed0a615adbef465428245f0f438969e8, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2844284953739070326, guid: ed0a615adbef465428245f0f438969e8, type: 3}
       propertyPath: SortKey
       value: 2875889143
