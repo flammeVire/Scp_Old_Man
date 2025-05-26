@@ -7,6 +7,7 @@ public class ElecManager : NetworkBehaviour
 {
     public bool ComplexeHaveElectricity;
     public PorteCoupeFeu[] porte;
+    public GameObject[] Light;
     public static ElecManager instance;
 
     private void Start()
@@ -23,6 +24,10 @@ public class ElecManager : NetworkBehaviour
         {
             feu.Rpc_Close();
         }
+        foreach (GameObject l in Light)
+        {
+            l.SetActive(false);
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -34,6 +39,10 @@ public class ElecManager : NetworkBehaviour
             foreach (PorteCoupeFeu feu in porte)
             {
                 feu.Rpc_Open();
+            }
+            foreach(GameObject l in Light)
+            {
+                l.SetActive(true);
             }
         }
     }
