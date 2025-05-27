@@ -25,6 +25,7 @@ public class Papy_Animation : MonoBehaviour
 
     public void Walk()
     {
+        Debug.Log("Walk");
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 0 = layer index
 
         // Vérifie si le nom de l'état actuel est différent de "Idle"

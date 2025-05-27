@@ -23,7 +23,6 @@ public class Papy_Manager : NetworkBehaviour
 
     public Papy_Vision pVision;
     public Papy_Mouvement pMouvement;
-    public Papy_Animation pAnim;
 
     public GameObject WallPortalPrefab;
     public GameObject WallPortal;
@@ -150,7 +149,6 @@ public class Papy_Manager : NetworkBehaviour
                 {
                     transform.position = PointToReach[randomPoint].position;
                     transform.rotation = PointToReach[randomPoint].rotation;
-                pAnim.Teleport();
             }
             
         }
@@ -164,7 +162,6 @@ public class Papy_Manager : NetworkBehaviour
         rire.Play();
         transform.position = TargetPosition;
         transform.rotation = rotation;
-        pAnim.Teleport();
     }
 
     /*

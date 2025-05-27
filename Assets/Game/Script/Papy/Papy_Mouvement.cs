@@ -91,7 +91,6 @@ public class Papy_Mouvement : NetworkBehaviour
                     ChaseMouvement();
                 }
                 SphereCheck();
-                Papy_Manager.Instance.pAnim.Walk();
             }
         }
         
