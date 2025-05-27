@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
 public class Prison : MonoBehaviour
 {
-    public static bool IsInside;
+    [Networked]public static NetworkBool IsInside {  get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +18,9 @@ public class Prison : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.layer == 10) { IsInside = false; }
+        if (other.gameObject.layer == 10)
+        {
+            IsInside = false;
+        }
     }
 }

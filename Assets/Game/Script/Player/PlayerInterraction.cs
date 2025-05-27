@@ -86,7 +86,7 @@ public class PlayerInterraction : NetworkBehaviour
     IEnumerator WaitUntilInterractIsUp(ButtonDouble_Door button)
     {
         yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(2);
         Debug.Log("Interract is up");
         button.Rpc_ActiveButton(false);
     }
@@ -112,16 +112,15 @@ public class PlayerInterraction : NetworkBehaviour
     void EndGame(EndGame endGame)
     {
         Debug.Log("EndGame");
-        endGame.Rpc_ClosingEndSas(true);
-        StartCoroutine(WaitUntilInterractIsUp(endGame));
+        if (!endGame.anim.isPlaying)
+        {
+            mouvement.CanMove = false;
+
+            endGame.Rpc_ClosingEndSasAsync();
+            StartCoroutine(MoveDelay(endGame.Delay));
+        }
     }
-    IEnumerator WaitUntilInterractIsUp(EndGame endGame)
-    {
-        yield return new WaitUntil(() => Input.GetButtonUp("Interract"));
-        yield return new WaitForSecondsRealtime(endGame.Delay);
-        Debug.Log("Interract is up");
-        endGame.Rpc_ClosingEndSas(false);
-    }
+    
     void Hide(HidingSpot hidingSpot)
     {
         if (!hidingSpot.IsSomeoneHide)
