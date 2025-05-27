@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ElecManager : NetworkBehaviour
 {
-    public bool ComplexeHaveElectricity;
+    [Networked] public NetworkBool ComplexeHaveElectricity {  get; private set; }
     public PorteCoupeFeu[] porte;
     public GameObject[] Light;
     public static ElecManager instance;

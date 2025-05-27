@@ -320,6 +320,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4799561636940337968}
+  - {fileID: 7562920347056585651}
   ForceRemoteRenderTimeframe: 0
 --- !u!1 &7504175878239064396
 GameObject:
@@ -489,7 +490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CanGameEnd:
     _value: 0
-  DoorPrefab: {fileID: 0}
   anim: {fileID: 583251220182433516}
   Delay: 5
 --- !u!1 &9071818366612037579

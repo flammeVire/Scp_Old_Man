@@ -400,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039760041863986532}
   - component: {fileID: 9057643867203136281}
+  - component: {fileID: 3625558911810690140}
   m_Layer: 0
   m_Name: PorteCoupeFeu
   m_TagString: Untagged
@@ -438,3 +439,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2116633562987605574}
+--- !u!114 &3625558911810690140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035316876791267814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3921167937
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 9057643867203136281}
+  ForceRemoteRenderTimeframe: 0
