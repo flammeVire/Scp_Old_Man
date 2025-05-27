@@ -2996,9 +2996,9 @@ MonoBehaviour:
   playerUI: {fileID: 0}
   playerAnimation: {fileID: 6763329687408358999}
   Speed: 0
-  moveSpeed: 3
+  moveSpeed: 2
   CrouchSpeed: 1
-  RunSpeed: 5
+  RunSpeed: 4
   sensitivity: 2
   jumpForce: 3.5
   crouchHeight: 0.5
