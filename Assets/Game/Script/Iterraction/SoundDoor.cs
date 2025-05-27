@@ -15,6 +15,7 @@ public class SoundDoor : NetworkBehaviour
     public NetworkObject Door2;
     bool IsOpen;
     bool SomeoneInside;
+    public DoorsSound sound;
 
     [SerializeField] Sprite[] soundSpite = new Sprite[10];
     [SerializeField] Image soundImage;
@@ -106,6 +107,12 @@ public class SoundDoor : NetworkBehaviour
         {
             if (!anim.isPlaying)
             {
+                if (Door1.gameObject != null)
+                {
+                    sound.Rpc_Good();
+                    sound.Rpc_Open();
+                }
+
                 anim.Play();
                 anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
                 anim[anim.clip.name].time = 0;

@@ -7,6 +7,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.ProBuilder.Shapes;
 using FMODUnity;
 using System.Threading.Tasks;
+using FMOD;
 public class Double_Door : NetworkBehaviour
 {
     public ButtonDouble_Door[] ButtonScript;
@@ -24,11 +25,8 @@ public class Double_Door : NetworkBehaviour
       //  Debug.Log("Nb of button" + ButtonScript.Length);
         foreach (ButtonDouble_Door button in ButtonScript)
         {
-            Debug.Log("button is " + button.gameObject.name);
             if (!button.ButtonActive)
             {
-                Debug.Log("All Button are not enable");
-                Debug.Log(button.gameObject.name + " is the issues");
                 CanOpen = false;
                 break;
             }
@@ -57,7 +55,10 @@ public class Double_Door : NetworkBehaviour
         {
             if (!anim.isPlaying)
             {
-                doorSound.Rpc_Open();
+                if (Door1.gameObject != null)
+                {
+                    doorSound.Rpc_Open();
+                }
                 anim.Play();
                 anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
                 anim[anim.clip.name].time = 0;
@@ -68,7 +69,6 @@ public class Double_Door : NetworkBehaviour
             if (Door1.HasStateAuthority)
             {
 
-                Debug.Log("Have Authority");
                 NetworkManager.runnerInstance.Despawn(Door1);
 
                 //MattSounds : jouer son ouverture

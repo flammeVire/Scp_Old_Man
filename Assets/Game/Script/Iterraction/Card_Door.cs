@@ -4,6 +4,7 @@ using UnityEngine;
 using Fusion;
 using Unity.Properties;
 using System.Threading.Tasks;
+using FMOD;
 
 public class Card_Door : NetworkBehaviour
 {
@@ -21,12 +22,10 @@ public class Card_Door : NetworkBehaviour
         {
             if (needCard)
             {
-                Debug.Log("Card Need");
                 CardAccess(player);
             }
             else
             {
-                Debug.Log("Free access");
                 FreeAccess();
             }
         }
@@ -36,13 +35,19 @@ public class Card_Door : NetworkBehaviour
     {
         if (CheckPlayerCard(player))
         {
-            Debug.Log("PlayerHaveCard");
-            doorsSound.Rpc_Good();
+            if (Door1.gameObject != null)
+            {
+                doorsSound.Rpc_Good();
+            }
+
             Rpc_ManageOpening();
         }
         else
         {
-            doorsSound.Rpc_Bad();
+            if (Door1.gameObject != null)
+            {
+                doorsSound.Rpc_Bad();
+            }
         }
     }
 
@@ -96,7 +101,11 @@ public class Card_Door : NetworkBehaviour
         */
         if (!anim.isPlaying)
         {
-            doorsSound.Rpc_Open();
+            if (Door1.gameObject != null)
+            {
+                doorsSound.Rpc_Open();
+            }
+            
             anim.Play();
             anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
             anim[anim.clip.name].time = 0;
@@ -107,7 +116,6 @@ public class Card_Door : NetworkBehaviour
         if (Door1.HasStateAuthority)
         {
 
-            Debug.Log("Have Authority");
             NetworkManager.runnerInstance.Despawn(Door1);
             
             //MattSounds : jouer son ouverture
