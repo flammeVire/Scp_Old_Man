@@ -132,4 +132,17 @@ public class PlayerAnimation : MonoBehaviour
         }
         // animator.SetTrigger("CrouchWalk");
     }
+
+    public void Pick()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 0 = layer index
+
+        // Vérifie si le nom de l'état actuel est différent de "Idle"
+        if (!stateInfo.IsName("Pick"))
+        {
+
+            //animator.ResetTrigger("Run");  // Optionnel : réinitialise les autres triggers
+            animator.SetTrigger("Pick");
+        }
+    }
 }

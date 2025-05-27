@@ -137,10 +137,10 @@ public class Papy_Manager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void Rpc_TeleportPapy()
     {
+        rire.Stop();
+        rire.Play();
         if (HasStateAuthority)
         {
-            rire.Stop();
-            rire.Play();
             int randomPoint = UnityEngine.Random.Range(0, PointToReach.Length);
                 if (Vector3.Distance(this.transform.position, PointToReach[randomPoint].position) < 5)
                 {

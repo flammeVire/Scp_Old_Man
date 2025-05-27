@@ -83,6 +83,7 @@ public class Scenarium : NetworkBehaviour
         manager.CanMove = true;
         if (HasStateAuthority) 
         {
+            WalkSound.Stop();
             NetworkManager.runnerInstance.Despawn(this.GetComponent<NetworkObject>());
         }
     }

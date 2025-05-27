@@ -37,28 +37,15 @@ public class Double_Door : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public async void Rpc_ManageOpening(bool Activate)
     {
-        /*
-        if (!IsOpen)
-        {
-            doorsSound.Rpc_Open();
-            if (Door.HasStateAuthority)
-            {
-
-                Debug.Log("Have Authority");
-                NetworkManager.runnerInstance.Despawn(Door);
-                //MattSounds : jouer son ouverture
-                IsOpen = true;
-            }
-        }
-        */
+        
         if (Activate)
         {
             if (!anim.isPlaying)
             {
-                if (Door1.gameObject != null)
-                {
+                //if (Door1.gameObject != null)
+                //{
                     doorSound.Rpc_Open();
-                }
+               // }
                 anim.Play();
                 anim[anim.clip.name].speed = 1;              // Joue l’animation en sens inverse
                 anim[anim.clip.name].time = 0;

@@ -18,11 +18,12 @@ public class Papy_Vision : MonoBehaviour
     private void Update()
     {
         FieldOfViewCheck();
+        /*
         if (!canSeePlayer && Target != null)
         {
             LastestTargetPos = Target.transform;
             Target = null;
-        }
+        }*/
     }
 
     void FieldOfViewCheck()

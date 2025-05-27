@@ -243,6 +243,7 @@ public class Papy_Mouvement : NetworkBehaviour
         Papy_Manager.Instance.Rpc_FloorSpawnPortals(transform.position, transform.rotation);
         Papy_Manager.Instance.Rpc_TeleportPapy();
         Papy_Manager.Instance.Rpc_ChangeStatus(1);
+        Papy_Manager.Instance.pVision.Target = null;
     }
     #endregion
 

@@ -27,7 +27,7 @@ public class PlayerInterraction : NetworkBehaviour
                 {
                     if (hit.collider.CompareTag("Interractive"))
                     {
-                        //MattSounds : jouer son interraction (tu peux descendre dans les if selons les son)
+                        mouvement.playerAnimation.Pick();
                         if (hit.collider.GetComponent<SecurityCam>())
                         {
                             SecurityCam(hit.collider.GetComponent<SecurityCam>());
@@ -62,6 +62,7 @@ public class PlayerInterraction : NetworkBehaviour
                         Debug.Log("Interact with elect : state == " + ElecManager.instance.ComplexeHaveElectricity);
                         if(ElecManager.instance.ComplexeHaveElectricity == false)
                         {
+                            mouvement.playerAnimation.Pick();
                             ElecManager.instance.Rpc_ActivateElectricity();
                         }
                     }
