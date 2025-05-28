@@ -5,7 +5,9 @@ using System.Collections;
 using System;
 using Photon.Voice;
 using UnityEngine.UIElements;
-using Unity.VisualScripting;
+using FMOD;
+using FMODUnity;
+
 public class Papy_Mouvement : NetworkBehaviour
 {
     public NavMeshAgent agent;
@@ -22,42 +24,7 @@ public class Papy_Mouvement : NetworkBehaviour
     //Header("Data")]
     [SerializeField] float Speed;
 
-    /*
-    void Start()
-    {
-        InvokeRepeating(nameof(SetRandomDestination), 0, 5f); // Change de destination toutes les 5s
-        InvokeRepeating(nameof(ToggleWallPass), 30f, 30f); // Alterne le mode toutes les 30s
-    }
-
-    void SetRandomDestination()
-    {
-        Vector3 randomPos = RandomNavSphere(transform.position, range, -1);
-        agent.SetDestination(randomPos);
-    }
-
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
-        randDirection += origin;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-        return navHit.position;
-    }
-
-    void ToggleWallPass()
-    {
-        canPassThroughWalls = !canPassThroughWalls;
-        if (canPassThroughWalls)
-        {
-            agent.enabled = false; // Désactive la navigation
-        }
-        else
-        {
-            agent.enabled = true; // Réactive la navigation après 30s
-            SetRandomDestination(); // Trouve une nouvelle destination
-        }
-    }
-    */
+    public StudioEventEmitter flashbang;
 
     private void Update()
     {
@@ -78,8 +45,8 @@ public class Papy_Mouvement : NetworkBehaviour
                 }
                 else if (Papy_Manager.Instance.currentState == Papy_Manager.Papy_State.searching)
                 {
-                    Debug.Log("Searching");
                     SearchingMouvement();
+                    GoToTarget();
                     if (IsPointReach(CurrentPointToReach))
                     {
                         HaveReachThePoint = IsPointReach(CurrentPointToReach);
@@ -132,7 +99,6 @@ public class Papy_Mouvement : NetworkBehaviour
 
     void PatrolMouvement()
     {
-        Debug.Log("PatrolMenu");
         agent.enabled = true;
         agent.destination = CurrentPointToReach;
     }
@@ -156,9 +122,8 @@ public class Papy_Mouvement : NetworkBehaviour
             {
                 PlayerInterrestPoint PI = GameManager.Instance.PlayerMeshes[i].GetComponent<PlayerInterrestPoint>();
 
-                if (PI.TotalPI >= MinimumPI)
+                if (PI.TotalPI >= MinimumPI/2 )
                 {
-                    Debug.Log("Teleport");
                     Papy_Manager.Instance.Rpc_ChangeStatus(2);
                     Papy_Manager.Instance.Rpc_TeleportToPreciseLocation(GetClosestPointFromPlayer(PI.gameObject.transform).position, GetClosestPointFromPlayer(PI.gameObject.transform).rotation);
                 }
@@ -167,6 +132,23 @@ public class Papy_Mouvement : NetworkBehaviour
         
     }
 
+    void GoToTarget()
+    {
+        for (int i = 0; i < GameManager.Instance.PlayerMeshes.Length; i++)
+        {
+            if (GameManager.Instance.PlayerMeshes[i] != null)
+            {
+                PlayerInterrestPoint PI = GameManager.Instance.PlayerMeshes[i].GetComponent<PlayerInterrestPoint>();
+
+                if (PI.TotalPI >= MinimumPI)
+                {
+                    Papy_Manager.Instance.Rpc_ChangeStatus(2);
+                    // Papy_Manager.Instance.Rpc_TeleportToPreciseLocation(GetClosestPointFromPlayer(PI.gameObject.transform).position, GetClosestPointFromPlayer(PI.gameObject.transform).rotation);
+                    Papy_Manager.Instance.pMouvement.CurrentPointToReach = PI.transform.position;
+                }
+            }
+        }
+    }
     Transform GetClosestPointFromPlayer(Transform playerTransform)
     {
         // 1. Convertir la position du joueur en local dans son monde
@@ -193,7 +175,6 @@ public class Papy_Mouvement : NetworkBehaviour
 
     void ChaseMouvement()
     {
-        Debug.Log("ChaseMenu");
         agent.enabled = false;
         Vector3 currentPosition = transform.position;
 
@@ -227,14 +208,13 @@ public class Papy_Mouvement : NetworkBehaviour
 
         if (obj.GetComponent<PickItem>() != null && obj.GetComponent<PickItem>().NumberOfFlashGrenade <= 0)
         {
-            Debug.Log("Have not flash");
             obj.GetComponent<PlayerMouvement>().Rpc_TeleportMesh(GetClosestPocketPoint(obj.transform).position, GetClosestPocketPoint(obj.transform).rotation);
             obj.GetComponent<PlayerMouvement>().IsInPocketDim = true;
             GetAPoint(obj.transform.position);
         }
         else
         {
-            Debug.Log("Have Flash");
+            flashbang.Play();
             obj.GetComponent<PickItem>().NumberOfFlashGrenade--;
             obj.GetComponent<PlayerMouvement>().playerUI.FlashText.text = obj.GetComponent<PickItem>().NumberOfFlashGrenade.ToString();
         }
@@ -251,13 +231,11 @@ public class Papy_Mouvement : NetworkBehaviour
     {
         if (collision.gameObject.layer == 7) // PayerLayer
         {
-            Debug.Log("Papy touch player");
             CaughtPlayer(collision.gameObject.GetComponent<NetworkObject>());
         }
         if (collision.gameObject.layer == 8) // wall
         {
             //spawn portal
-            Debug.Log("Touche Wall");
 
            // Papy_Manager.Instance.WRpc_SpawnPortals(collision.transform.position,collision.transform.rotation);
         }
@@ -335,14 +313,12 @@ public class Papy_Mouvement : NetworkBehaviour
 
     void SphereCheck()
     {
-        Debug.Log("SpereCheck");
         RaycastHit[] hits = new RaycastHit[10]; // Taille fixe
         Ray ray = new Ray(transform.position, transform.forward);
         LayerMask mask = LayerMask.GetMask("Props");
 
         int hitCount = Physics.SphereCastNonAlloc(ray, 0.1f, hits,0.1f, mask);
 
-        Debug.Log("HIT COUNT = " + hitCount);
         for (int i = 0; i < hitCount; i++)
         {
             
@@ -350,10 +326,8 @@ public class Papy_Mouvement : NetworkBehaviour
 
             if (hitObject.layer == LayerMask.NameToLayer("Props"))
             {
-                Debug.Log("Hit props");
                 if (hitObject.GetComponent<NetworkObject>() && hitObject.GetComponent<NetworkObject>().HasStateAuthority)
                 {
-                    Debug.Log("Despawn props");
                     NetworkManager.runnerInstance.Despawn(hitObject.GetComponent<NetworkObject>());
                     NetworkManager.runnerInstance.Spawn(Papy_Manager.Instance.Corrosion, hitObject.transform.position, Quaternion.identity);
                 }

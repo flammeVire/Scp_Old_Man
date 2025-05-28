@@ -164,22 +164,6 @@ public class Papy_Manager : NetworkBehaviour
         transform.rotation = rotation;
     }
 
-    /*
-    
-    [Rpc(RpcSources.All,RpcTargets.All)]
-    void Rpc_SetAuthorityToPlayerOne()
-    {
-        if (HasStateAuthority)
-        {
-            this.GetComponent<NetworkObject>().ReleaseStateAuthority();
-        }
-        if(LobbyManager.instance.FirstPlayer == NetworkManager.runnerInstance.LocalPlayer)
-        {
-            this.GetComponent<NetworkObject>().RequestStateAuthority();
-        }
-    }
-  
-    */
     [Rpc(RpcSources.All,RpcTargets.All)]
     public void Rpc_ChangeStatus(int Status)
     {
@@ -215,7 +199,6 @@ public class Papy_Manager : NetworkBehaviour
             obj.GetComponent<HidingSpot>().Rpc_ShowPlayerMesh();
         }
     }
-
 
     public async void Rpc_StopSearching(NetworkObject obj)
     {

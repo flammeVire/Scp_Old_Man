@@ -1,4 +1,5 @@
 using FMOD;
+using FMODUnity;
 using Fusion;
 using System;
 using System.Collections;
@@ -12,6 +13,8 @@ public class EndGame : NetworkBehaviour
 
     public Animation anim;
     public float Delay;
+    public StudioEventEmitter closeSound;
+
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public async void Rpc_ClosingEndSasAsync()
@@ -56,7 +59,7 @@ public class EndGame : NetworkBehaviour
 
         else if (!anim.isPlaying)
         {
-
+            closeSound.Play();
             anim.Play();
             anim[anim.clip.name].speed = -1;              // Joue l’animation en sens inverse
             anim[anim.clip.name].time = anim[anim.clip.name].length;
