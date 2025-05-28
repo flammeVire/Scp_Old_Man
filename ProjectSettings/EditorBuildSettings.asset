@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Game/Scenes/MenuScene.unity
-    guid: 533c7673329175948b4fc26268efd644
+    guid: 794c7a92c6e34f74ab26fb117c17b527
   - enabled: 1
     path: Assets/Game/Scenes/LobbyScene.unity
     guid: 302ac2adfc9798144a11b36d6c8cedff
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/EndScene.unity
     guid: 9efa02103de88d3429d061a28dc5483b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Game/Scenes/Papy Test Scene.unity
     guid: 1ab496578abbe184e987e5ac0016d266
   - enabled: 0
